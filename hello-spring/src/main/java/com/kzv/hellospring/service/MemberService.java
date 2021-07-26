@@ -3,20 +3,24 @@ package com.kzv.hellospring.service;
 import com.kzv.hellospring.domain.Member;
 import com.kzv.hellospring.repository.MemberRepository;
 import com.kzv.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+//@Service
 public class MemberService {
 
     //    private final MemberRepository memberRepository = new MemoryMemberRepository(); //service와 test의 리포지터리가 다른 인스턴스이므로 같게 만들어주자
     private final MemberRepository memberRepository;
 
+//    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
-    /* 회원가입 */
+    /** 회원가입 */
     public Long join(Member member) {
         //중복 회원 검증
         validateDepulicateMemeber(member);
@@ -39,7 +43,7 @@ public class MemberService {
 //                });
     }
 
-    /* 전체 회원 조회 */
+    /** 전체 회원 조회 */
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
