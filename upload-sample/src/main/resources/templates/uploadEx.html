@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" multiple id="filepicker">
+<button id="uploadBtn" type="button">업로드</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    const filepicker = document.getElementById('filepicker');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const formData = new FormData();
+    let files;
+
+    filepicker.addEventListener('change', e => {
+        files = e.target.files;
+    })
+
+    uploadBtn.addEventListener('click', () => {
+        [].map.call(files, file => {
+            console.log(file);
+            formData.append("uploadFiles", file);
+        })
+
+
+        const config = {
+            onUploadProgress: e => {
+                let percentage = (e.loaded * 100) / e.total;
+                let currentPercentage = Math.round(percentage);
+                console.log(currentPercentage + "%");
+            },
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        };
+
+        axios.post('/upload', formData, config)
+            .then((req, res) => {
+                console.log(res);
+            })
+            .catch(err => console.log(err));
+    })
+</script>
+</body>
+</html>
