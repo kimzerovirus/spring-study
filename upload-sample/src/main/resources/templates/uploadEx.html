@@ -8,6 +8,8 @@
 <input type="file" multiple id="filepicker">
 <button id="uploadBtn" type="button">업로드</button>
 
+<div id="uploadResult"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
     const filepicker = document.getElementById('filepicker');
@@ -40,9 +42,22 @@
         axios.post('/upload', formData, config)
             .then((req, res) => {
                 console.log(res);
+                // showUploadedImages(res.data);
             })
             .catch(err => console.log(err));
     })
+
+
+    // const uploadResult = document.getElementById('uploadResult');
+
+    // function showUploadedImages(arr) {
+    //     if (arr) {
+    //         arr.map(arr, data => {
+    //             uploadResult.append("<img src='/display?fileName=" + data.imageURL + "'>");
+    //         })
+    //     }
+    // }
+
 </script>
 </body>
 </html>
