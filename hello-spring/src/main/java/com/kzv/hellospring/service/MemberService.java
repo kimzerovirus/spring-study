@@ -32,6 +32,7 @@ public class MemberService {
             long finish = System.currentTimeMillis();
             long timeMs = finish - start;
             System.out.println("join="+timeMs+"ms");
+
         }
     }
 
