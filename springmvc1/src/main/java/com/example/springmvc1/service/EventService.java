@@ -1,4 +1,4 @@
-package com.example.springmvc1.Service;
+package com.example.springmvc1.service;
 
 import com.example.springmvc1.model.Event;
 import org.springframework.stereotype.Service;
