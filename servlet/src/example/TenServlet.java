@@ -9,30 +9,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class HelloServlet
- *
- * servlet 3.0 이상은 webservlet이라는 자바 어노테이션을 통해 등록하지만 미만 버전은 web.xml파일에 직접 등록해주어야 한다.
- */
-@WebServlet("/HelloServlet")
-public class HelloServlet extends HttpServlet {
+
+@WebServlet("/ttt")
+public class TenServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
-     * @see HttpServlet#HttpServlet()
+     * @see TenServlet#HttpServlet()
      */
-    public HelloServlet() {
+    public TenServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * @see TenServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("<h1>Hello World</h1>");
+        out.println("<h1>1~10까지 출력</h1>");
+        for(int i=1;i<=10;i++){
+            out.println(i+"<br>");
+        }
+        out.close();
     }
 
 }
