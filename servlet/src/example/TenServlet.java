@@ -15,7 +15,7 @@ public class TenServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
-     * @see TenServlet#HttpServlet()
+     * @see TenServlet@HttpServlet()
      */
     public TenServlet() {
         super();
