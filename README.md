@@ -12,3 +12,7 @@
  
 ### servlet
  - jdk11
+ 
+### jdbc
+ - jdk8
+ - maven
