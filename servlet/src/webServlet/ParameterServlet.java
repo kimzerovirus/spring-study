@@ -25,7 +25,7 @@ public class ParameterServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
+        response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter(); //client와 연결통로를 열어주는것
         out.println("<html>");
         out.println("<head><title>form</title></head>");
