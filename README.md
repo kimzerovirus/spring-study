@@ -16,3 +16,11 @@
 ### jdbc
  - jdk8
  - maven
+
+### jdbcmvc
+ - jdk8
+ - maven
+
+### springbootJPA_TDD
+ - jdk8
+ - gradle
