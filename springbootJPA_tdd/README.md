@@ -1,6 +1,7 @@
 # 스프링부트 JPA TDD개발
 >
 >  - SpringBoot 2.x
+>  - Spring Data Jpa
 >  - lombok
 >  - junit4
 >  - thymeleaf
