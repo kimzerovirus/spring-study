@@ -1,12 +1,21 @@
 # 스프링부트 JPA TDD개발
+
 >
->  - SpringBoot 2.x
->  - Spring Data Jpa
->  - lombok
->  - junit4
->  - thymeleaf
->  - h2 Database
+> 스프링에선 Bean을 주입받는 방식이 여러가지가 있다.<br/>
+> 대표적으로 @Autowired, @Setter, 생성자를 통한 주입방식이 있는데, 이 프로젝트에서는 생성자를 통해 Bean을 주입하고자 한다. (@Autowired와 달리 순환참조 등의 에러를 방지 할 수 있다.)<br/>
+> 또한 test driven development, 테스트 주도 개발 방식인 TDD를 적용하여 프로젝트를 진행한다.
 >
+
+|   분야        | 사용기술         | 비고 |
+|--------------|-----------------|-----|
+|  프레임워크    | SpringBoot 2.x  |         
+|    ORM       | Spring Data Jpa |
+|    라이브러리  | lombok          |
+|    테스트     | junit4          |
+|    템플릿     | thymeleaf       |
+|  데이터베이스  | h2 Database     |
+
+<br>
 
 ### 1. @Getter, @Setter
  - 선언된 모든 필드의 get메서드 생성
@@ -47,3 +56,4 @@
 ### 8. @Builder
  - 해당 클래스의 빌더 패턴 클래스 생성
  - 생성자 상단에 선언시 생성자에 포함된 필드만 빌더에 포함
+

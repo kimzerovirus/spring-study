@@ -32,6 +32,13 @@ public class Posts {
         this.author = author;
     }
 
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+}
+
+
     // 기본적으로 생성자를 통해 최종값을 채우지만 여기서는 @Builder를 통해 채우는 방식으로 작성한다. (이렇게 하면 생성자와 달리 내가 무엇을 채우려는지 명확한 목적을 알기 쉽다)
     /*
         예시) - 생성자
@@ -48,7 +55,7 @@ public class Posts {
         => 명확하게 a에 a를 b에 b를 넣어준다는걸 알 수 있다.
      */
 
-}
+
 
 /*
     @Entity
