@@ -57,3 +57,15 @@
  - 해당 클래스의 빌더 패턴 클래스 생성
  - 생성자 상단에 선언시 생성자에 포함된 필드만 빌더에 포함
 
+### 9. @MappedSuperclass
+ - JPA Entity 클래스들이 BaseEntity를 상속할 경우 필드들도 칼럼으로 인식하게 한다.
+
+### 10. @EntityListeners(AuditingEntityListener.class)
+ - 현재 클래스에 Auditing 기능을 포함한다.
+ - Auditing기능은 Spring Data JPA에서 시간에 대해서 자동으로 값을 넣어주는 기능이다.
+
+### 11. @CreatedDate
+ - Entity가 생성되어 저장될 때 시간이 자동으로 저장된다.
+
+### 12. @LastModifiedDate
+ - 조회한 Entity의 값을 변경할 때 시간이 자동 저장된다.
