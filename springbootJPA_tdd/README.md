@@ -12,7 +12,7 @@
 |    ORM       | Spring Data Jpa |
 |    라이브러리  | lombok          |
 |    테스트     | junit4          |
-|    템플릿     | thymeleaf       |
+|    템플릿     | thymeleaf, jQuery, BootStrap4      |
 |  데이터베이스  | h2 Database     |
 
 <br>
@@ -63,6 +63,7 @@
 ### 10. @EntityListeners(AuditingEntityListener.class)
  - 현재 클래스에 Auditing 기능을 포함한다.
  - Auditing기능은 Spring Data JPA에서 시간에 대해서 자동으로 값을 넣어주는 기능이다.
+ - application실행 부분에 @EnableJpaAuditing으로 활성화 해줘야한다.
 
 ### 11. @CreatedDate
  - Entity가 생성되어 저장될 때 시간이 자동으로 저장된다.

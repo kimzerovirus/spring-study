@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
+</head>
+<body>
+
+<th:block th:insert="layout/header.html :: fragment-header"></th:block>
+
+<h1>Spring JPA TDD</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/posts/save" class="btn btn-primary" role="button">
+                글 등록
+            </a>
+        </div>
+    </div>
+    <br>
+
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>
+                게시글번호
+            </th>
+            <th>
+                제목
+            </th>
+            <th>
+                작성자
+            </th>
+            <th>
+                최종수정일
+            </th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+            <tr th:each="post :${posts}">
+                <td th:text="${post.id}"></td>
+                <td><a th:href="'/posts/update/'+${post.id}"  th:text="${post.title}"></a></td>
+                <td th:text="${post.author}"></td>
+                <td th:text="${post.modifiedDate}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<th:block th:insert="layout/footer.html :: fragment-footer"></th:block>
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

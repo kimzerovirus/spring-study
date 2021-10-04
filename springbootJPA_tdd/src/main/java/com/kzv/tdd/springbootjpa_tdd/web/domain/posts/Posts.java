@@ -1,5 +1,6 @@
 package com.kzv.tdd.springbootjpa_tdd.web.domain.posts;
 
+import com.kzv.tdd.springbootjpa_tdd.web.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity // <-없으면 not a managed type으로 레포지토리에서 에러가 난다.
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     // 엔티티 클래스로 Setter 메소드를 만들지 않는다.
     // 대신 필드값 변경이 필요할 경우 해당 필드에 대한 목적과 의도가 확실하게 나타나는 메소드를 추가해준다.
