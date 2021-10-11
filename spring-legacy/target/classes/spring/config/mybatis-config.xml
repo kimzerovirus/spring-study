@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    &lt;!&ndash; 타입 별칭 지정 &ndash;&gt;-->
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.kzv.memo.domain.MemoVO" alias="Memo"/>-->
+<!--    </typeAliases>-->
+
+<!--    &lt;!&ndash; mapper파일 등록 &ndash;&gt;-->
+<!--    <mappers>-->
+<!--        <mapper resource="spring/mapper/MemoMapper.xml" />-->
+<!--    </mappers>-->
+</configuration>
+
+
