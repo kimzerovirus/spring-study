@@ -36,9 +36,10 @@
 <!--        <property name="password" value="tiger"/>-->
 <!--    </bean>-->
 
+<!--  mysql 5이하 com.mysql.jdbc.Driver  -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/board_sample?characterEncoding=UTF-8&amp;serverTimezone=UTC"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/board_sample?useSSL=false&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"/>
         <property name="username" value="root"/>
         <property name="password" value="1541"/>
     </bean>
