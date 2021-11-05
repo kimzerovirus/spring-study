@@ -113,4 +113,14 @@ public class EventControllerTests {
                     .content(this.objectMapper.writeValueAsString(eventDto))) //입력값이 이상한데(빈 값을 보냄) bad_request가 나오지 않는다 ,,, vaild와 errors를 통해 에러 처리함
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    public void createEvent_Bad_Request_Wrong_Input() throws Exception{
+        EventDto eventDto = EventDto.builder().build();
+
+        this.mockMvc.perform(post("/api/events")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsString(eventDto))) //입력값이 이상한데(빈 값을 보냄) bad_request가 나오지 않는다 ,,, vaild와 errors를 통해 에러 처리함
+                .andExpect(status().isBadRequest());
+    }
 }
