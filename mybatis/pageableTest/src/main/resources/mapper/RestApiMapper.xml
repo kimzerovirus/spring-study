@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="me.kzv.pageabletest.web.mapper.RestApiMapper">
 
-<resultMap id="Content" type="me.kzv.pageabletest.web.dto.BoardResponseDto">
+<resultMap id="Board" type="me.kzv.pageabletest.web.vo.BoardVo">
     <result property="idx" column="IDX" javaType="int"/>
     <result property="name" column="NAME" javaType="String"/>
     <result property="content" column="CONTENT" javaType="String"/>
     <result property="regDate" column="REG_DATE" javaType="String"/>
 </resultMap>
 
-    <select id="getBoardList"  resultType="Content">
+    <select id="getBoardList" resultMap="Board">
         SELECT
             *
-        FROM edu_memebers
-        ORDER BY DESC;
+        FROM edu_members
+        ORDERS LIMIT #{pageSize} OFFSET #{offset}
     </select>
     <select id="getBoardTotal" resultType="Long">
-        SELECT COUNT(idx) FROM edx_board
+        SELECT COUNT(idx) FROM edu_members
     </select>
+
+    <insert id="saveBoardList" parameterType="me.kzv.pageabletest.web.vo.BoardVo">
+        INSERT INTO edu_members (name, content) VALUES (#{name}, #{content})
+    </insert>
 </mapper>
