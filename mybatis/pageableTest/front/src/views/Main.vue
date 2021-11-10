@@ -44,7 +44,7 @@ export default {
 		async getData() {
 			const { data } = await getList({
 				pageNumber: this.pageable.pageNumber || 0,
-				pageSize: 5,
+				pageSize: 10,
 			});
 			this.data = data.content;
 			this.pageable = data.pageable;
