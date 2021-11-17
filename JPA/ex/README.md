@@ -3,7 +3,7 @@
 ### 1. 스프링 ~ DB 흐름
 
 >
-> - Spring Data JPA → Hiernate → JDBC → DB
+> - Spring Data JPA → Hibernate → JDBC → DB
 >
 >
 
