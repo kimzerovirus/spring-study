@@ -70,3 +70,9 @@
 
 ### 12. @LastModifiedDate
 > - 조회한 Entity의 값을 변경할 때 시간이 자동 저장된다.
+
+### #JPA와 QueryDsl
+>
+> FK의 조인, 복잡한 조건 등은 Entity만으로 해결하기 어렵다. 
+> 따라서 조회용 프레임워크로 MyBatis, QueryDsl 등을 추가로 이용하는 경향이 있는데
+> QueryDsl은 메소드를 기반으로 쿼리를 생성하기 때문에 오타 등의 자잘한 에러를 IDE에서 걸러 낼 수 있다는 장점이 있다.
