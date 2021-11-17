@@ -26,10 +26,10 @@
 
 ### 3. @RequiredArgsConstructor, @NoArgsConstructor와 @AllArgsConstructor
 #### 3.1 @RequiredArgsConstructor
-> - 선언된 모든 초기화 되지 않은 final필드 또는 @NonNull이 붙은 필드를 파라미터로 받는 생성자를 생성해 준다(final이 없는 필드는 생성x).
+> - 선언된 모든 초기화 되지 않은 final필드 또는 @NonNull이 붙은 필드를 파라미터로 받는 생성자를 생성해 준다(final이 없는 필드는 생성x, 모든 멤버 변수를 초기화시키는 생성자).
 #### 3.2 @NoArgsConstructor
 > - 파라미터가 없는 기본 생성자를 생성해준다.
-#### 3.3 @RequiredArgsConstructor
+#### 3.3 @AllArgsConstructor
 > - 모든 필드 값을 파라미터로 받는 생성자를 만들어준다.
 
 ### 4. @Entity
