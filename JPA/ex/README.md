@@ -3,7 +3,7 @@
 ### 1. 스프링 ~ DB 흐름
 
 >
-> - Spring Data JPA → Hiernate → JDBC → DB
+> - Spring Data JPA → Hibernate → JDBC → DB
 >
 >
 
@@ -81,6 +81,7 @@
 #### 11.3 @AllArgsConstructor
 
 > - 모든 필드 값을 파라미터로 받는 생성자를 만들어준다.
+<<<<<<< HEAD
 
 - @AllArgsConstructor와 @NoArgsConstructor는 항상 같이 처리해야 컴파일 에러가 발생하지 않는다.
 
@@ -121,3 +122,6 @@
     @Query(value = "select * from memo where mno > 0", nativeQuery = true)
     List<Object[]> getNativeResult();
 ```
+=======
+- @AllArgsConstructor와 @NoArgsConstructor는 항상 같이 처리해야 컴파일 에러가 발생하지 않는다.
+>>>>>>> faf0e846c603c4b5950f0cfc811692c1ce686f09
