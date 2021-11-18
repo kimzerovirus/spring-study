@@ -66,13 +66,58 @@
 > - `UPDATE` : save(엔티티 객체)
 > - `DELETE` : deleteById(키 타입), delete(엔티티 객체)
 
- - insert와 update는 메서드가 동일하지만 JPA의 구현체가 메모리상에서 객체를 비교하여 새로운 객체면 insert작업을, 존재한다면 update 작업을 수행한다.
+- insert와 update는 메서드가 동일하지만 JPA의 구현체가 메모리상에서 객체를 비교하여 새로운 객체면 insert작업을, 존재한다면 update 작업을 수행한다.
 
 ### 11. @RequiredArgsConstructor, @NoArgsConstructor와 @AllArgsConstructor
+
 #### 11.1 @RequiredArgsConstructor
+
 > - 선언된 모든 초기화 되지 않은 final필드 또는 @NonNull이 붙은 필드를 파라미터로 받는 생성자를 생성해 준다(final이 없는 필드는 생성x, 모든 멤버 변수를 초기화시키는 생성자).
+
 #### 11.2 @NoArgsConstructor
+
 > - 파라미터가 없는 기본 생성자를 생성해준다.
+
 #### 11.3 @AllArgsConstructor
+
 > - 모든 필드 값을 파라미터로 받는 생성자를 만들어준다.
+
 - @AllArgsConstructor와 @NoArgsConstructor는 항상 같이 처리해야 컴파일 에러가 발생하지 않는다.
+
+### 12. Query Methods
+
+> - [Reference Docs](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods)
+> - `findBy`나`getBy`로 시작하고 `And, Or`와 같은 키워드로 메서드의 이름 자체를 질의 조건으로 만들어 준다.
+> - 레포지토리인터페이스에 메소드를 적어주면 된다.
+
+### 13. @Query
+
+> - JPQL(Java Persistence Query Language)이라는 걸 사용하며 SQL과 상당히 유사하다.
+> - `:파라미터` 방식과 `:#파라미터` 방식으로 파라미터를 받을 수 있다.
+> - JPQL이 아닌 Native SQL로 처리하는것 또한 가능하다. 
+
+```
+  1. JPQL
+    @Query("select m from Memo m order by m.mno desc")
+    List<Memo> getListDesc();
+  
+  2. :파라미터 방식  
+    @Transactional
+    @Modifying
+    @Query("update Memo m set m.memoText = :memoText where m.mno = :mno")
+    int updateMemoText(@Param("mno") Long mno, @Param("memoText") String memoText);
+    
+  3. :#파라미터 방식
+    @Transactional
+    @Modifying
+    @Query("update Memo m set m.memoText = :#{#param.memoText} where m.mno = :#{#param.mno}")
+    int updateMemoText(@Param("param") Memo memo);
+  
+  4. 현재 필요한 데이터만 추출하는법 Object[]
+    @Query(value = "select m.mno, m.memoText, CURRENT_DATE from Memo m where m.mno > :mno", countQuery = "select count(m) from Memo m where m.mno > :mno")
+    Page<Object[]> getListWithQueryObject(Long mno, Pageable pageable);
+  
+  5. Native SQL로 처리하기
+    @Query(value = "select * from memo where mno > 0", nativeQuery = true)
+    List<Object[]> getNativeResult();
+```
