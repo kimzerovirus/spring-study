@@ -122,6 +122,3 @@
     @Query(value = "select * from memo where mno > 0", nativeQuery = true)
     List<Object[]> getNativeResult();
 ```
-=======
-- @AllArgsConstructor와 @NoArgsConstructor는 항상 같이 처리해야 컴파일 에러가 발생하지 않는다.
->>>>>>> faf0e846c603c4b5950f0cfc811692c1ce686f09

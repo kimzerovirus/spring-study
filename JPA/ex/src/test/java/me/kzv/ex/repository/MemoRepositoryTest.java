@@ -35,7 +35,7 @@ public class MemoRepositoryTest {
 	@Transactional
 	@Test
 	public void testInsertDummies() {
-	//JAVA8에서 반복문을 구현하는 색다른방법: IntStream과 LongStream에는 range와 rangeClosed 메소드가 있는데 Closed가 붙으면 끝 개수를 포함한다(<=과 <의 차이).
+		//JAVA8에서 반복문을 구현하는 색다른방법: IntStream과 LongStream에는 range와 rangeClosed 메소드가 있는데 Closed가 붙으면 끝 개수를 포함한다(<=과 <의 차이).
 
 		IntStream.rangeClosed(1, 100).forEach(i -> {
 			Memo memo = Memo.builder()
@@ -47,14 +47,14 @@ public class MemoRepositoryTest {
 	}
 
 	@Test
-	public void testSelect(){
+	public void testSelect() {
 		//DB에 존재하는 mno
 		Long mno = 100L;
 
 		Optional<Memo> result = memoRepository.findById(mno);
 
 		System.out.println("========================");
-		if(result.isPresent()){
+		if (result.isPresent()) {
 			Memo memo = result.get();
 			System.out.println(memo);
 		}
@@ -62,7 +62,7 @@ public class MemoRepositoryTest {
 
 	@Transactional
 	@Test
-	public void testSelect2(){
+	public void testSelect2() {
 		//DB에 존재하는 mno
 		Long mno = 100L;
 
@@ -73,7 +73,7 @@ public class MemoRepositoryTest {
 	}
 
 	@Test
-	public void testUpdate(){
+	public void testUpdate() {
 		Memo memo = Memo.builder()
 				.mno(100L)
 				.memoText("Update Text")
@@ -81,14 +81,14 @@ public class MemoRepositoryTest {
 	}
 
 	@Test
-	public void testDelete(){
+	public void testDelete() {
 		Long mno = 100L;
 
 		memoRepository.deleteById(mno);
 	}
 
 	@Test
-	public void testPageDefault(){
+	public void testPageDefault() {
 
 		Pageable pageable = PageRequest.of(0, 10);
 
@@ -107,7 +107,7 @@ public class MemoRepositoryTest {
 	}
 
 	@Test
-	public void testSort(){
+	public void testSort() {
 		Sort sort1 = Sort.by("mno").descending();
 
 		Pageable pageable = PageRequest.of(0, 10, sort1);
@@ -120,26 +120,26 @@ public class MemoRepositoryTest {
 	}
 
 	@Test
-	public void testQueryMethods(){
+	public void testQueryMethods() {
 		List<Memo> list = memoRepository.findByMnoBetweenOrderByMnoDesc(70L, 80L);
 
-		for(Memo memo : list){
+		for (Memo memo : list) {
 			System.out.println(memo);
 		}
 	}
 
 	@Test
-	public void testQueryMethodWithPageable(){
+	public void testQueryMethodWithPageable() {
 		Pageable pageable = PageRequest.of(0, 10, Sort.by("mno").descending());
 
 		Page<Memo> result = memoRepository.findByMnoBetween(10L, 50L, pageable);
 
-		result.get().forEach(memo-> System.out.println(memo));
+		result.get().forEach(memo -> System.out.println(memo));
 	}
 
 	@Commit
 	@Transactional
-	public void testDeleteQueryMethods(){
+	public void testDeleteQueryMethods() {
 		memoRepository.deleteMemoByMnoLessThan(10L);
 	}
 }
