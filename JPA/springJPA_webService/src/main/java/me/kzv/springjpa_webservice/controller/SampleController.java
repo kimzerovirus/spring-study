@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SampleController {
 
+    //test
     @GetMapping
     public void ex(){
-
         log.info("ex............");
     }
 }
