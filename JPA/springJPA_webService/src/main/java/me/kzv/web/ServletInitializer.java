@@ -1,4 +1,4 @@
-package me.kzv.springjpa_webservice;
+package me.kzv.web;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
