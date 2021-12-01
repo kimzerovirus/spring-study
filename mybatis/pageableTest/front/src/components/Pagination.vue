@@ -1,97 +1,100 @@
 <template>
-	<div class="paginate">
-		<a
-			v-show="pageable.totalPages != 0"
-			class="pre_end"
-			rel="tooltip"
-			@click="goPage(0)"
-		>
-			처음
-		</a>
-		<a
-			v-show="pageable.first == false"
-			class="pre"
-			rel="tooltip"
-			@click="goPage((pageable.pageNumber -= 1))"
-		>
-			이전
-		</a>
+  <div class="paginate">
+    <a
+      v-show="pageable.totalPages != 0"
+      class="pre_end cursor"
+      rel="tooltip"
+      @click="goPage(0)"
+    >
+      처음
+    </a>
+    <a
+      v-show="pageable.first == false"
+      class="pre cursor"
+      rel="tooltip"
+      @click="goPage((pageable.pageNumber -= 1))"
+    >
+      이전
+    </a>
 
-		<a
-			@click="goPage(pageNum - 1)"
-			v-for="pageNum in pageCount()"
-			:key="pageNum"
-			:class="pageNum - 1 == pageable.pageNumber ? 'active' : ''"
-		>
-			{{ pageNum }}
-		</a>
+    <a
+      @click="goPage(pageNum - 1)"
+      v-for="pageNum in pageCount()"
+      :key="pageNum"
+      :class="pageNum - 1 == pageable.pageNumber ? 'active' : 'cursor'"
+    >
+      {{ pageNum }}
+    </a>
 
-		<a
-			v-show="pageable.last == false"
-			class="next"
-			rel="tooltip"
-			@click="goPage((pageable.pageNumber += 1))"
-		>
-			다음
-		</a>
-		<a
-			v-show="pageable.totalPages != 0"
-			class="next_end"
-			rel="tooltip"
-			@click="goPage(pageable.totalPages - 1)"
-		>
-			마지막
-		</a>
-	</div>
+    <a
+      v-show="pageable.last == false"
+      class="next cursor"
+      rel="tooltip"
+      @click="goPage((pageable.pageNumber += 1))"
+    >
+      다음
+    </a>
+    <a
+      v-show="pageable.totalPages != 0"
+      class="next_end cursor"
+      rel="tooltip"
+      @click="goPage(pageable.totalPages - 1)"
+    >
+      마지막
+    </a>
+  </div>
 </template>
 
 <script>
 export default {
-	props: ['pageable'],
-	data() {
-		return {
-			currentPage: '',
-		};
-	},
-	methods: {
-		pageCount() {
-			// var totalElements = this.pageable.totalElements;    // 총게시글 갯수
-			// var listSize = this.pageable.pageSize;      // 몇개씩 보여질지 (게시글 갯수)
-			// var currentPage = this.pageable.pageNumber    // 현재페이지 --> pageCount -1
-			// var pageCount = 10;     // 보여질 페이지 번호 갯수
-			// var totalPage = this.pageable.totalPages;    // 총페이지 && endPage
+  props: ['pageable'],
+  data() {
+    return {
+      currentPage: '',
+    };
+  },
+  methods: {
+    pageCount() {
+      // var totalElements = this.pageable.totalElements;    // 총게시글 갯수
+      // var listSize = this.pageable.pageSize;      // 몇개씩 보여질지 (게시글 갯수)
+      // var currentPage = this.pageable.pageNumber    // 현재페이지 --> pageCount -1
+      // var pageCount = 10;     // 보여질 페이지 번호 갯수
+      // var totalPage = this.pageable.totalPages;    // 총페이지 && endPage
 
-			let list = [];
+      let list = [];
 
-			console.log('PAGE ::', this.pageable);
+      console.log('PAGE ::', this.pageable);
 
-			let startNum = 0,
-				endNum = 0;
-			if (this.pageable.totalPages <= 5) {
-				startNum = 1;
-				endNum = this.pageable.totalPages;
-			} else if (this.pageable.pageNumber <= 3) {
-				startNum = 1;
-				endNum = 5;
-			} else if (this.pageable.pageNumber >= this.pageable.totalPages - 3) {
-				startNum = this.pageable.totalPages - 4;
-				endNum = this.pageable.totalPages;
-			} else {
-				startNum = this.pageable.pageNumber - 2;
-				endNum = this.pageable.pageNumber + 2;
-			}
+      let startNum = 0,
+        endNum = 0;
+      if (this.pageable.totalPages > 5 && this.pageable.pageNumber == 3) {
+        startNum = this.pageable.pageNumber - 1;
+        endNum = this.pageable.pageNumber + 3;
+      } else if (this.pageable.totalPages <= 5) {
+        startNum = 1;
+        endNum = this.pageable.totalPages;
+      } else if (this.pageable.pageNumber <= 3) {
+        startNum = 1;
+        endNum = 5;
+      } else if (this.pageable.pageNumber >= this.pageable.totalPages - 3) {
+        startNum = this.pageable.totalPages - 4;
+        endNum = this.pageable.totalPages;
+      } else {
+        startNum = this.pageable.pageNumber - 1;
+        endNum = this.pageable.pageNumber + 3;
+      }
 
-			for (let i = startNum; i <= endNum; i++) {
-				list.push(i);
-			}
+      for (let i = startNum; i <= endNum; i++) {
+        list.push(i);
+      }
 
-			return list;
-		},
-		goPage(pageNum) {
-			console.log(pageNum, this.pageable.totalPages);
-			this.$emit('goPage', pageNum);
-		},
-	},
+      return list;
+    },
+    goPage(pageNum) {
+      console.log(pageNum, this.pageable.totalPages);
+      this.$emit('goPage', pageNum);
+    },
+  },
 };
 </script>
 <style scoped>
