@@ -55,3 +55,22 @@ compileQuerydsl {
 queryDsl 버전 명시 안해줬을때 `Unable to load class 'com.mysema.codegen.model.Type'.` 라는 에러가 발생했다.
 
 설정 후 어플리케이션을 실행하면 build 디렉토리에 generated라는 디렉토리가 생성된다.
+
+### @NoArgsConstructor
+매개변수가 없는 생성자
+```
+public TodoEntity(){
+
+} 
+```
+### @ AllArgsConstructor
+클래스의 모든 멤버 변수를 매개변수로 받는 생성자
+```
+public TodoEntity()(String id, String userId, String title, boolean done){
+    super();
+    this.id = id;
+    this.userId = userId;
+    this.title = title;
+    this.done = done;
+}
+```
