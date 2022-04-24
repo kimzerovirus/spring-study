@@ -14,10 +14,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Log4j2
 @RequestMapping("/guestbook")
+@RequiredArgsConstructor
 @Controller
 public class GuestbookController {
 
-    private GuestbookService service;
+    final private GuestbookService service;
 
     @GetMapping("/")
     public String index() {
