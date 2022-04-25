@@ -89,3 +89,11 @@ System.out.println(test2);
 TestToString(id=1, name=toString사용유저) <br>
 com.example.testdemo.TestNotToString@467c4108
 
+### Pageable
+- getTotalPages: 총 몇 페이지
+- getTotalElements: 전체 개수 
+- getNumber: 현재 페이지 번호 0~ (1부터 시작이 아님)
+- getSize: 페이지당 가져오는 데이터 수
+- hasNext: 다음페이지 존재 여부
+- isFirst: 시작(0)페이지 여부
+
