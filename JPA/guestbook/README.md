@@ -63,7 +63,7 @@ public TodoEntity(){
 
 } 
 ```
-### @ AllArgsConstructor
+### @AllArgsConstructor
 클래스의 모든 멤버 변수를 매개변수로 받는 생성자
 ```
 public TodoEntity()(String id, String userId, String title, boolean done){
@@ -74,3 +74,18 @@ public TodoEntity()(String id, String userId, String title, boolean done){
     this.done = done;
 }
 ```
+
+### @ToString
+exclude로 선언하지 않는 이상, 클래스의 모든 멤버변수를 toString()메서드로 구현해준다.
+```
+TestToString test1 = new TestToString(1L, "toString사용유저");
+TestNotToString test2 = new TestNotToString(2L, "toString사용안하는유저");
+
+System.out.println(test1);
+System.out.println(test2);
+```
+
+결과 <br>
+TestToString(id=1, name=toString사용유저) <br>
+com.example.testdemo.TestNotToString@467c4108
+
