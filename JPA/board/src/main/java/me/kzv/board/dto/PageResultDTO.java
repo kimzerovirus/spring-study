@@ -38,6 +38,6 @@ public class PageResultDTO<DTO, EN> {
         end = totalPage > tempEnd ? tempEnd: totalPage;
         next = totalPage > tempEnd;
 
-        pageList = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+        pageList = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList()); // boxed() : primitive 타입을 wrapper 타입으로 박싱하여 반환한다.
     }
 }
