@@ -74,6 +74,11 @@ public TodoEntity()(String id, String userId, String title, boolean done){
     this.done = done;
 }
 ```
+| 어노테이션 | 설명 | 비고 |
+|-------------------|--------------------------|---------|
+| @NoArgsConstructor  | 파라미터가 없는 기본 생성자를 생성한다. | |
+| @AllArgsConstructor | 모든 필드 값을 파라미터로 받는 생성자를 만든다. | |
+| @RequiredArgsConstructor | final이나 @NonNull인 필드 값만 파라미터로 받는 생성자 만든다. | @Autowired(필드 주입)대신 생성자 주입으로 사용한다. |
 
 ### @ToString
 exclude로 선언하지 않는 이상, 클래스의 모든 멤버변수를 toString()메서드로 구현해준다.
