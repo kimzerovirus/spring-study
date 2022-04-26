@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class BoardController {
 
-    final private BoardService boardService;
+    private final BoardService boardService;
 
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model) {
