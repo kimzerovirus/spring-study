@@ -21,7 +21,7 @@ public class Board extends BaseEntity {
     private String content;
 
     // @ManyToOne N:1 관계 (게시판 N : 작성자 1)
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // 명시적으로 Lazy 로딩 지정
+    @ManyToOne(fetch = FetchType.LAZY) // 명시적으로 Lazy 로딩 지정
     private Member writer;  // 연관 관계 지정!
 
     public void changeTitle(String title){
