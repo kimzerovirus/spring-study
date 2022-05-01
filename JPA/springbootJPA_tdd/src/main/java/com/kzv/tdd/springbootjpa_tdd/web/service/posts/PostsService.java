@@ -1,4 +1,4 @@
-package com.kzv.tdd.springbootjpa_tdd.service.posts;
+package com.kzv.tdd.springbootjpa_tdd.web.service.posts;
 
 import com.kzv.tdd.springbootjpa_tdd.web.domain.posts.Posts;
 import com.kzv.tdd.springbootjpa_tdd.web.domain.posts.PostsRepository;
