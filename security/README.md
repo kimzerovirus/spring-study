@@ -11,6 +11,6 @@
   http.headers().frameOptions().disable()
     .and()
     .authorizeRequests()
-    .antMatchers("/h2-console/*").permitAll()
+    .antMatchers("/h2-console/**").permitAll()
 ```
 해당 코드를 security config에 추가한다.
