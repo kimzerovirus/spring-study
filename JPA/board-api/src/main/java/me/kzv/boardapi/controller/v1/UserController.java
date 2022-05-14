@@ -65,7 +65,7 @@ public class UserController {
         return responseService.getSingleResult(userRepository.save(user));
     }
     @ApiOperation(value = "회원 삭제", notes = "userId로 회원정보를 삭제한다")
-    @DeleteMapping(value = "/user/{msrl}")
+    @DeleteMapping(value = "/user/{idx}")
     public CommonResultDto delete(
             @ApiParam(value = "회원번호", required = true) @PathVariable long idx) {
         userRepository.deleteById(idx);
