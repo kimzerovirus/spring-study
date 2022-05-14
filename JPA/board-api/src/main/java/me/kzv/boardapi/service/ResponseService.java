@@ -1,5 +1,7 @@
 package me.kzv.boardapi.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import me.kzv.boardapi.dto.CommonResultDto;
 import me.kzv.boardapi.dto.ListResultDto;
 import me.kzv.boardapi.dto.SingleResultDto;
@@ -11,6 +13,8 @@ import java.util.List;
 public class ResponseService {
 
     // enum으로 api 요청 결과에 대한 code, message를 정의합니다.
+    @Getter
+    @AllArgsConstructor
     public enum CommonResponse {
         SUCCESS(0, "성공하였습니디."),
         FAIL(-1, "실패하였습니다.");
@@ -18,18 +22,18 @@ public class ResponseService {
         int code;
         String msg;
 
-        CommonResponse(int code, String msg) {
-            this.code = code;
-            this.msg = msg;
-        }
+//        CommonResponse(int code, String msg) {
+//            this.code = code;
+//            this.msg = msg;
+//        }
 
-        public int getCode() {
-            return code;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
+//        public int getCode() {
+//            return code;
+//        }
+//
+//        public String getMsg() {
+//            return msg;
+//        }
     }
 
     // 단일건 결과를 처리하는 메소드
