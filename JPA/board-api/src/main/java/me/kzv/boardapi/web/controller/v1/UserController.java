@@ -1,16 +1,14 @@
 package me.kzv.boardapi.web.controller.v1;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
-import me.kzv.boardapi.exception.CustomEmailSigninFailedException;
+import me.kzv.boardapi.common.exception.CustomEmailSigninFailedException;
 import me.kzv.boardapi.security.TokenProvider;
 import me.kzv.boardapi.web.domain.User;
 import me.kzv.boardapi.web.dto.CommonResultDto;
 import me.kzv.boardapi.web.dto.ListResultDto;
 import me.kzv.boardapi.web.dto.SingleResultDto;
-import me.kzv.boardapi.exception.CustomUserNotFoundException;
+import me.kzv.boardapi.common.exception.CustomUserNotFoundException;
 import me.kzv.boardapi.web.persistence.UserRepository;
 import me.kzv.boardapi.web.service.ResponseService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,12 +50,18 @@ public class UserController {
         return responseService.getSuccessResult();
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 access_token", required = true, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "회원 조회", notes = "모든 회원을 조회합니다.")
     @GetMapping(value = "/user")
     public ListResultDto<User> findAllUser() {
         return responseService.getListResult(userRepository.findAll());
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 access_token", required = false, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "회원 단건 조회", notes = "userId로 회원을 조회한다")
     @GetMapping(value = "/user/{userId}")
     public SingleResultDto<User> findUserById(@ApiParam(value = "회원ID", required = true) @PathVariable Long userId) {
@@ -65,20 +69,9 @@ public class UserController {
         return responseService.getSingleResult(userRepository.findById(userId).orElseThrow(CustomUserNotFoundException::new));
     }
 
-    @ApiOperation(value = "회원 입력", notes = "회원을 입력합니다.")
-    @PostMapping(value = "/user")
-    public SingleResultDto<User> save(
-            @ApiParam(value = "회원아이디", required = true) @RequestParam String uid,
-            @ApiParam(value = "회원이름", required = true) @RequestParam String name
-    ) {
-        User user = User.builder()
-                .uid(uid)
-                .name(name)
-                .build();
-        return responseService.getSingleResult(userRepository.save(user));
-
-    }
-
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 access_token", required = true, dataType = "String", paramType = "header")
+    })
     @ApiOperation(value = "회원 수정", notes = "회원정보를 수정한다")
     @PutMapping(value = "/user")
     public SingleResultDto<User> modify(
@@ -99,5 +92,19 @@ public class UserController {
         userRepository.deleteById(idx);
         // 성공 결과 정보만 필요한경우 getSuccessResult()를 이용하여 결과를 출력한다.
         return responseService.getSuccessResult();
+    }
+
+    @ApiOperation(value = "회원 입력", notes = "회원을 입력합니다.")
+    @PostMapping(value = "/user")
+    public SingleResultDto<User> save(
+            @ApiParam(value = "회원아이디", required = true) @RequestParam String uid,
+            @ApiParam(value = "회원이름", required = true) @RequestParam String name
+    ) {
+        User user = User.builder()
+                .uid(uid)
+                .name(name)
+                .build();
+        return responseService.getSingleResult(userRepository.save(user));
+
     }
 }

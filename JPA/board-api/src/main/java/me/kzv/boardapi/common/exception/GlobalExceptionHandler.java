@@ -1,6 +1,7 @@
-package me.kzv.boardapi.exception;
+package me.kzv.boardapi.common.exception;
 
 import lombok.RequiredArgsConstructor;
+import me.kzv.boardapi.security.exception.CustomAuthenticationEntryPointException;
 import me.kzv.boardapi.web.dto.CommonResultDto;
 import me.kzv.boardapi.web.service.ResponseService;
 import org.springframework.context.MessageSource;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import java.nio.file.AccessDeniedException;
 
 @RequiredArgsConstructor
 @RestControllerAdvice
@@ -37,6 +39,19 @@ public class GlobalExceptionHandler {
         // 예외 처리의 메시지를 MessageSource에서 가져오도록 수정
         return responseService.getFailResult(Integer.valueOf(getMessage("userNotFound.code")), getMessage("userNotFound.msg"));
     }
+
+    @ExceptionHandler(CustomAuthenticationEntryPointException.class)
+    protected CommonResultDto authenticationEntryPointException(HttpServletRequest request, CustomAuthenticationEntryPointException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("entryPointException.code")), getMessage("entryPointException.msg"));
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public CommonResultDto AccessDeniedException(HttpServletRequest request, AccessDeniedException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("accessDenied.code")), getMessage("accessDenied.msg"));
+    }
+
+
+
     // code정보에 해당하는 메시지를 조회합니다.
     private String getMessage(String code) {
         return getMessage(code, null);

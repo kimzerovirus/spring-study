@@ -1,4 +1,4 @@
-package me.kzv.boardapi.exception;
+package me.kzv.boardapi.common.exception;
 
 public class CustomEmailSigninFailedException extends RuntimeException{
 

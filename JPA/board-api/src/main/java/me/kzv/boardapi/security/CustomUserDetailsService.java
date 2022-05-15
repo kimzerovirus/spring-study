@@ -1,11 +1,10 @@
 package me.kzv.boardapi.security;
 
 import lombok.RequiredArgsConstructor;
-import me.kzv.boardapi.exception.CustomUserNotFoundException;
+import me.kzv.boardapi.common.exception.CustomUserNotFoundException;
 import me.kzv.boardapi.web.persistence.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
