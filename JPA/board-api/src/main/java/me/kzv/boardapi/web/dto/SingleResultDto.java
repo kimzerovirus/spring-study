@@ -1,4 +1,4 @@
-package me.kzv.boardapi.dto;
+package me.kzv.boardapi.web.dto;
 
 import lombok.Getter;
 import lombok.Setter;

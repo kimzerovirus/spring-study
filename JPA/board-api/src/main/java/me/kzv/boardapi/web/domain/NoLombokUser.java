@@ -1,4 +1,4 @@
-package me.kzv.boardapi.domain;
+package me.kzv.boardapi.web.domain;
 
 import javax.persistence.*;
 

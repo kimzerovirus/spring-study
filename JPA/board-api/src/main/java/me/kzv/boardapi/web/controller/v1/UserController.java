@@ -1,19 +1,17 @@
-package me.kzv.boardapi.controller.v1;
+package me.kzv.boardapi.web.controller.v1;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
-import me.kzv.boardapi.domain.User;
-import me.kzv.boardapi.dto.CommonResultDto;
-import me.kzv.boardapi.dto.ListResultDto;
-import me.kzv.boardapi.dto.SingleResultDto;
+import me.kzv.boardapi.web.domain.User;
+import me.kzv.boardapi.web.dto.CommonResultDto;
+import me.kzv.boardapi.web.dto.ListResultDto;
+import me.kzv.boardapi.web.dto.SingleResultDto;
 import me.kzv.boardapi.exception.CustomUserNotFoundException;
-import me.kzv.boardapi.persistence.UserRepository;
-import me.kzv.boardapi.service.ResponseService;
+import me.kzv.boardapi.web.persistence.UserRepository;
+import me.kzv.boardapi.web.service.ResponseService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Api(tags = {"1. User"})
 @RequiredArgsConstructor
@@ -40,11 +38,11 @@ public class UserController {
     @ApiOperation(value = "회원 입력", notes = "회원을 입력합니다.")
     @PostMapping(value = "/user")
     public SingleResultDto<User> save(
-            @ApiParam(value = "회원아이디", required = true) @RequestParam String id,
+            @ApiParam(value = "회원아이디", required = true) @RequestParam String uid,
             @ApiParam(value = "회원이름", required = true) @RequestParam String name
     ) {
         User user = User.builder()
-                .id(id)
+                .uid(uid)
                 .name(name)
                 .build();
         return responseService.getSingleResult(userRepository.save(user));
@@ -55,11 +53,11 @@ public class UserController {
     @PutMapping(value = "/user")
     public SingleResultDto<User> modify(
             @ApiParam(value = "회원번호", required = true) @RequestParam long idx,
-            @ApiParam(value = "회원아이디", required = true) @RequestParam String id,
+            @ApiParam(value = "회원아이디", required = true) @RequestParam String uid,
             @ApiParam(value = "회원이름", required = true) @RequestParam String name) {
         User user = User.builder()
                 .idx(idx)
-                .id(id)
+                .uid(uid)
                 .name(name)
                 .build();
         return responseService.getSingleResult(userRepository.save(user));

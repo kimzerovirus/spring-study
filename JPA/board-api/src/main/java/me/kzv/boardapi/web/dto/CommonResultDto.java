@@ -1,4 +1,4 @@
-package me.kzv.boardapi.dto;
+package me.kzv.boardapi.web.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -16,4 +16,5 @@ public class CommonResultDto {
 
     @ApiModelProperty(value = "응답 메시지")
     private String msg;
+
 }

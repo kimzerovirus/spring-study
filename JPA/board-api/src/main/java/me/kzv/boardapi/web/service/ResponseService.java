@@ -1,10 +1,10 @@
-package me.kzv.boardapi.service;
+package me.kzv.boardapi.web.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import me.kzv.boardapi.dto.CommonResultDto;
-import me.kzv.boardapi.dto.ListResultDto;
-import me.kzv.boardapi.dto.SingleResultDto;
+import me.kzv.boardapi.web.dto.CommonResultDto;
+import me.kzv.boardapi.web.dto.ListResultDto;
+import me.kzv.boardapi.web.dto.SingleResultDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,11 +60,20 @@ public class ResponseService {
     }
 
     // 실패 결과만 처리하는 메소드
-    public CommonResultDto getFailResult() {
+//    public CommonResultDto getFailResult() {
+//        CommonResultDto result = new CommonResultDto();
+//        result.setSuccess(false);
+//        result.setCode(CommonResponse.FAIL.getCode());
+//        result.setMsg(CommonResponse.FAIL.getMsg());
+//        return result;
+//    }
+
+    // 에러코드를 다양하게 넣을 수 있게 만듦
+    public CommonResultDto getFailResult(int code, String msg) {
         CommonResultDto result = new CommonResultDto();
         result.setSuccess(false);
-        result.setCode(CommonResponse.FAIL.getCode());
-        result.setMsg(CommonResponse.FAIL.getMsg());
+        result.setCode(code);
+        result.setMsg(msg);
         return result;
     }
 

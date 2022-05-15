@@ -1,4 +1,4 @@
-package me.kzv.boardapi.controller;
+package me.kzv.boardapi.web.controller;
 
 import lombok.Getter;
 import lombok.Setter;

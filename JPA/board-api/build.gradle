@@ -21,7 +21,6 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
-//    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -35,6 +34,11 @@ dependencies {
 
     // 다국어 메세지 처리
     implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
+
+    // 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
 }
 
 tasks.named('test') {
