@@ -5,10 +5,12 @@ import me.kzv.jdbc.connection.DBConnectionUtil;
 import me.kzv.jdbc.domain.Member;
 
 import java.sql.*;
+import java.util.NoSuchElementException;
 
 @Slf4j
 public class MemberRepositoryV0 {
 
+    // create
     public Member save(Member member) throws SQLException {
         String sql = "insert into member(member_id, money) values (?, ?)";
 
@@ -37,6 +39,87 @@ public class MemberRepositoryV0 {
             // 연결이 제대로 안끊어질 수 있으므로 각 항목별로 에러를 캐치해야된다.
             close(conn, pstmt, null);
         }
+    }
+
+    // read
+    public Member findById(String memberId) throws SQLException {
+        String sql = "select * from member where member_id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberId);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                // 여러개를 가져온다면 while로 next가 없을때까지 가져와야 한다.
+                Member member = new Member();
+                member.setMemberId(rs.getString("member_id"));
+                member.setMoney(rs.getInt("money"));
+                return member;
+            } else {
+                throw new NoSuchElementException("member not found memberId=" + memberId);
+            }
+
+        } catch (SQLException e) {
+            log.error("db error", e);
+            throw e;
+        }finally{
+            close(conn, pstmt, rs);
+        }
+
+    }
+
+    // update
+    public void update(String memberId, int money) throws SQLException {
+        String sql = "update member set money=? where member_id=?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, money);
+            pstmt.setString(2, memberId);
+            int resultSize = pstmt.executeUpdate();
+            log.info("resultSize {}", resultSize);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            close(conn, pstmt, null);
+        }
+
+    }
+
+    // delete
+    public void delete(String memberId) throws SQLException {
+        String sql = "delete from member where member_id=?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberId);
+            int resultSize = pstmt.executeUpdate();
+            log.info("resultSize {}", resultSize);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            close(conn, pstmt, null);
+        }
+
     }
 
     private void close(Connection conn, Statement stmt, ResultSet rs) {

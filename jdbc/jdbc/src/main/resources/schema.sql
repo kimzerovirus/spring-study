@@ -5,3 +5,4 @@ create table member
     money     integer not null default 0,
     primary key (member_id)
 );
+
