@@ -2,7 +2,6 @@ package me.kzv.jdbc.repository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.kzv.jdbc.connection.DBConnectionUtil;
 import me.kzv.jdbc.domain.Member;
 import org.springframework.jdbc.support.JdbcUtils;
 
@@ -79,7 +78,7 @@ public class MemberRepositoryV1 {
         } catch (SQLException e) {
             log.error("db error", e);
             throw e;
-        }finally{
+        } finally {
             close(conn, pstmt, rs);
         }
 
@@ -141,7 +140,7 @@ public class MemberRepositoryV1 {
 
     private Connection getConnection() throws SQLException {
         Connection conn = dataSource.getConnection();
-        log.info("get connection = {}, class = {}");
+        log.info("get connection = {}, class = {}", conn, conn.getClass());
         return conn;
     }
 
