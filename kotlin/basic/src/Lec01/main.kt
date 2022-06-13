@@ -25,6 +25,11 @@ fun main() {
     var person = Person("sudo")
 }
 
-class Person(name: String){
-
+class Person constructor(name: String){
+    /*
+        코틀린은 하나의 주(primary)생성자와 다수의 부(secondary)생성자가 있다.
+        주 생성자는 클래스의 헤더로써 클래스의 이름과 동일한 이름을 사용한다.
+        만약, 주 생성자에 어노테이션이나 가시성 변경자가 없다면 생성자 키워드는 생략할 수 있다.
+        class Person constructor(name: String) -> class Person(name: String)
+    */
 }
