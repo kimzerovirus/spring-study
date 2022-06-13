@@ -1,4 +1,4 @@
-package Lec01
+package lec01
 
 fun main() {
     // 코틀린은 타입을 무조건 지정해주지 않아도 됨
