@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/chat")
 public class ChatController_old {
-
+/*
     private final ChatService_old chatService;
 
     @PostMapping
@@ -23,4 +23,6 @@ public class ChatController_old {
     public List<ChatRoom_old> findAllRoom(){
         return chatService.findAllRoom();
     }
+
+ */
 }

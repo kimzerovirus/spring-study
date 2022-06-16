@@ -13,6 +13,7 @@ import java.util.Set;
 @Slf4j
 @Getter
 public class ChatRoom_old {
+    /*
     private String roomId;
     private String name;
     private Set<WebSocketSession> sessions = new HashSet<>();
@@ -54,4 +55,5 @@ public class ChatRoom_old {
         // 채팅룸에 메시지가 도착하면 채팅룸의 모든 session에 메시지를 발송한다.
         sessions.parallelStream().forEach(session -> chatService.sendMessage(session, message));
     }
+    */
 }
