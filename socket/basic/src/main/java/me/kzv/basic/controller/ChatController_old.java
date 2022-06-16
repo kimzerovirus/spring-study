@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
-@RestController
-@RequestMapping("/chat")
+//@RequiredArgsConstructor
+//@RestController
+//@RequestMapping("/chat")
 public class ChatController_old {
 /*
     private final ChatService_old chatService;

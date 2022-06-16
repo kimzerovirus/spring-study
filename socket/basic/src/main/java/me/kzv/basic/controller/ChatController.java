@@ -20,3 +20,5 @@ public class ChatController {
         messagingTemplate.convertAndSend("/sub/cht/room/" + chatMessage.getRoomId(), chatMessage);
     }
 }
+
+
