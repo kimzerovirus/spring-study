@@ -1,0 +1,10 @@
+insert into user (name, email, created_at, updated_at) values ('hello', 'test1@google.com', now(), now());
+insert into user (name, email, created_at, updated_at) values ('hello', 'test2@google.com', now(), now());
+insert into user (name, email, created_at, updated_at) values ('hello1', 'test3@google.com', now(), now());
+insert into user (name, email, created_at, updated_at) values ('hello2', 'test4@google.com', now(), now());
+insert into user (name, email, created_at, updated_at) values ('hello3', 'test5@google.com', now(), now());
+insert into user (name, email, created_at, updated_at) values ('test1', 'test1@naver.com', now(), now());
+insert into user (name, email, created_at, updated_at) values ('test2', 'test2@naver.com', now(), now());
+insert into user (name, email, created_at, updated_at) values ('test3', 'test3@naver.com', now(), now());
+insert into user (name, email, created_at, updated_at) values ('test4', 'test4@naver.com', now(), now());
+insert into user (name, email, created_at, updated_at) values ('test5', 'test5@naver.com', now(), now());

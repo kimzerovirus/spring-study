@@ -1,4 +1,5 @@
 # Spring Data JPA
+> 이 프로젝트에서는 쿼리 메소드를 주로 다루고 있음
 
 ### 1. 스프링 ~ DB 흐름
 
@@ -88,6 +89,7 @@
 ### 12. Query Methods
 
 > - [Reference Docs](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods)
+> - [Keyword Docs](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repository-query-keywords)
 > - `findBy`나`getBy`로 시작하고 `And, Or`와 같은 키워드로 메서드의 이름 자체를 질의 조건으로 만들어 준다.
 > - 레포지토리인터페이스에 메소드를 적어주면 된다.
 
