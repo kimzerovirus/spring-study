@@ -4,6 +4,7 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.time.LocalDateTime;
@@ -58,5 +59,27 @@ class UserRepositoryTest {
 
         System.out.println("findByNameLike: " + userRepository.findByNameLike("%ello%"));
 
+    }
+
+    @Test
+    void sortTest(){
+//        System.out.println("findTop5ByNameOrderByIdDesc: " + userRepository.findTop2ByNameOrderByIdDesc("hello"));
+//        System.out.println("findFirstByNameOrderByIdDescEmailAsc: " + userRepository.findFirstByNameOrderByIdDescEmailAsc("hello"));
+
+//        System.out.println("findFirstByName: " + userRepository.findFirstByName("hello", Sort.by(Sort.Order.asc("id"),  Sort.Order.asc("id"))));
+        System.out.println("findFirstByName: " + userRepository.findFirstByName("hello", getSort()));
+    }
+
+    private Sort getSort(){
+        return Sort.by(
+                Sort.Order.asc("id"),
+                Sort.Order.asc("name"),
+                Sort.Order.desc("email")
+        );
+    }
+
+    @Test
+    void pagingTest(){
+        System.out.println("findByName: " + userRepository.findByName("hello", PageRequest.of(0, 5, Sort.by(Sort.Order.desc("id")))).getContent()); // PageRequest.of(page, size, sort)
     }
 }

@@ -1,5 +1,8 @@
 package me.kzv.ex.persistence;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
@@ -71,5 +74,17 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByNameContains(String name);
 
     List<User> findByNameLike(String name); // % 검색어 % 형태로 넣어줘야되서 위와 같은 메서드가 탄생했다.
+
+    // 심화 조회
+    // DESC 내림차순 ASC 오름차순
+    List<User> findTop2ByNameOrderByIdDesc(String name);
+
+    List<User> findFirstByNameOrderByIdDescEmailAsc(String name);
+
+    List<User> findFirstByName(String name, Sort sort);
+
+    // 페이징 처리
+    Page<User> findByName(String name, Pageable pageable);
+
 }
 
