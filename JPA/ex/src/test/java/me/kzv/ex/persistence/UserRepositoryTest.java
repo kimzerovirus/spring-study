@@ -1,5 +1,6 @@
 package me.kzv.ex.persistence;
 
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,8 +44,19 @@ class UserRepositoryTest {
 //        System.out.println("findByCreatedAtAfter: " + userRepository.findByCreatedAtAfter(LocalDateTime.now().minusDays(1L)));
 //        System.out.println("findByCreatedAtGreaterThan: " + userRepository.findByCreatedAtGreaterThan(LocalDateTime.now().minusDays(1L)));
 //        System.out.println("findByIdAfter: " + userRepository.findByIdAfter(9L));
-        System.out.println("findByCreatedAtBetween: " + userRepository.findByCreatedAtBetween(LocalDateTime.now().minusDays(1L), LocalDateTime.now()));
-        System.out.println("findByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual: " + userRepository.findByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual(LocalDateTime.now().minusDays(1L), LocalDateTime.now()));
+//        System.out.println("findByCreatedAtBetween: " + userRepository.findByCreatedAtBetween(LocalDateTime.now().minusDays(1L), LocalDateTime.now()));
+//        System.out.println("findByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual: " + userRepository.findByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual(LocalDateTime.now().minusDays(1L), LocalDateTime.now()));
+
+//        System.out.println("findByIdIsNotNull: " + userRepository.findByIdIsNotNull());
+//        System.out.println("findByAddressIsNotEmpty: " + userRepository.findByAddressIsNotEmpty());
+
+//        System.out.println("findByNameIn: " + userRepository.findByNameIn(Lists.newArrayList("test", "hello")));
+
+        System.out.println("findByNameStartingWith: " + userRepository.findByNameStartingWith("test"));
+        System.out.println("findByNameEndingWith: " + userRepository.findByNameEndingWith("hello"));
+        System.out.println("findByNameContains: " + userRepository.findByNameContains("st"));
+
+        System.out.println("findByNameLike: " + userRepository.findByNameLike("%ello%"));
 
     }
 }

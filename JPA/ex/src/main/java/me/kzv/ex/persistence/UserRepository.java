@@ -54,5 +54,22 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByCreatedAtBetween(LocalDateTime startDate, LocalDateTime endDate);
     // where user0_.created_at>=? and user0_.created_at<=?
     List<User> findByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual(LocalDateTime startDate, LocalDateTime endDate);
+
+    // 빈 값 조회
+    List<User> findByIdIsNotNull(); // -- 문자열을 비교함
+
+    // adress is not null and adress !='' ?
+    List<User> findByAddressIsNotEmpty(); //can't not create query,,, can only be used on collection properties -- 문자열의 비교가 아닌 컬렉션 타입의 비교를 해준다.
+
+    // where user0_.name in (? , ?)
+    List<User> findByNameIn(List<String> names);
+
+    List<User> findByNameStartingWith(String name);
+
+    List<User> findByNameEndingWith(String name);
+
+    List<User> findByNameContains(String name);
+
+    List<User> findByNameLike(String name); // % 검색어 % 형태로 넣어줘야되서 위와 같은 메서드가 탄생했다.
 }
 
