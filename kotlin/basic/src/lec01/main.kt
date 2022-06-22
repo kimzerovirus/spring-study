@@ -22,10 +22,10 @@ fun main() {
     number3 = null
 
     // 코틀린에서 객체 인스턴스화를 할때에는 new를 붙이지 않는다.
-    var person = Person("sudo")
+    var person = Person("sudo",25)
 }
 
-class Person constructor(name: String){
+class Person constructor(val name: String, val age:Int){
     /*
         코틀린은 하나의 주(primary)생성자와 다수의 부(secondary)생성자가 있다.
         주 생성자는 클래스의 헤더로써 클래스의 이름과 동일한 이름을 사용한다.
