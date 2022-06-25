@@ -31,7 +31,7 @@ fun main() {
     // Java ST
     // String str = "asdf";
     // char ch = str.charAt(1);
-    println(str[0]) // 요건 자바스크립트랑 비슷한듯
+    println(str[0]) // 요건 자바스크립트랑 비슷한듯a
     println(str[2])
 }
 
