@@ -32,9 +32,9 @@ class BusinessMan extends Man {
     }
 }
 
-class MyBusinessMan {
+public class MyBusinessMan {
     public static void main(String[] args) {
-        BusinessMan man = new BusinessMan("Kim", "SOLU", "Developer");
+        BusinessMan man = new BusinessMan("KKK", "YR", "Developer");
         man.tellYourInfo();
     }
 }
