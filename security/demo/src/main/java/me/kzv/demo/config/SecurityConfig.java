@@ -2,7 +2,10 @@ package me.kzv.demo.config;
 
 import lombok.extern.log4j.Log4j2;
 import me.kzv.demo.security.filter.ApiCheckFilter;
+import me.kzv.demo.security.filter.ApiLoginFilter;
+import me.kzv.demo.security.handler.ApiLoginFailHandler;
 import me.kzv.demo.security.handler.ClubLoginSuccessHandler;
+import me.kzv.demo.security.util.JwtUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -29,7 +32,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public ApiCheckFilter apiCheckFilter(){
-        return new ApiCheckFilter("/notes/**/*");
+        return new ApiCheckFilter("/notes/**/*", jwtUtil());
+    }
+
+    @Bean
+    public JwtUtil jwtUtil(){
+        return new JwtUtil();
+    }
+
+    @Bean
+    public ApiLoginFilter apiLoginFilter() throws Exception {
+        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login", jwtUtil());
+        apiLoginFilter.setAuthenticationManager(authenticationManager());
+        // if fail to login
+        apiLoginFilter.setAuthenticationFailureHandler(new ApiLoginFailHandler());
+
+        return apiLoginFilter;
     }
 
     @Override
@@ -53,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // UsernamePasswordAuthenticationFilter는 사용자의 아이디와 패스워드를 기반으로 동작한다.
         // UsernamePasswordAuthenticationFilter가 작동하기 전에 apiCheckFilter가 작동하게 설정
         http.addFilterBefore(apiCheckFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(apiLoginFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     // TEST
