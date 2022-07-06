@@ -1,4 +1,5 @@
 # Spring Security Basic
+> 스프링 시큐리티 주요 아키텍처의 이해 파트는 여러번 반복해서 볼것
 
  ## HttpSecurity
 - Authentication
@@ -23,6 +24,13 @@
     - fullyAuthenticated() : 인증된 사용자의 접근을 허용, rememberMe 인증 제외
     - access(hasRole(ROLE)) : 주어진 SpEL 표현식의 평가 결과에 따라 접근 허용, 좀 더 자세하게 작성 가능
     - denyAll() : 무조건 접근 불가
+
+## Authentication Structure
+- principal : 사용자 아이디 혹은 User 객체를 저장
+- credentials : 사용자 비밀번호
+- authorities : 인증된 사용자의 권한 목록
+- details :  인증 부가 정보
+- Authenticated : 인증 여부
 
 ## Authentication Flow
 1. username + password (Authentication)
@@ -62,3 +70,21 @@ http.logout()
 - csrfFilter
   - client : 타임리프는 form태그 사용시 자동으로 csrf 토큰을 생성해주나 jsp는 `<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}" />` 와 같이 태그를 추가해 줘야 한다.  
   - Spring Security : http.csrf (default)
+  
+## SecurityContextHolder & SecurityContext
+- SecurityContext
+  - Authentication객체의 저장소
+  - ThreadLocal에 저장되며, 아무곳에서나 참조가 가능하다
+  - 인증 완료 후 HttpSession에 저장하여 어플리케이션 전역에서 참조 가능하다.
+
+- SecurityContextHolder
+  - SecurityContext 객체 저장 방식
+    - MODE_THREADLOCAL : 쓰레드당 SecurityContext 객체를 할당 (default)
+    - MODE_INHERITABLETHREADLOCAL : 메인 스레드와 자식 스레드가 동일한 SecurityContext를 유지
+    - MODE_GLOBAL : 어플리케이션에서 단 하나의 SecurityContext를 저장한다.
+  - SecurityContextHolder.clearContext() : SecurityContext 초기화
+  
+어디서나 호출 가능한 객체
+```
+Authentication authentication = SecurityContextHolder.getContext().getAuthentication()
+```

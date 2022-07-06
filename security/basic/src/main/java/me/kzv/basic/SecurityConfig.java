@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -190,7 +191,13 @@ public class SecurityConfig {
                     }
                 });
 
-
+        // SecurityContextHolder 모드 변경
+        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
+        /*
+                - MODE_THREADLOCAL : 쓰레드당 SecurityContext 객체를 할당 (default)
+                - MODE_INHERITABLETHREADLOCAL : 메인 스레드와 자식 스레드가 동일한 SecurityContext를 유지
+                - MODE_GLOBAL : 어플리케이션에서 단 하나의 SecurityContext를 저장한다.
+         */
         return http.build();
     }
 
