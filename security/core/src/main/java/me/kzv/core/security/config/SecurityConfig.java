@@ -2,6 +2,7 @@ package me.kzv.core.security.config;
 
 import lombok.RequiredArgsConstructor;
 import me.kzv.core.security.common.FormAuthenticationDetailsSource;
+import me.kzv.core.security.filter.ApiLoginProcessingFilter;
 import me.kzv.core.security.handler.CustomAccessDeniedHandler;
 import me.kzv.core.security.handler.CustomAuthenticationFailureHandler;
 import me.kzv.core.security.handler.CustomAuthenticationSuccessHandler;
@@ -13,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -40,6 +42,14 @@ public class SecurityConfig {
         return accessDeniedHandler;
     }
 
+    @Bean
+    public ApiLoginProcessingFilter apiLoginProcessingFilter(){
+        ApiLoginProcessingFilter apiLoginProcessingFilter = new ApiLoginProcessingFilter();
+//        apiLoginProcessingFilter.setAuthenticationManager();
+
+        return apiLoginProcessingFilter;
+    }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -63,6 +73,8 @@ public class SecurityConfig {
         .and()
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler())
+        .and()
+                .addFilterBefore(apiLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class) //api filter
 //        .and()
 //                .userDetailsService(customUserDetailsService)
 //                .authenticationProvider(customAuthenticationProvider) // service를 포함하는 provider -> 따로 등록하지 않아도 알아서 설정해주는 것 같다.
