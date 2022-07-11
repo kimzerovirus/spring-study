@@ -1,9 +1,6 @@
 package com.example.jwttutorial.controller;
 
-import com.example.jwttutorial.dto.AuthenticationRequestDto;
-import com.example.jwttutorial.dto.AuthenticationResponseDto;
 import com.example.jwttutorial.security.CustomUserDetailsService;
-import com.example.jwttutorial.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
