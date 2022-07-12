@@ -16,9 +16,9 @@ import javax.persistence.Id;
 public class RefreshToken {
 
     @Id
-    private String key;
+    private String key; // member id
 
-    private String value; // member id
+    private String value;
 
 
     public RefreshToken update(String token) {
