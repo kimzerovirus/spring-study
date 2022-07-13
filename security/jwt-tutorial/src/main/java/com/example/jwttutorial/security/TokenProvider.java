@@ -30,14 +30,18 @@ public class TokenProvider {
 
     private final Key key;
 
-    public TokenProvider(@Value("${jwt.secret") String secretKey) {
-        key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
+    public TokenProvider(@Value("${jwt.secret}") String secretKey) {
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public TokenDto generateTokenDto(Authentication authentication) {
+        log.info("토큰 생성");
+
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
+
 
         long now = (new Date()).getTime();
 

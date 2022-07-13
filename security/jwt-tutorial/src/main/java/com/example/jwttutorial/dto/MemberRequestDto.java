@@ -1,5 +1,6 @@
 package com.example.jwttutorial.dto;
 
+import com.example.jwttutorial.entity.Authority;
 import com.example.jwttutorial.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public class MemberRequestDto {
         return Member.builder()
                 .email(email)
                 .password(passwordEncoder.encode(password))
+                .authority(Authority.ROLE_USER)
                 .build();
     }
 

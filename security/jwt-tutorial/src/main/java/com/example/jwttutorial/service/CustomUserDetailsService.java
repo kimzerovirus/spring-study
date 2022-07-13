@@ -3,6 +3,7 @@ package com.example.jwttutorial.service;
 import com.example.jwttutorial.entity.Member;
 import com.example.jwttutorial.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
+@Log4j2
 @RequiredArgsConstructor
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -20,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { // UserDetails 와 Authentication 의 패스워드를 비교하고 검증한다.
+        log.info(username);
         return memberRepository.findByEmail(username)
                 .map(this::createUserDetails)
                 .orElseThrow(()->new UsernameNotFoundException(username + " (은)는 존재하지 않는 유저입니다."));
@@ -35,3 +38,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         );
     }
 }
+// UserDetails : 유저의 정보를 담는 객체
+// UserDetailsService : UserDetails 정보를 가져오는 인터페이스
