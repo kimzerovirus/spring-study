@@ -1,14 +1,16 @@
-package me.kzv.olle.account;
+package me.kzv.olle.web.account.validator;
 
 
 import lombok.RequiredArgsConstructor;
+import me.kzv.olle.web.account.AccountRepository;
+import me.kzv.olle.web.account.dto.SignUpRequestDto;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @RequiredArgsConstructor
 @Component
-public class SignUpFormValidator implements Validator {
+public class SignUpRequestDtoValidator implements Validator {
 
     private final AccountRepository accountRepository;
 
@@ -24,13 +26,13 @@ public class SignUpFormValidator implements Validator {
     @Override
     public boolean supports(Class<?> clazz) {
         // 어떤 타입의 인스턴스를 검증할 것인가? = SignUpForm
-        return clazz.isAssignableFrom(SignUpForm.class);
+        return clazz.isAssignableFrom(SignUpRequestDto.class);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
         // 이메일 중복 여부를 검사한다
-        SignUpForm signUpForm = (SignUpForm) target;
+        SignUpRequestDto signUpForm = (SignUpRequestDto) target;
         if (accountRepository.existsByEmail(signUpForm.getEmail())) {
             errors.rejectValue("email", "invalid.email", new Object[]{signUpForm.getEmail()}, "이미 사용중인 이메일입니다.");
         }

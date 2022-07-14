@@ -1,27 +1,15 @@
-package me.kzv.olle.account;
+package me.kzv.olle.web.account;
 
-import lombok.RequiredArgsConstructor;
-import me.kzv.olle.domain.Account;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.validation.Valid;
 /*
     boot 2.3 이후 따로 dependency 추가해야함
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-validation</artifactId>
     </dependency>
-*/
 
 @RequiredArgsConstructor
 @Controller
-public class AccountController {
+public class AccountController_old {
 
     private final SignUpFormValidator signUpFormValidator;
     private final AccountService accountService;
@@ -59,3 +47,4 @@ public class AccountController {
     }
 
 }
+*/

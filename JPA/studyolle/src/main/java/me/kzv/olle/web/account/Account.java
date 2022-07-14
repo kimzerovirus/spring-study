@@ -1,4 +1,4 @@
-package me.kzv.olle.domain;
+package me.kzv.olle.web.account;
 
 import lombok.*;
 
@@ -63,5 +63,14 @@ public class Account {
 
     public void generateEmailCheckToken() {
         this.emailCheckedToken = UUID.randomUUID().toString();
+    }
+
+    public void completeSignUp() {
+        this.emailVerified = true;
+        this.joinedAt = LocalDateTime.now();
+    }
+
+    public boolean isValidToken(String token) {
+        return this.emailCheckedToken.equals(token);
     }
 }

@@ -1,4 +1,4 @@
-package me.kzv.olle.account;
+package me.kzv.olle.web.account.dto;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Data
-public class SignUpForm {
+public class SignUpRequestDto {
 
     @NotBlank
     @Length(min = 3, max = 20)

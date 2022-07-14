@@ -1,9 +1,8 @@
-package me.kzv.olle.account;
+package me.kzv.olle.web.account;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -21,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest // (webEnvironment = ) // @AutoConfigureWebClient 실제 포트 띄우기 이걸로 서블릿 띄워서 실제로 확인하는 방법도 있음
 @AutoConfigureMockMvc
-class AccountControllerTest {
+class AccountController_oldTest {
 
     @Autowired
     private MockMvc mockMvc;

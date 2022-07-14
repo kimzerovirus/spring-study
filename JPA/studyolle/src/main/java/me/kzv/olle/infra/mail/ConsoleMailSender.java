@@ -1,6 +1,6 @@
-package me.kzv.olle.consoleTestpackages;
+package me.kzv.olle.infra.mail;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,11 +11,9 @@ import org.springframework.stereotype.Component;
 import javax.mail.internet.MimeMessage;
 import java.io.InputStream;
 
-
-// 콘솔에 띄우는 테스트용 가짜 객체
 @Profile("local")
 @Component
-@Log4j2
+@Slf4j
 public class ConsoleMailSender implements JavaMailSender {
     @Override
     public MimeMessage createMimeMessage() {
