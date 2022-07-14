@@ -1,8 +1,8 @@
 package me.kzv.demo.security;
 
-import me.kzv.demo.domain.ClubMember;
-import me.kzv.demo.domain.ClubMemberRole;
-import me.kzv.demo.repository.ClubMemberRepository;
+import me.kzv.demo.web.domain.ClubMember;
+import me.kzv.demo.web.domain.ClubMemberRole;
+import me.kzv.demo.web.repository.ClubMemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

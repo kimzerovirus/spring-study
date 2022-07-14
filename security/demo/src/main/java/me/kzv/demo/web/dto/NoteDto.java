@@ -1,4 +1,4 @@
-package me.kzv.demo.security.dto;
+package me.kzv.demo.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

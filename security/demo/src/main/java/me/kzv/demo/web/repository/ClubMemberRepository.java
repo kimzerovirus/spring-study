@@ -1,6 +1,6 @@
-package me.kzv.demo.repository;
+package me.kzv.demo.web.repository;
 
-import me.kzv.demo.domain.ClubMember;
+import me.kzv.demo.web.domain.ClubMember;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

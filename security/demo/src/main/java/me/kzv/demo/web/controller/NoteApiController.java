@@ -1,7 +1,7 @@
-package me.kzv.demo.controller;
+package me.kzv.demo.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.kzv.demo.security.dto.NoteDto;
+import me.kzv.demo.web.dto.NoteDto;
 import me.kzv.demo.security.service.NoteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

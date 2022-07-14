@@ -1,10 +1,10 @@
-package me.kzv.demo.controller;
+package me.kzv.demo.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import me.kzv.demo.domain.ClubMember;
-import me.kzv.demo.domain.ClubMemberRole;
-import me.kzv.demo.repository.ClubMemberRepository;
+import me.kzv.demo.web.domain.ClubMember;
+import me.kzv.demo.web.domain.ClubMemberRole;
+import me.kzv.demo.web.repository.ClubMemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

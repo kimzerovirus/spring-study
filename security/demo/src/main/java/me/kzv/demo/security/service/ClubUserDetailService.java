@@ -2,8 +2,8 @@ package me.kzv.demo.security.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import me.kzv.demo.domain.ClubMember;
-import me.kzv.demo.repository.ClubMemberRepository;
+import me.kzv.demo.web.domain.ClubMember;
+import me.kzv.demo.web.repository.ClubMemberRepository;
 import me.kzv.demo.security.dto.ClubAuthMemberDto;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

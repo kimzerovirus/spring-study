@@ -1,4 +1,4 @@
-package me.kzv.demo.domain;
+package me.kzv.demo.web.domain;
 
 import lombok.*;
 

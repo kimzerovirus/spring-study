@@ -1,10 +1,10 @@
 package me.kzv.demo.security.service;
 
 import lombok.RequiredArgsConstructor;
-import me.kzv.demo.domain.ClubMember;
-import me.kzv.demo.domain.Note;
-import me.kzv.demo.repository.NoteRepository;
-import me.kzv.demo.security.dto.NoteDto;
+import me.kzv.demo.web.domain.ClubMember;
+import me.kzv.demo.web.domain.Note;
+import me.kzv.demo.web.repository.NoteRepository;
+import me.kzv.demo.web.dto.NoteDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
