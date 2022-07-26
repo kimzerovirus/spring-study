@@ -1,5 +1,6 @@
-package me.kzv.shop.domain;
+package me.kzv.shop.repository;
 
+import me.kzv.shop.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

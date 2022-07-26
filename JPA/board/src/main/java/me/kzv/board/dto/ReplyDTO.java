@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class FreeReplyDTO {
+public class ReplyDTO {
 
     private Long rno;
 
