@@ -22,6 +22,6 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "member") // order 클래스의 member 가 주인이다.
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL) // order 클래스의 member 가 주인이다.
     private List<Order> orders = new ArrayList<>();
 }
