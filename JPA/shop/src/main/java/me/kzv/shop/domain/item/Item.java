@@ -3,6 +3,7 @@ package me.kzv.shop.domain.item;
 import lombok.Getter;
 import lombok.Setter;
 import me.kzv.shop.domain.Category;
+import me.kzv.shop.exception.NotEnoughStockException;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,6 +27,26 @@ public abstract class Item {
 
     @ManyToMany(mappedBy = "items") // 실무에서 쓰면 복잡해서 문제를 야기할 수 있음, 따라서 안씀
     private List<Category> categories = new ArrayList<>();
+
+    //==비즈니스 로직==//
+    /**
+     * 재고 수량 증가
+     */
+    public void addStock(int stockQuantity) {
+        this.stockQuantity += stockQuantity;
+    }
+
+    /**
+     * 재고 수량 감소
+     */
+    public void removeStock(int stockQuantity) {
+        int restStock = this.stockQuantity - stockQuantity;
+        if(restStock < 0 ){
+            throw new NotEnoughStockException("need more stock");
+        }
+
+        this.stockQuantity = restStock;
+    }
 }
 
 /*
