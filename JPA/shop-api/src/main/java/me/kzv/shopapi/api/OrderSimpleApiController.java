@@ -2,7 +2,7 @@ package me.kzv.shopapi.api;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import me.kzv.shopapi.repository.OrderSimpleQueryDto;
+import me.kzv.shopapi.repository.dto.OrderSimpleQueryDto;
 import me.kzv.shopapi.domain.Address;
 import me.kzv.shopapi.domain.Order;
 import me.kzv.shopapi.domain.OrderStatus;

@@ -1,4 +1,4 @@
-package me.kzv.shopapi.repository;
+package me.kzv.shopapi.repository.dto;
 
 import lombok.Data;
 

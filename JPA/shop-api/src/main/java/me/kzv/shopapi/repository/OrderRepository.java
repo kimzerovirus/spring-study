@@ -2,6 +2,10 @@ package me.kzv.shopapi.repository;
 
 import lombok.RequiredArgsConstructor;
 import me.kzv.shopapi.domain.Order;
+import me.kzv.shopapi.repository.dto.OrderFlatDto;
+import me.kzv.shopapi.repository.dto.OrderItemQueryDto;
+import me.kzv.shopapi.repository.dto.OrderQueryDto;
+import me.kzv.shopapi.repository.dto.OrderSimpleQueryDto;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -10,6 +14,8 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -108,7 +114,7 @@ public class OrderRepository {
 
     public List<OrderSimpleQueryDto> findOrderDto() {
         return em.createQuery(
-                "select new me.kzv.shopapi.repository.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
+                "select new me.kzv.shopapi.repository.dto.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
                         " from Order o" +
                         " join fetch o.member m" +
                         " join fetch o.delivery d", OrderSimpleQueryDto.class
@@ -150,7 +156,7 @@ public class OrderRepository {
 
     private List<OrderQueryDto> findOrders() {
         return em.createQuery( // orderItems 는 바로 넣을 수 없음
-                "select new me.kzv.shopapi.repository.OrderQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
+                "select new me.kzv.shopapi.repository.dto.OrderQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
                         " from Order o" +
                         " join fetch o.member m" +
                         " join fetch o.delivery d", OrderQueryDto.class
@@ -159,12 +165,65 @@ public class OrderRepository {
 
     private List<OrderItemQueryDto> findOrderItems(Long orderId) {
         return em.createQuery(
-                "select new me.kzv.shopapi.repository.OrderItemQueryDto(oi.order.id, i.name, oi.orderPrice, oi.count)" +
+                "select new me.kzv.shopapi.repository.dto.OrderItemQueryDto(oi.order.id, i.name, oi.orderPrice, oi.count)" +
                         " from OrderItem oi" +
                         " join oi.item i" +
                         " where oi.order.id = :orderId", OrderItemQueryDto.class
         )
                 .setParameter("orderId", orderId)
+                .getResultList();
+    }
+
+    /**
+     * 최적화
+     * Query: 루트 1번, 컬렉션 1번 - 쿼리 2번 사용
+     * 데이터를 한꺼번에 처리할 때 많이 사용하는 방식
+     *
+     */
+    public List<OrderQueryDto> findAllByDto_optimization() {
+        List<OrderQueryDto> result = findOrders();
+
+        List<Long> orderIds = toOrderIds(result);
+
+        Map<Long, List<OrderItemQueryDto>> orderItemMap = findOrderItemMap(orderIds);
+
+        result.forEach(o -> o.setOrderItems(orderItemMap.get(o.getOrderId())));
+
+        return result;
+    }
+
+    private List<Long> toOrderIds(List<OrderQueryDto> result) {
+        List<Long> orderIds = result.stream()
+                .map(o -> o.getOrderId())
+                .collect(Collectors.toList());
+        return orderIds;
+    }
+
+    private Map<Long, List<OrderItemQueryDto>> findOrderItemMap(List<Long> orderIds) {
+        List<OrderItemQueryDto> orderItems = em.createQuery(
+                "select new me.kzv.shopapi.repository.dto.OrderItemQueryDto(oi.order.id, i.name, oi.orderPrice, oi.count)" +
+                        " from OrderItem oi" +
+                        " join oi.item i" +
+                        " where oi.order.id in :orderIds", OrderItemQueryDto.class)
+                .setParameter("orderIds", orderIds)
+                .getResultList();
+
+        Map<Long, List<OrderItemQueryDto>> orderItemMap = orderItems.stream()
+                .collect(Collectors.groupingBy(orderItemQueryDto -> orderItemQueryDto.getOrderId()));
+        return orderItemMap;
+    }
+
+    // 쿼리 1번 사용
+    public List<OrderFlatDto> findAllByDto_flat() {
+        // order 와 orderItem 을 join 해서 한번에 다 가져온다. <- 페이징은 힘듬...
+
+        return em.createQuery(
+                "select new me.kzv.shopapi.repository.dto.OrderFlatDto(o.id, m.name, o.orderDate, o.status, d.address, i.name, oi.orderPrice, oi.count)" +
+                        " from Order o" +
+                        " join o.member m" +
+                        " join o.delivery d" +
+                        " join o.orderItems oi" +
+                        " join oi.item i", OrderFlatDto.class)
                 .getResultList();
     }
 
