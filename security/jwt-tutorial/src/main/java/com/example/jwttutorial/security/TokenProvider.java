@@ -45,6 +45,8 @@ public class TokenProvider {
 
         long now = (new Date()).getTime();
 
+        log.info(authentication.getName());
+
         Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())       // payload "sub": "name"  username

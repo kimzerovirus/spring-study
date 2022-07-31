@@ -2,6 +2,7 @@ package com.example.jwttutorial.security;
 
 import com.example.jwttutorial.security.TokenProvider;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Log4j2
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
@@ -24,7 +26,7 @@ public class JwtFilter extends OncePerRequestFilter {
     // JWT 토큰의 인증 정보를 현재 쓰레드의 SecurityContext 에 저장하는 역할 수행한다.
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
+        log.info("================jwt filter================");
         // 1. 헤더에서 토큰 추출
         String token = resolveToken(request);
 

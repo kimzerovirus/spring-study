@@ -44,7 +44,7 @@ public class AuthService {
 
         // 1. 로그인 ID/PW 를 기반으로 AuthenticationToken 생성
         UsernamePasswordAuthenticationToken authenticationToken = dto.toAuthentication();
-
+        log.info(authenticationToken);
         // 2. 검증 (사용자 비밀번호 체크)
         // authenticate 메소드가 실행 될 때 CustomUserDetailsService 에서 만들었던 loadUserByUsername 메소드가 실행됨
         // 인증 과정에서 role 이 없거나 비밀번호가 틀린 경우
