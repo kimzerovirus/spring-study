@@ -10,6 +10,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString(of = {"id", "username", "age"}) // 연관관계 필드는 무한루프가 될 수 있는 위험이 있어 안하는게 낫다.
+@NamedQuery(
+        name="Member.findByUsername",
+        query="select m from Member m where m.username = :username"
+)
 public class Member {
 
     @Id
@@ -37,6 +41,11 @@ public class Member {
         if (team != null) {
             changeTeam(team);
         }
+    }
+
+    public Member(String username, int age) {
+        this.username = username;
+        this.age = age;
     }
 
     public void changeTeam(Team team) {
