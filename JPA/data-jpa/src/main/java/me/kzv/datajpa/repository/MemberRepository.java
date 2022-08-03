@@ -4,16 +4,16 @@ import me.kzv.datajpa.dto.MemberDto;
 import me.kzv.datajpa.entity.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 
+import javax.persistence.LockModeType;
+import javax.persistence.QueryHint;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
+public interface MemberRepository extends JpaRepository<Member, Long>, CustomMemberRepository  {
     List<Member> findByUsernameAndAgeGreaterThan(String username, int age);
 
     // NamedQuery 사용하기
@@ -50,4 +50,41 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 //    @Modifying(clearAutomatically = true) // entitymanger flush & clear ON
     @Query("update Member m set m.age = m.age + 1 where m.age >= :age")
     int bulkAgePlus(@Param("age") int age);
+
+    @Query("select m from Member m left join fetch m.team")
+    List<Member> findMemberFetchJoin();
+
+    @Override // jpa 상위에 있는 findAll 을 사용하는 법
+    @EntityGraph(attributePaths = {"team"}) // 내부적으로 fetch join 사용함
+    List<Member> findAll();
+
+    @EntityGraph(attributePaths = {"team"})
+    @Query("select m from Member m")
+    List<Member> findMemberEntityGraph();
+
+//    @EntityGraph(attributePaths = {"team"})
+    // NamedEntityGraph 를 사용하면 아래와 같이 추가해주면 된다.
+    @EntityGraph("Member.all")
+    List<Member> findEntityGraphByUsername(@Param("username") String username);
+
+    @QueryHints(value = @QueryHint(name = "org.hibernate.readOnly", value = "true"))
+    Member findReadOnlyByUsername(String username);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    List<Member> findLockByUsername(String username);
+
+    List<UsernameOnly> findProjectionByUsername(@Param("username") String username); // 파라미터 명이 중요
+
+    <T> List<T> findProjectionsByUsername(@Param("username") String username, Class<T> type); // 파라미터 명이 중요
+
+    // 네이티브 쿼리는 최후의 수단으로 사용하자! 반환타입 지원도 부실하고 Sort 가 제대로 작동 안할 수도 있고 동적쿼리도 안됨 -> jdbcTemplate 이 차라리 나음
+    @Query(value = "select * from member where username = ?", nativeQuery = true)
+    Member findByNativeQuery(String username);
+
+    // 프로젝션과 쓰면 쓸만할지도?
+    @Query(value = "select m.member_id as id, m.username, t.name as teamName " +
+            "from member m left join team t",
+            countQuery = "select count(*) from member",
+            nativeQuery = true)
+    Page<MemberProjection> findByNativeProjection(Pageable pageable);
 }

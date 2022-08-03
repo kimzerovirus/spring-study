@@ -13,6 +13,12 @@ spring:
         format_sql: true
         show_sql: true
 
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        max-page-size: 2000
+
 #logging:
 #  level:
 #    org.hibernate.SQL: debug # show_sql 은 콘솔에 남기는 반면 이렇게 설정하면 로그 파일로 남길 수 있다.

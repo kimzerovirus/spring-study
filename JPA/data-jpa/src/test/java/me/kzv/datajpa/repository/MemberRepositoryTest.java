@@ -214,6 +214,7 @@ public class MemberRepositoryTest {
          * 벌크 업데이트를 할 때 주의할 점!!!
          * 영속성 컨텍스트를 거치지 않고 DB에 때려 부음으로 인해
          * 영속성 컨텍스트와 DB 사이의 괴리가 발생 -> 따라서 벌크 업데이트 후 영속성 컨텍스트를 날려버리자
+         * @Modifying(clearAutomatically = true) 를 사용하면 알아서 해줌
         */
 
         //given
@@ -236,5 +237,186 @@ public class MemberRepositoryTest {
         assertThat(resultCount).isEqualTo(3);
         assertThat(expect22.getAge()).isEqualTo(22);
         assertThat(expect23.getAge()).isEqualTo(23);
+    }
+    
+    @Test
+    public void Lazy_테스트() throws Exception {
+        //given
+        Team teamA = new Team("teamA");
+        Team teamB = new Team("teamB");
+        teamRepository.save(teamA);
+        teamRepository.save(teamB);
+
+        Member m1 = new Member("m1", 10, teamA);
+        Member m2 = new Member("m2", 20, teamB);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        em.flush();
+        em.clear();
+
+        //when
+        List<Member> members = memberRepository.findAll();
+
+        for (Member member : members) {
+            System.out.println("member = " + member.getUsername());
+            System.out.println("member.team.class = " + member.getTeam().getClass()); // member.team.class = class me.kzv.datajpa.entity.Team$HibernateProxy$iIEMdMSV
+            // member 조회 할때는 Team 은 가짜(임시) 객체로 만들어 두고 실제로 필요한 시점에 Team 을 조회해온다.
+            // N + 1 문제가 발생!!
+            System.out.println("member.team = " + member.getTeam().getName());
+        }
+
+        //then
+    }
+
+    /**
+     * Lazy_테스트 의 N+1 문제 해결하기
+     */
+    @Test
+    public void fetch_join_테스트() throws Exception {
+
+        //given
+        Team teamA = new Team("teamA");
+        Team teamB = new Team("teamB");
+        teamRepository.save(teamA);
+        teamRepository.save(teamB);
+
+        Member m1 = new Member("m1", 10, teamA);
+        Member m2 = new Member("m2", 20, teamB);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        em.flush();
+        em.clear();
+
+        //when
+        List<Member> members = memberRepository.findMemberFetchJoin();
+
+        for (Member member : members) {
+            System.out.println("===================================================");
+            System.out.println("member = " + member.getUsername());
+            System.out.println("member.team.class = " + member.getTeam().getClass());
+            System.out.println("member.team = " + member.getTeam().getName());
+        }
+    }
+
+    /**
+     * Lazy_테스트 의 N+1 문제 해결하기
+     */
+    @Test
+    public void fetch_join_엔티티_그래프_사용하기() throws Exception {
+
+        //given
+        Team teamA = new Team("teamA");
+        Team teamB = new Team("teamB");
+        teamRepository.save(teamA);
+        teamRepository.save(teamB);
+
+        Member m1 = new Member("m1", 10, teamA);
+        Member m2 = new Member("m2", 20, teamB);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        em.flush();
+        em.clear();
+
+        //when
+        List<Member> members = memberRepository.findAll();
+
+        for (Member member : members) {
+            System.out.println("===================================================");
+            System.out.println("member = " + member.getUsername());
+            System.out.println("member.team.class = " + member.getTeam().getClass());
+            System.out.println("member.team = " + member.getTeam().getName());
+        }
+    }
+
+    @Test
+    public void queryHint(){
+        Member member1 = memberRepository.save(new Member("member1", 10));
+        Member member2 = memberRepository.save(new Member("member2", 10));
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        em.flush();
+        em.clear();
+
+        Member findMember = memberRepository.findById(member1.getId()).get();
+        Member findReadOnlyMember = memberRepository.findReadOnlyByUsername("member2");
+
+        findMember.setUsername("memberA");
+        findReadOnlyMember.setUsername("memberB");
+        em.flush(); // 변경 감지 후 업데이트 함 -> 원본 데이터까지 2개를 가지고 있어야 함
+    }
+
+    @Test
+    public void lock_테스트() throws Exception {
+        //given
+        Member member1 = memberRepository.save(new Member("member1", 10));
+        memberRepository.save(member1);
+
+        em.flush();
+        em.clear();
+
+        //when
+        List<Member> result = memberRepository.findLockByUsername("member1");
+
+        //then
+        /*
+            select
+                member0_.member_id as member_i1_0_,
+                member0_.age as age2_0_,
+                member0_.team_id as team_id4_0_,
+                member0_.username as username3_0_
+            from
+                member member0_
+            where
+                member0_.username=? for update
+         */
+    }
+
+    @Test
+    public void 커스텀_레포지토리_테스트(){
+        Member member1 = memberRepository.save(new Member("member1", 10));
+        memberRepository.save(member1);
+
+        List<Member> memberCustom = memberRepository.findMemberCustom();
+
+        assertThat(memberCustom.get(0)).isEqualTo(member1);
+    }
+
+    @Test
+    public void 프로젝션_네이티브_쿼리_테스트() throws Exception {
+        Member member1 = memberRepository.save(new Member("member1", 10));
+        memberRepository.save(member1);
+
+
+        // 동적 프로젝션
+        List<UsernameOnlyDto> result = memberRepository.findProjectionsByUsername("m1", UsernameOnlyDto.class); // type 만 바꾸면 된다
+
+        for (UsernameOnlyDto usernameOnlyDto : result) {
+            System.out.println("usernameOnly = " + usernameOnlyDto);
+        }
+
+        List<NestedClosedProjections> result2 = memberRepository.findProjectionsByUsername("m1", NestedClosedProjections.class);
+
+        for (NestedClosedProjections nestedClosedProjections : result2) {
+            System.out.println("user name = " + nestedClosedProjections.getUsername());
+            System.out.println("team name = " + nestedClosedProjections.getTeam().getName());
+            // join 이 들어가면 사용하기 애매함.
+            // 프로젝션 대상이 root 엔티티를 넘어가면 최적화가 안된다!
+        }
+
+        Team teamA = new Team("teamA");
+        teamRepository.save(teamA);
+
+        IntStream.range(1, 11).forEach(e -> memberRepository.save(new Member("member" + e, 10, teamA)));
+
+        Page<MemberProjection> result3 = memberRepository.findByNativeProjection(PageRequest.of(1,10));
+        List<MemberProjection> content = result3.getContent();
+        for (MemberProjection memberProjection : content) {
+            System.out.println("user name = " + memberProjection.getUsername());
+            System.out.println("team name = " + memberProjection.getTeamName());
+        }
     }
 }
