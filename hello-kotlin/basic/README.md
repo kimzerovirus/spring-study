@@ -19,4 +19,15 @@
   - if문 비교
     - 자바는 Statement : 프로그램의 문장, 하나의 값으로 도출되지 않는다. (Expression은 Statement의 하위 포함관계라고 볼 수 있다.)
     - 코틀린은 Expression : 하나의 값으로 도출되는 문장이다. (따라서 if문을 변수에 할당 가능, 코틀린은 삼항연산자를 지원하지 않음)
-    
+
+- **lec06 코틀린 반복문**
+  - for each 문에서 자바는 `:`를 코틀린에서는 `in`을 사용한다.
+  - 코틀린에서 전통적인 for문은 등차수열과 in을 사용한다.
+
+- **lec07 코틀린 예외처리**
+  - 자바와 달리 코틀린은 Checked Exception과 Unchecked Exception을 구분하지 않는다. 
+
+- **lec08 코틀린 함수**
+  - 오버로딩 가능
+  - default parameter
+  - 가변인자 `vararg`와 스프레드 연산자 `*`

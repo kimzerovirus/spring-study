@@ -1,4 +1,4 @@
-package basic
+package example
 
 data class DataHuman(val name:String, val age:Int)
 class DefaultHuman(val name:String, val age:Int)
