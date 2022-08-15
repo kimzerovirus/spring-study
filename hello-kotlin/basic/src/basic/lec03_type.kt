@@ -8,7 +8,7 @@ fun main() {
     val result = number1 ?: 0 / number2.toDouble()
 
     printAgePossibleNullPerson(null)
-    val person = printAgePossibleNullPerson(Person("HI",18))
+    val person = printAgePossibleNullPerson(Person("HI", 18))
     val name = "asdf"
 //    Java ST
 //    System.out.println(String.format("이름: %s", person.name));
