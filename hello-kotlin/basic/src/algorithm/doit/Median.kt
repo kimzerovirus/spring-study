@@ -1,4 +1,4 @@
-package algorithm
+package algorithm.doit
 
 /** 중위값 구하기 */
 fun median(a: Int, b: Int, c: Int): Int {

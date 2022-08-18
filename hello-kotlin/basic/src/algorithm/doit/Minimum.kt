@@ -1,4 +1,5 @@
-package algorithm
+package algorithm.doit
+
 
 fun main() {
     minimum(1,2,3)
