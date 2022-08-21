@@ -14,6 +14,7 @@ fun seqSearchWhile(a: List<Int>, key: Int): Int {
     }
 }
 
+
 fun seqSearchFor1(a: List<Int>, key: Int): Int {
     for (i: Int in 0..a.size) {
         if(a[i] == key) return i
