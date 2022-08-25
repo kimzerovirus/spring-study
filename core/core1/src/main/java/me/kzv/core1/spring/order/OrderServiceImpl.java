@@ -3,7 +3,11 @@ package me.kzv.core1.spring.order;
 import me.kzv.core1.spring.discount.DiscountPolicy;
 import me.kzv.core1.spring.member.Member;
 import me.kzv.core1.spring.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
     //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
@@ -14,7 +18,8 @@ public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
