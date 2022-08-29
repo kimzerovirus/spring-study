@@ -1,5 +1,10 @@
 package hello.world;
 
+import hello.world.web.argumentresolver.LoginMemberArgumentResolver;
+import hello.world.web.filter.LogFilter;
+import hello.world.web.filter.LoginCheckFilter;
+import hello.world.web.interceptor.LogInterceptor;
+import hello.world.web.interceptor.LoginCheckInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LogInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/css/**", "/*.ico", "/error");
+                .excludePathPatterns("/css/**", "/*.ico", "/error"); // 예외 경로
 
         registry.addInterceptor(new LoginCheckInterceptor())
                 .order(2)
@@ -38,12 +43,12 @@ public class WebConfig implements WebMvcConfigurer {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new LogFilter());
         filterRegistrationBean.setOrder(1);
-        filterRegistrationBean.addUrlPatterns("/*");
+        filterRegistrationBean.addUrlPatterns("/*"); // 모든 url 적용
 
         return filterRegistrationBean;
     }
 
-//    @Bean
+    @Bean
     public FilterRegistrationBean loginCheckFilter() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new LoginCheckFilter());
