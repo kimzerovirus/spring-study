@@ -1,11 +1,13 @@
 package me.kzv.server.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @Getter
@@ -35,11 +37,17 @@ public class Comment extends BaseEntity{
     @OneToMany(mappedBy = "comment")
     private List<Vote> votes = new ArrayList<>();
 
-    public void changeVote(User user) {
-        this.votes.stream()
-                .filter(v -> v.getUsername() == user.getUsername()).findFirst()
-                .ifPresent(v -> {
+    protected Comment() {
+    }
 
-                });
+    @Builder
+    public Comment(Long id, String body, String username, Long postId) {
+        this.id = id;
+        this.body = body;
+        this.username = username;
+        this.postId = postId;
+    }
+
+    public void changeVote(User user) {
     }
 }
