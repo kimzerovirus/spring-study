@@ -1,14 +1,16 @@
 package me.kzv.issue.domain
 
 import me.kzv.issue.domain.enums.IssuePriority
+import me.kzv.issue.domain.enums.IssueStatus
 import me.kzv.issue.domain.enums.IssueType
 import javax.persistence.*
 
 @Entity
 @Table
-class Issue (
+class Issue(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "issue_id")
     val id: Long? = null,
 
     @Column
@@ -27,5 +29,12 @@ class Issue (
     @Column
     @Enumerated(EnumType.STRING)
     var priority: IssuePriority,
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    var status: IssueStatus,
+
+    @OneToMany(fetch = FetchType.EAGER)
+    val comments : MutableList<Comment> = mutableListOf(),
 
     ) : BaseEntity()
