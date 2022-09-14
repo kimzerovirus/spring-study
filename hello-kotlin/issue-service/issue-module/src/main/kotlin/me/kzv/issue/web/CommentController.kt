@@ -1,6 +1,7 @@
-package me.kzv.issue.service
+package me.kzv.issue.web
 
 import me.kzv.issue.config.AuthUser
+import me.kzv.issue.service.CommentService
 import me.kzv.issue.web.dto.CommentRequest
 import me.kzv.issue.web.dto.CommentResponse
 import org.springframework.http.HttpStatus
@@ -24,6 +25,7 @@ class CommentController(
     @PutMapping("/{id}")
     fun edit(
         authUser: AuthUser,
+        @PathVariable issueId: Long,
         @PathVariable id: Long,
         @RequestBody request: CommentRequest,
     ) = commentService.edit(id, authUser.userId, request)
