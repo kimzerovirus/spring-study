@@ -1,1 +1,0 @@
-# nuxt와 kotlin을 이용한 쇼핑몰

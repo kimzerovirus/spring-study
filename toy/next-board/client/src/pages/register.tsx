@@ -1,9 +1,9 @@
+import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { FormEvent, useState } from 'react';
 
-import InputGroup from '../components/InputGroup';
 import { useAuthState } from '../security/auth';
 
 function Register() {
@@ -33,42 +33,66 @@ function Register() {
 	};
 
 	return (
-		<div className="bg-white">
-			<div className="flex flex-col items-center justify-center h-screen p-6">
-				<div className="w-10/12 mx-auto md:w-96">
-					<h1 className="mb-2 text-lg font-medium">회원가입</h1>
-					<form onSubmit={handleSubmit}>
-						<InputGroup
-							placeholder="Email"
-							value={email}
-							setValue={setEmail}
-							error={errors.email}
+		<Container component="main" maxWidth="xs" style={{ marginTop: '8%' }}>
+			<Grid container spacing={2}>
+				<Grid item xs={12}>
+					<Typography component="h1" variant="h5">
+						회원가입
+					</Typography>
+				</Grid>
+			</Grid>
+			<form noValidate onSubmit={handleSubmit}>
+				<Grid container spacing={2}>
+					<Grid item xs={12}>
+						<TextField
+							variant="outlined"
+							required
+							fullWidth
+							id="email"
+							name="email"
+							label="이메일 주소"
+							autoComplete="email"
 						/>
-						<InputGroup
-							placeholder="Username"
-							value={username}
-							setValue={setUsername}
-							error={errors.username}
+					</Grid>
+					<Grid item xs={12}>
+						<TextField
+							variant="outlined"
+							required
+							fullWidth
+							id="username"
+							name="username"
+							label="이름"
+							autoComplete="username"
 						/>
-						<InputGroup
-							placeholder="Password"
-							value={password}
-							setValue={setPassword}
-							error={errors.password}
+					</Grid>
+					<Grid item xs={12}>
+						<TextField
+							variant="outlined"
+							required
+							fullWidth
+							id="password"
+							name="password"
+							label="패스워드"
+							type="password"
+							autoComplete="current-password"
 						/>
-						<button className="w-full py-2 mb-1 text-xs font-bold text-white uppercase bg-gray-400 border border-gray-400 rounded">
+					</Grid>
+					<Grid item xs={12}>
+						<Button type="submit" fullWidth variant="contained" color="primary">
 							회원 가입
-						</button>
-					</form>
-					<small>
-						이미 가입하셨나요?
-						<Link href="/login">
-							<a className="ml-1 text-blue-500 uppercase">로그인</a>
-						</Link>
-					</small>
-				</div>
-			</div>
-		</div>
+						</Button>
+					</Grid>
+				</Grid>
+			</form>
+			<Grid container sx={{ mt: 2 }}>
+				<Grid item xs>
+					이미 가입하셨나요?
+					<Link href="/login">
+						<a>로그인</a>
+					</Link>
+				</Grid>
+			</Grid>
+		</Container>
 	);
 }
 

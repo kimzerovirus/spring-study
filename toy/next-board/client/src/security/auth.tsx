@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createContext, useContext, useEffect, useReducer } from 'react';
 
-import { User } from '../types';
+import { User } from '../../types';
 
 interface State {
 	authenticated: boolean;
