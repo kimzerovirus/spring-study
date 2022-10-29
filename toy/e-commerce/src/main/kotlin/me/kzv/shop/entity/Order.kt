@@ -9,7 +9,7 @@ class Order(
     @Id
     @Column(name="order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Int? = null,
+    var id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     var member: Member,

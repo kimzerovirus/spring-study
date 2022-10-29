@@ -7,7 +7,7 @@ class ItemImg(
     @Id
     @Column(name = "item_img_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Int? = null,
+    var id: Long? = null,
 
     var imgName: String,
 
