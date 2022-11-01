@@ -1,5 +1,6 @@
 package me.kzv.shop.entity
 
+import me.kzv.shop.controller.dto.MemberDto
 import me.kzv.shop.entity.constant.Role
 import org.springframework.security.crypto.password.PasswordEncoder
 import javax.persistence.*
@@ -21,8 +22,14 @@ class Member(
     var address: String,
 
     @Enumerated(EnumType.STRING)
-    var role:Role,
+    var role: Role,
 
-) : BaseEntity()
+    ) : BaseEntity()
 
-fun createMember(passwordEncoder: PasswordEncoder) = Member(password = passwordEncoder.encode())
+fun createMember(dto: MemberDto, passwordEncoder: PasswordEncoder) = Member(
+    name = dto.name,
+    email = dto.email,
+    address = dto.address,
+    password = passwordEncoder.encode(dto.password),
+    role = Role.ADMIN,
+)

@@ -3,7 +3,7 @@ package me.kzv.shop.entity
 import javax.persistence.*
 
 @Entity
-class ItemImg(
+class ItemImg (
     @Id
     @Column(name = "item_img_id")
     @GeneratedValue(strategy = GenerationType.AUTO)

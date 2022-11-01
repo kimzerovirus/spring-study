@@ -32,8 +32,14 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
 
-    implementation("com.querydsl:querydsl-jpa:5.0.0")
-    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+    // querydsl
+//    implementation("com.querydsl:querydsl-jpa:5.0.0")
+//    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+    api("com.querydsl:querydsl-jpa")
+    kapt(group = "com.querydsl", name = "querydsl-apt", classifier = "jpa")
+
+    // modelmapper - 리플렉션 때문에 사용하기 꺼려지긴한다.
+    implementation("org.modelmapper:modelmapper:3.0.0")
 }
 
 tasks.withType<KotlinCompile> {
