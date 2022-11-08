@@ -20,7 +20,7 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/mypage")
-    public String myPage() throws Exception{
+    public String myPage() throws Exception {
         return "user/mypage";
     }
 
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public String createUser(AccountDto dto){
+    public String createUser(AccountDto dto) {
 
         ModelMapper modelMapper = new ModelMapper();
         Account account = modelMapper.map(dto, Account.class);
@@ -42,5 +42,9 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/messages")
+    public String messages() {
+        return "messages";
+    }
 
 }

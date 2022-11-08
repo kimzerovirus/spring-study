@@ -1,7 +1,9 @@
 package me.kzv.core.security.config;
 
 import lombok.RequiredArgsConstructor;
+import me.kzv.core.security.common.AjaxLoginAuthenticationEntryPoint;
 import me.kzv.core.security.filter.AjaxLoginProcessingFilter;
+import me.kzv.core.security.handler.AjaxAccessDeniedHandler;
 import me.kzv.core.security.handler.AjaxAuthenticationFailureHandler;
 import me.kzv.core.security.handler.AjaxAuthenticationSuccessHandler;
 import me.kzv.core.security.provider.AjaxAuthenticationProvider;
@@ -23,20 +25,29 @@ public class AjaxSecurityConfig {
     private final AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
     private final AjaxAuthenticationProvider ajaxAuthenticationProvider;
 
+    private final AjaxLoginAuthenticationEntryPoint ajaxLoginAuthenticationEntryPoint;
+    private final AjaxAccessDeniedHandler ajaxAccessDeniedHandler;
+
     @Bean
     public SecurityFilterChain ajaxFilterChain(HttpSecurity http) throws Exception{
         http
                 .antMatcher("/api/**")
                 .authorizeRequests()
+                .antMatchers("/api/messages").hasRole("MANAGER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .and()
-                .addFilterBefore(ajaxLoginProcessingFilter(http), UsernamePasswordAuthenticationFilter.class)
                 .csrf().disable()
+
+                .addFilterBefore(ajaxLoginProcessingFilter(http), UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(ajaxAuthenticationProvider)
 
+                .exceptionHandling()
+                .authenticationEntryPoint(ajaxLoginAuthenticationEntryPoint)
+                .accessDeniedHandler(ajaxAccessDeniedHandler)
         ;
+
 
         return http.build();
     }
