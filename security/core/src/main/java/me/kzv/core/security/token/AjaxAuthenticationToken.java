@@ -6,14 +6,15 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
 
 import java.util.Collection;
 
-public class ApiAuthenticationToken extends AbstractAuthenticationToken {
+// UsernamePasswordAuthenticationToken 참조하여 만듦
+public class AjaxAuthenticationToken extends AbstractAuthenticationToken {
 
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
     private final Object principal;
     private Object credentials;
 
-    public ApiAuthenticationToken(Object principal, Object credentials) {
+    public AjaxAuthenticationToken(Object principal, Object credentials) {
         // 인증을 받기 전에 사용자가 입력한 값
         super(null);
         this.principal = principal;
@@ -21,7 +22,7 @@ public class ApiAuthenticationToken extends AbstractAuthenticationToken {
         setAuthenticated(false);
     }
 
-    public ApiAuthenticationToken(Collection<? extends GrantedAuthority> authorities, Object principal, Object credentials) {
+    public AjaxAuthenticationToken(Object principal, Object credentials, Collection<? extends GrantedAuthority> authorities ) {
         // 인증 이후에 결과를 담는 생성자
         super(authorities);
         this.principal = principal;

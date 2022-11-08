@@ -15,8 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+/**
+ * 별도로 authenticationSuccessHandler 를 지정하지 않으면
+ * 기본적으로 org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler 를 사용하게 된다.
+ */
+
 @Component
-public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class FormAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private RequestCache requestCache = new HttpSessionRequestCache();
 

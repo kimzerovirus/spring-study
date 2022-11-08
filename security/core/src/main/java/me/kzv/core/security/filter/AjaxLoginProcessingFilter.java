@@ -2,7 +2,7 @@ package me.kzv.core.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.kzv.core.domain.AccountDto;
-import me.kzv.core.security.token.ApiAuthenticationToken;
+import me.kzv.core.security.token.AjaxAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -14,18 +14,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ApiLoginProcessingFilter extends AbstractAuthenticationProcessingFilter {
+public class AjaxLoginProcessingFilter extends AbstractAuthenticationProcessingFilter {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public ApiLoginProcessingFilter() {
+    public AjaxLoginProcessingFilter() {
         super(new AntPathRequestMatcher("/api/login")); // <- 이 url로 요청시 intercept
     }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
 
-        if(isApi(request)){
+        if(isAjax(request)){
             throw new IllegalStateException("Authentication is not supported");
         }
 
@@ -35,12 +35,12 @@ public class ApiLoginProcessingFilter extends AbstractAuthenticationProcessingFi
             throw new IllegalArgumentException("Username or Password is Empty");
         }
 
-        ApiAuthenticationToken apiAuthenticationToken = new ApiAuthenticationToken(dto.getUsername(), dto.getPassword());
+        AjaxAuthenticationToken ajaxAuthenticationToken = new AjaxAuthenticationToken(dto.getUsername(), dto.getPassword());
 
-        return getAuthenticationManager().authenticate(apiAuthenticationToken);
+        return getAuthenticationManager().authenticate(ajaxAuthenticationToken);
     }
 
-    private boolean isApi(HttpServletRequest request) {
+    private boolean isAjax(HttpServletRequest request) {
         if ("XMLHttpRequest".equals(request.getHeader("X-Requested-with"))) {
             return true;
         }

@@ -1,13 +1,20 @@
 package me.kzv.core.security.handler;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,12 +22,16 @@ import java.io.IOException;
 
 @Log4j2
 @Component
-public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class AjaxAuthenticationFailureHandler implements AuthenticationFailureHandler {
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        // 아이디가 없거나 패스워드가 일치하지 않은 경우 호출된다.
         String errorMessage = "Invalid Username or Password";
+
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
         if (exception instanceof BadCredentialsException) {
             errorMessage = "Invalid Username or Password";
@@ -28,15 +39,7 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
             errorMessage = "Invalid Secret Key";
         }
 
-        String targetUrl = UriComponentsBuilder.fromUriString("/login").queryParam("error", "true").queryParam("exception", exception.getMessage()).build().toString();
-
-//        setDefaultFailureUrl("/login?error=true&exception=" + exception.getMessage());
-        setDefaultFailureUrl(targetUrl);
-        log.info(targetUrl);
-
-        request.setCharacterEncoding("utf-8");
-
-        // 부모에게 위임하여 처리
-        super.onAuthenticationFailure(request, response, exception);
+        objectMapper.writeValue(response.getWriter(), errorMessage);
     }
+
 }
