@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="me.kzv.di.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-17T05:45:07" hostname="yeonggyunui-MacBookAir.local" time="0.131">
+  <properties/>
+  <testcase name="diTest()" classname="me.kzv.di.BeanFactoryTest" time="0.131"/>
+  <system-out><![CDATA[14:45:07.487 [Test worker] INFO  org.reflections.Reflections - Reflections took 14 ms to scan 2 urls, producing 5 keys and 13 values 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

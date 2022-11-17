@@ -1,0 +1,5 @@
+†14:45:07.487 [Test worker] INFO  org.reflections.Reflections - Reflections took 14 ms to scan 2 urls, producing 5 keys and 13 values 
+'class name info: me.kzv.mvc.model.User
+UUser all declared fields info: private java.lang.String me.kzv.mvc.model.User.userId
+SUser all declared fields info: private java.lang.String me.kzv.mvc.model.User.name
+…14:45:07.530 [Test worker] INFO  org.reflections.Reflections - Reflections took 2 ms to scan 2 urls, producing 8 keys and 11 values 

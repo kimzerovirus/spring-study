@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="me.kzv.mvc.ReflectionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-17T05:45:07" hostname="yeonggyunui-MacBookAir.local" time="0.007">
+  <properties/>
+  <testcase name="showClassInfo()" classname="me.kzv.mvc.ReflectionTest" time="0.002"/>
+  <testcase name="controllerScan()" classname="me.kzv.mvc.ReflectionTest" time="0.005"/>
+  <system-out><![CDATA[class name info: me.kzv.mvc.model.User
+User all declared fields info: private java.lang.String me.kzv.mvc.model.User.userId
+User all declared fields info: private java.lang.String me.kzv.mvc.model.User.name
+14:45:07.530 [Test worker] INFO  org.reflections.Reflections - Reflections took 2 ms to scan 2 urls, producing 8 keys and 11 values 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
