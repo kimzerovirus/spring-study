@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    database: postgresql
+    hibernate.ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect # https://docs.jboss.org/hibernate/orm/5.3/javadocs/org/hibernate/dialect/package-summary.html
+    properties.hibernate.formate_sql: true
+    show-sql: true
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+    url: jdbc:postgresql://localhost:5432/crud
+    username:
+    driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      platform: postgres
