@@ -1,4 +1,4 @@
-package me.kzv.step01;
+package me.kzv.chapter01;
 
 import java.util.ArrayList;
 import java.util.Arrays;

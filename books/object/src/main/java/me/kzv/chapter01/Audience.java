@@ -1,4 +1,4 @@
-package me.kzv.step01;
+package me.kzv.chapter01;
 
 /**
  * 관객

@@ -1,4 +1,4 @@
-package me.kzv.step01;
+package me.kzv.chapter01;
 
 /**
  * 이 모듈들은 몇 가지 문제점이 있다.
