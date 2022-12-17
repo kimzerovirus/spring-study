@@ -4,8 +4,11 @@ import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
 
 @Entity
-@DiscriminatorValue("B")
+@DiscriminatorValue("book")
 class Book(
-    val author: String,
-    val isbn: String
-) : Item()
+    var author: String,
+    var isbn: String,
+    name: String,
+    price: Int,
+    stockQuantity: Int,
+) : Item( name = name, price = price, stockQuantity = stockQuantity)
