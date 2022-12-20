@@ -4,6 +4,7 @@ import jakarta.validation.Valid
 import me.kzv.kotlinjpaquerydsl.controller.dto.MemberForm
 import me.kzv.kotlinjpaquerydsl.entity.Address
 import me.kzv.kotlinjpaquerydsl.entity.Member
+import me.kzv.kotlinjpaquerydsl.entity.Team
 import me.kzv.kotlinjpaquerydsl.service.MemberService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

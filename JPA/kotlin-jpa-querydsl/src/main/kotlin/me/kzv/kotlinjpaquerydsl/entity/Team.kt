@@ -12,7 +12,7 @@ class Team(
     var name: String,
 
     @OneToMany(mappedBy = "team") // 주인이 아니므로 업데이트 하지 않음
-    val members: MutableList<Member> = mutableListOf()
+    val members: MutableList<TeamMember> = mutableListOf()
 ){
 
     override fun toString(): String {
