@@ -4,15 +4,23 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+  servlet:
+    multipart:
+      maxFileSize: 20MB # 파일 한 개당 최대 사이즈
+      maxRequestSize: 100MB # 요청당 최대 파일 크기
+
+  devtools:
+    livereload:
+      enabled: true # Live Reload 기능 활성화
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
+        show_sql: true # 실행되는 쿼리 콘솔 출력
+        format_sql: true # 콘솔창에 출력되는 쿼리를 가독성이 좋게 포맷팅
   h2:
     console:
       enabled: true
@@ -20,5 +28,18 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
+    cache: false
 
-uploadPath: /asdf
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace # 쿼리에 물음표로 출력되는 바인드 파라미터 출력
+
+
+
+itemImgLocation: /shop/item # 상품 이미지 업로드 경로
+uploadPath: /asdf # 리소스 업로드 경로
+
