@@ -48,6 +48,8 @@ dependencies {
     // thymeleaf layout dialect
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.5.1'
 
+    // modelmapper
+    implementation 'org.modelmapper:modelmapper:2.3.9'
 }
 
 tasks.named('test') {

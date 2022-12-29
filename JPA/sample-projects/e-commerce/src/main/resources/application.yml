@@ -40,6 +40,6 @@ logging:
 
 
 
-itemImgLocation: /shop/item # 상품 이미지 업로드 경로
+itemImgLocation: /users/zerovirus/desktop/code/springstudy/jpa/sample-project/shop/upload/ # 상품 이미지 업로드 경로
 uploadPath: /asdf # 리소스 업로드 경로
 

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import me.kzv.ecommerce.constant.ItemSellStatus;
+import me.kzv.ecommerce.dto.ItemFormDto;
 import me.kzv.ecommerce.exception.OutOfStockException;
 
 import javax.persistence.*;
@@ -56,4 +57,11 @@ public class Item extends BaseEntity {
         this.stockNumber += stockNumber;
     }
 
+    public void updateItem(ItemFormDto itemFormDto) {
+        itemNm = itemFormDto.getItemNm();
+        price = itemFormDto.getPrice();
+        stockNumber = itemFormDto.getStockNumber();
+        itemDetail = itemFormDto.getItemDetail();
+        itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 }
