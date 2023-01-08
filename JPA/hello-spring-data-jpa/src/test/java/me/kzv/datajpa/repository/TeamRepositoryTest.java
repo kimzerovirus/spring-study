@@ -60,4 +60,25 @@ class TeamRepositoryTest {
          *         team0_.name=?
          */
     }
+
+    @Test
+    public void findAll_entityGraph_테스트() throws Exception {
+        teamRepository.findAll();
+        /**
+         * select
+         *         team0_.team_id as team_id1_2_0_,
+         *         members1_.member_id as member_i1_1_1_,
+         *         team0_.name as name2_2_0_,
+         *         members1_.age as age2_1_1_,
+         *         members1_.team_id as team_id4_1_1_,
+         *         members1_.username as username3_1_1_,
+         *         members1_.team_id as team_id4_1_0__,
+         *         members1_.member_id as member_i1_1_0__
+         *     from
+         *         team team0_
+         *     left outer join
+         *         member members1_
+         *             on team0_.team_id=members1_.team_id
+         */
+    }
 }
