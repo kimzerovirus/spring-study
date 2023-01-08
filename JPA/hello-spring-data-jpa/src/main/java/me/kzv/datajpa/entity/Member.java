@@ -38,6 +38,13 @@ public class Member {
         this.username = username;
     }
 
+    public Member(String username, Team team) {
+        this.username = username;
+        if (team != null) {
+            changeTeam(team);
+        }
+    }
+
     public Member(String username, int age, Team team) {
         this.username = username;
         this.age = age;
