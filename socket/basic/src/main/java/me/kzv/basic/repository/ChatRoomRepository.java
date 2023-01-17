@@ -12,11 +12,11 @@ public class ChatRoomRepository {
     private Map<String, ChatRoom> chatRoomMap;
 
     @PostConstruct
-    private void init(){
+    private void init() {
         chatRoomMap = new LinkedHashMap<>();
     }
 
-    public List<ChatRoom> findAllRoom(){
+    public List<ChatRoom> findAllRoom() {
         //채팅방 생성순서 최근 순으로 반환한다.
         List chatRooms = new ArrayList<>(chatRoomMap.values());
         Collections.reverse(chatRooms);
