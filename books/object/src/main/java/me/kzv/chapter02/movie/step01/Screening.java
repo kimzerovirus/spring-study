@@ -1,5 +1,7 @@
 package me.kzv.chapter02.movie.step01;
 
+import me.kzv.chapter02.movie.money.Money;
+
 import java.time.LocalDateTime;
 
 public class Screening {

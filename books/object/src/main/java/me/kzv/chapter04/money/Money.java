@@ -1,4 +1,4 @@
-package me.kzv.chapter02.movie.money;
+package me.kzv.chapter04.money;
 
 import java.math.BigDecimal;
 

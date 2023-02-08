@@ -2,7 +2,7 @@ package me.kzv.chapter02.movie.step01.pricing;
 
 import me.kzv.chapter02.movie.step01.DiscountCondition;
 import me.kzv.chapter02.movie.step01.DiscountPolicy;
-import me.kzv.chapter02.movie.step01.Money;
+import me.kzv.chapter02.movie.money.Money;
 import me.kzv.chapter02.movie.step01.Screening;
 
 public class AmountDiscountPolicy extends DiscountPolicy {

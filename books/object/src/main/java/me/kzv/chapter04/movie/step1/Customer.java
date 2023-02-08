@@ -1,4 +1,4 @@
-package me.kzv.chapter02.movie.step01;
+package me.kzv.chapter04.movie.step1;
 
 public class Customer {
     private String name;

@@ -1,6 +1,8 @@
 package me.kzv.chapter02.movie.step02;
 
 
+import me.kzv.chapter02.movie.money.Money;
+
 import java.time.Duration;
 
 public class Movie {
