@@ -1,7 +1,10 @@
 package me.kzv.hellospringboot;
 
 import me.kzv.config.MySpringBootApplication;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 
 //@SpringBootApplication
 @MySpringBootApplication
@@ -26,6 +29,15 @@ public class HelloSpringbootApplication {
 //    public DispatcherServlet dispatcherServlet() {
 //        return new DispatcherServlet();
 //    }
+
+
+    @Bean
+    ApplicationRunner applicationRunner(Environment env){
+        return args -> {
+            String name = env.getProperty("my.name");
+            System.out.println("my.name: " + name);
+        };
+    }
 
     public static void main(String[] args) {
 //        MySpringApplication.run(HelloSpringbootApplication.class, args); // spring boot 와 똑같은 설계
