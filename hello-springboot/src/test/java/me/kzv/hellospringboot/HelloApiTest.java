@@ -15,18 +15,18 @@ import org.springframework.web.client.RestTemplate;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class HelloApiTest {
 
-    @LocalServerPort
-    int randomServerPort;
+//    @LocalServerPort
+//    int randomServerPort;
 
     @Test
     public void helloApi() throws Exception {
         //http localhost:8080/hello?name=Spring
         TestRestTemplate rest = new TestRestTemplate();
 
-        ResponseEntity<String> res = rest.getForEntity("http://localhost:" + randomServerPort + "/hello?name={name}", String.class, "Spring");
+        ResponseEntity<String> res = rest.getForEntity("http://localhost:8080/hello?name={name}", String.class, "Spring");
 
         // status cod 200
         assertThat(res.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -43,7 +43,7 @@ class HelloApiTest {
         //http localhost:8080/hello?name=Spring
         TestRestTemplate rest = new TestRestTemplate();
 
-        ResponseEntity<String> res = rest.getForEntity("http://localhost:" + randomServerPort + "/hello?name=", String.class, "");
+        ResponseEntity<String> res = rest.getForEntity("http://localhost:8080/hello?name=", String.class, "");
 
         assertThat(res.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
     }
