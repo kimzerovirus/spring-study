@@ -26,7 +26,7 @@ public class HelloController implements ApplicationContextAware {
     @GetMapping // dispatcher servlet 에게 get 매핑이라는 정보를 넘겨준다. (name = ) 파라미터로 주소정보 넘겨도 됨
     @ResponseBody
     public String hello(String name) {
-        if(name == null || name.trim().length() == 0) throw new IllegalStateException();
+        if (name == null || name.trim().length() == 0) throw new IllegalArgumentException();
         return helloService.sayHello(Objects.requireNonNull(name));
     }
 
@@ -34,5 +34,10 @@ public class HelloController implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         System.out.println(applicationContext); // Root WebApplicationContext, started on Mon Feb 20 11:51:38 KST 2023 - 생성자 주입으로도 받아올 수 있음
         this.applicationContext = applicationContext;
+    }
+
+    @GetMapping("/count")
+    public String count(String name) {
+        return name + ": " + helloService.countOf(name);
     }
 }

@@ -20,10 +20,10 @@ class HelloControllerTest {
 
         Assertions.assertThatThrownBy(() -> {
             helloController.hello(null);
-        }).isInstanceOf(NullPointerException.class);
+        }).isInstanceOf(IllegalArgumentException.class);
 
         Assertions.assertThatThrownBy(() -> {
             helloController.hello("");
-        }).isInstanceOf(NullPointerException.class);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
