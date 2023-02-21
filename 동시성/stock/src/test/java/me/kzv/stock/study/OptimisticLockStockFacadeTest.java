@@ -1,25 +1,24 @@
-package me.kzv.stock.service;
+package me.kzv.stock.study;
 
-import me.kzv.stock.domain.Stock;
-import me.kzv.stock.domain.StockRepository;
-import me.kzv.stock.service.StockService;
+import me.kzv.stock.entity.Stock;
+import me.kzv.stock.facade.OptimisticLockStockFacade;
+import me.kzv.stock.repository.StockRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class StockServiceTest {
+class OptimisticLockStockFacadeTest {
     @Autowired
-    StockService stockService;
+    OptimisticLockStockFacade optimisticLockStockFacade;
 
     @Autowired
     StockRepository stockRepository;
@@ -37,23 +36,6 @@ class StockServiceTest {
     }
 
     @Test
-    public void stock_decrease() throws Exception {
-        //given
-        stockService.decrease(1L, 1L);
-
-        //when
-        Stock stock = stockRepository.findById(1L).orElseThrow();
-
-        //then
-        assertThat(stock.getQuantity()).isEqualTo(99);
-    }
-
-
-    /**
-     * 동시에 접근하려다가 안됨 - 레이스 컨디션
-     * 하나의 쓰레드가 작업을 완료하고 다음 쓰레드가 가져가서 작업을 해야하는데 동시에 접근을 해서 작업이 누락됨
-     */
-    @Test
     public void 동시에_100개의_요청() throws InterruptedException {
         //given
         int threadCount = 100;
@@ -64,7 +46,9 @@ class StockServiceTest {
         for (int i = 0; i < threadCount; i++) {
             executorService.submit(() -> {
                 try {
-                    stockService.decrease(1L, 1L);
+                    optimisticLockStockFacade.decrease(1L, 1L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 } finally {
                     latch.countDown();
                 }

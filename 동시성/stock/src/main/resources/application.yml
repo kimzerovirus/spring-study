@@ -5,8 +5,7 @@ spring:
     username: ${db.username:root}
     password: ${db.password:1234}
     hikari:
-      maximum-pool-size: 2
-      minimum-idle: 1
+      maximum-pool-size: 40
   jpa:
     hibernate:
       ddl-auto: ${db.ddl:create-drop}
@@ -17,4 +16,4 @@ spring:
         persistence:
           validation:
             mode: none
-    show-sql: false
+    show-sql: true
