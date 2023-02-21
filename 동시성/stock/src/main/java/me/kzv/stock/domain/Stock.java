@@ -8,9 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
 @Entity
 public class Stock {
     @Id
@@ -21,9 +18,8 @@ public class Stock {
 
     private Long quantity;
 
-    public Stock(Long productId, Long quantity) {
-        this.productId = productId;
-        this.quantity = quantity;
+    public Stock() {
+
     }
 
     public void decrease(Long quantity) {
@@ -31,6 +27,15 @@ public class Stock {
             throw new RuntimeException();
         }
 
-        this.quantity = this.quantity - quantity;
+        this.quantity -= quantity;
+    }
+
+    public Stock(Long productId, Long quantity) {
+        this.productId = productId;
+        this.quantity = quantity;
+    }
+
+    public Long getQuantity() {
+        return quantity;
     }
 }
