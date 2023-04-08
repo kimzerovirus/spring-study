@@ -1,4 +1,9 @@
 package me.kzv.cleanarchitecture.account.application.port.out;
 
-public class UpdateAccountStatePort {
+import me.kzv.cleanarchitecture.account.domain.Account;
+
+public interface UpdateAccountStatePort {
+
+    void updateActivities(Account account);
+
 }
