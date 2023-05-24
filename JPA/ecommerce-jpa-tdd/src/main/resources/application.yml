@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    #    url: jdbc:h2:tcp://localhost/~/test
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+      jakarta:
+        persistence:
+          validation:
+            mode: none
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
