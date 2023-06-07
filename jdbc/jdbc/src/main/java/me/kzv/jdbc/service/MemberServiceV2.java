@@ -11,13 +11,15 @@ import java.sql.SQLException;
 
 /**
  * 트랜잭션 - 파라미터 연동, 풀을 고려한 종료
+ *
+ * 커넥션(con)을 파라미터로 넘겨서 같은 커넥션을 사용하여 하나의 트랜잭션을 구현한다.
  */
 @Slf4j
 @RequiredArgsConstructor
 public class MemberServiceV2 {
-
     private final DataSource dataSource;
     private final MemberRepositoryV2 memberRepository;
+
 
     public void accountTransfer(String fromId, String toId, int money) throws SQLException {
         Connection con = dataSource.getConnection();

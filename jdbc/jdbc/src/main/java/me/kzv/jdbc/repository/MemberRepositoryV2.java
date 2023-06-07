@@ -141,7 +141,7 @@ public class MemberRepositoryV2 {
             log.error("db error", e);
             throw e;
         } finally {
-            //connection은 여기서 닫지 않는다.
+            //connection은 여기서 닫지 않는다. - 서비스에서 닫아서 하나의 커넥션을 유지 시킨다.
             JdbcUtils.closeStatement(pstmt);
         }
 

@@ -19,7 +19,7 @@ public class MemberServiceV1 {
         memberRepository.update(fromId, fromMember.getMoney() - money);
         validation(toMember);
         memberRepository.update(toId, toMember.getMoney() + money);
-        //커밋, 롤백
+        //커밋, 롤백 트랜잭션 종료
     }
 
     private void validation(Member toMember) {
