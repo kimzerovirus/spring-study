@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.SQLException;
 
 /**
- * 트랜잭션 - @Transactional AOP
+ * 트랜잭션 - @Transactional AOP 적용
  */
 @Slf4j
 public class MemberServiceV3_3 {

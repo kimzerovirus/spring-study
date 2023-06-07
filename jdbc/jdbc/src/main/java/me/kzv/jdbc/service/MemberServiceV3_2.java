@@ -10,6 +10,8 @@ import java.sql.SQLException;
 
 /**
  * 트랜잭션 - 트랜잭션 템플릿
+ *
+ * 커밋, 롤백 등을 템플릿이 대신 수행해줌
  */
 @Slf4j
 public class MemberServiceV3_2 {
