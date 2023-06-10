@@ -4,3 +4,19 @@ spring:
     url: jdbc:mysql://localhost:3306/jdbctest
     username: root
     password: 1234
+
+logging:
+  level:
+    org:
+      springframework:
+        transaction:
+          interceptor: TRACE
+        jdbc:
+          datasource:
+            DataSourceTransactionManage: DEBUG
+        orm:
+          jpa:
+            JpaTransactionManager: DEBUG
+      hibernate:
+        resource:
+          transaction: DEBUG
