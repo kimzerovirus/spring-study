@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${db_url:jdbc:mysql://localhost:3306/testdb}
+    username: ${db_username:root}
+    password: ${db_password:1234}
+    hikari:
+      maximum-pool-size: 4
+      minimum-idle: 1
+  jpa:
+    hibernate:
+      ddl-auto: ${db_ddl:update} # validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
