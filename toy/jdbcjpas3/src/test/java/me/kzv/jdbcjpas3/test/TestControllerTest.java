@@ -16,6 +16,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+/**
+ * 200 OK - isOK()
+ * 201 created - isCreated()
+ * 400 Bad Request - isBadRequest()
+ * 403 Forbidden - isForbidden()
+ * 404 NotFound - isNotFound()
+ * 400~ - is4xxClientError()
+ * 500 Internal Server Error - isInternalServerError()
+ * 500~ - is5xxServerError()
+ */
+
 @SpringBootTest
 @Transactional
 @AutoConfigureMockMvc
