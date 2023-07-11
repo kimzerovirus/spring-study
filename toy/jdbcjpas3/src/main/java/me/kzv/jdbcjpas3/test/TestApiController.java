@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class TestController {
+public class TestApiController {
     private final TestService testService;
 
     @GetMapping("/test")
