@@ -21,3 +21,7 @@ spring:
 #    suffix: .html
 #    cache: false
 #    check-template-location: true
+
+jwt:
+  issuer: test@test.com
+  secret_key: study-springboot
