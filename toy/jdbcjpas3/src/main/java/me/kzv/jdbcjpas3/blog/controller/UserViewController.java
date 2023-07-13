@@ -18,7 +18,7 @@ public class UserViewController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "oauthLogin";
     }
 
     @GetMapping("/signup")
@@ -37,4 +37,5 @@ public class UserViewController {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/login";
     }
+
 }

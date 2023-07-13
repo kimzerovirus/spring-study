@@ -26,15 +26,24 @@ public class User implements UserDetails {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "nickname", unique = true)
+    private String nickname;
+
     @Builder
-    public User(String email, String password, String auth) {
+    public User(String email, String password, String nickname) {
         this.email = email;
         this.password = password;
+        this.nickname = nickname;
     }
 
+    public User update(String nickname) {
+        this.nickname = nickname;
+
+        return this;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -53,25 +62,21 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        // 계정 만료 여부
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        // 계정 잠금되었는지 여부
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        // 패스워드가 만료되었는지 여부
         return true;
     }
 
     @Override
     public boolean isEnabled() {
-        // 계정 사용 가능 여부
         return true;
     }
 }
