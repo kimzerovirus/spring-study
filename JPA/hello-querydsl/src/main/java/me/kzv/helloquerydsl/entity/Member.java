@@ -1,13 +1,16 @@
 package me.kzv.helloquerydsl.entity;
 
 import lombok.*;
+import me.kzv.helloquerydsl.utils.LongListConverter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(of = {"id", "username", "age"})
+@ToString // (of = {"id", "username", "age"})
 public class Member {
 
     @Id
@@ -21,8 +24,16 @@ public class Member {
     @JoinColumn(name = "team_id")
     private Team team;
 
+//    @Convert(converter = LongListConverter.class)
+//    private List<Long> teamIds = new ArrayList<>();
+
     public Member(String username) {
         this(username, 0, null);
+    }
+
+    public Member(String username, Team team) {
+        this.username = username;
+        this.team = team;
     }
 
     public Member(String username, int age) {

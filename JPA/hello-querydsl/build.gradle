@@ -40,7 +40,7 @@ dependencies {
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 
     // JPA 로그 남길때 무슨 데이터인지 보여줌
-    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0'
+//    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0'
 }
 
 tasks.named('test') {
