@@ -9,11 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
 @SpringBootTest
@@ -63,7 +59,7 @@ class TeamRepositoryTest {
 
     @Test
     public void findAll_entityGraph_테스트() throws Exception {
-        teamRepository.findAll();
+        teamRepository.findAll(); // select t.*, m.age from team, member t left outer join member m on t.team_id = m.team_id
         /**
          * select
          *         team0_.team_id as team_id1_2_0_,

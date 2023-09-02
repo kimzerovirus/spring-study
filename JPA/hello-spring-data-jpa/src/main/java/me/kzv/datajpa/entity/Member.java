@@ -1,5 +1,6 @@
 package me.kzv.datajpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,6 +28,7 @@ public class Member {
     private String username;
     private int age;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY) // ManyToOne 은 EAGER 보다는 LAZY 로 설정하기 -> member 조회 할때는 Team 은 가짜(임시) 객체로 만들어 두고 실제로 필요한 시점에 Team 을 조회해온다.
     @JoinColumn(name = "team_id")
     private Team team;

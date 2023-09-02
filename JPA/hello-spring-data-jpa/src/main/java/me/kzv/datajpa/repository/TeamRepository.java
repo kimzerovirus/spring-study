@@ -12,7 +12,7 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
     @EntityGraph(attributePaths = {"members"}, type = EntityGraph.EntityGraphType.LOAD)
     Optional<Team> findByName(String name);
 
-    @Override
+    @Override // 기본적으로 제공하는 메서드이므로 오버라이드해서 구현한다
     @EntityGraph(attributePaths = {"members"})
     List<Team> findAll();
 }

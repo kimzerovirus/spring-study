@@ -18,6 +18,11 @@ import javax.annotation.PostConstruct;
 public class MemberController {
     private final MemberRepository memberRepository;
 
+    @GetMapping("/api/members/{id}")
+    public Member getMember(@PathVariable("id") Long id) {
+        return memberRepository.findById(id).get();
+    }
+
     @GetMapping("/api/v1/members/{id}")
     public String findMember(@PathVariable("id") Long id) {
         Member member = memberRepository.findById(id).get();
