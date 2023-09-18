@@ -1,0 +1,10 @@
+# https://godekdls.github.io/Spring%20Boot/spring-session/
+
+spring:
+#  session:
+#    store-type: redis
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
