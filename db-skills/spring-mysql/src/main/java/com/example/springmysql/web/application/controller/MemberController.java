@@ -1,4 +1,4 @@
-package com.example.springmysql.web.controller;
+package com.example.springmysql.web.application.controller;
 
 import com.example.springmysql.web.domain.member.MemberReadService;
 import com.example.springmysql.web.domain.member.MemberWriteService;
