@@ -1,0 +1,45 @@
+### create
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "age": 18,
+  "join_date": "2023-10-29",
+  "address": {
+    "street": "Main street",
+    "door_no": 3
+  },
+  "subjects": [
+    {
+      "name": "Computer science"
+    }
+  ]
+}
+
+### update
+PUT http://localhost:8080/students/QHtXe4sBGd4lbDbqYrVP
+Content-Type: application/json
+
+{
+  "first_name": "John",
+  "last_name": "Ahn",
+  "age": 18,
+  "join_date": "2023-10-09",
+  "address": {
+    "street": "Main street",
+    "door_no": 1
+  },
+  "subjects": [
+    {
+      "name": "Computer science"
+    }
+  ]
+}
+
+### GET
+GET http://localhost:8080/students
+
+### DELETE
+DELETE http://localhost:8080/students/QHtXe4sBGd4lbDbqYrVP
