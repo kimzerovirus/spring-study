@@ -46,7 +46,6 @@ JUnit & Mockito 프레임워크와 H2를 이용한 테스트 환경 등에 대�
 > 스프링 부트 배치 기준으로는 **2.1.0 보다 하위 버전**이라고 보시면 됩니다.
 
 ```java
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes={BatchJpaTestConfiguration.class, TestBatchLegacyConfig.class}) // (1)
 public class BatchIntegrationTestJobConfigurationLegacyTest {
 
@@ -244,7 +243,6 @@ public class TestBatchLegacyConfig {
 자 그럼 ```@SpringBatchTest``` 를 이용해 코드를 개선해보겠습니다.  
 
 ```java
-@RunWith(SpringRunner.class)
 @SpringBatchTest // (1)
 @SpringBootTest(classes={BatchJpaTestConfiguration.class, TestBatchConfig.class}) // (2)
 public class BatchIntegrationTestJobConfigurationNewTest {

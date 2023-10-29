@@ -115,7 +115,6 @@ JpaPagingItemReader를 사용하는 아주 흔한 방식의 배치입니다.
 이를 한번 테스트 코드로 검증해보겠습니다.
 
 ```java
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(properties = {"job.name=" + PayPagingFailJobConfiguration.JOB_NAME})
 public class PayPagingFailJobConfigurationTest {

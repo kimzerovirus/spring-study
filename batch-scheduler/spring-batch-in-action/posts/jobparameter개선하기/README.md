@@ -207,7 +207,6 @@ public class JobParameterExtendsConfiguration {
 
 
 ```java
-@RunWith(SpringRunner.class)
 @SpringBatchTest
 @SpringBootTest(classes={JobParameterExtendsConfiguration.class, TestBatchConfig.class})
 public class JobParameterExtendsConfigurationTest {
@@ -404,7 +403,7 @@ public abstract class LocalDateConverter {
 @NoArgsConstructor
 public class CreateDateJobParameter {
 
-    @Value("#{ T(com.jojoldu.batch.example.jobparameter.LocalDateConverter).convert(jobParameters[createDate])}") // (1)
+    @Value("#{ T(LocalDateConverter).convert(jobParameters[createDate])}") // (1)
     private LocalDate createDate;
 
     @Value("#{jobParameters[status]}")
@@ -412,7 +411,7 @@ public class CreateDateJobParameter {
 }
 ```
 
-(1) ```T(com.jojoldu.batch.example.jobparameter.LocalDateConverter).convert```
+(1) ```T(LocalDateConverter).convert```
 
 * 위에서 만든 유틸 클래스인 ```LocalDateConverter``` 의 전체 경로를 넣어 ```converte``` 메소드를 호출합니다.
 * 이렇게 될 경우 이제 포맷이 변경되거나, 추가 연산이 필요할 경우 해당 Converter 클래스에서 모드 작업을 진행하면 됩니다.

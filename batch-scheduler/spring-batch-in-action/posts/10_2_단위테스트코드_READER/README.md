@@ -466,7 +466,6 @@ public class BatchJdbcTestConfiguration {
 4.0 이하 버전에서는 아래와 같이 작성됩니다.
 
 ```java
-@RunWith(SpringRunner.class)
 @EnableBatchProcessing // (1)
 @TestExecutionListeners( { // (2)
         DependencyInjectionTestExecutionListener.class,
@@ -701,7 +700,6 @@ public StepExecution getStepExecution2() {
 
 
 ```java
-@RunWith(SpringRunner.class)
 @EnableBatchProcessing
 @SpringBatchTest // (1)
 @ContextConfiguration(classes={
@@ -733,7 +731,6 @@ Jdbc로만 테스트하면 아쉬우실까봐 JPA에서의 Reader 테스트도 �
 사실 JPA는 ```@SpringBootTest``` 로 **자동으로 해주는 설정들이 많아** 좀 더 편하게 테스트 코드를 작성할 수 있습니다.
 
 ```java
-@RunWith(SpringRunner.class)
 @SpringBatchTest
 @SpringBootTest(classes={BatchJpaTestConfiguration.class, TestBatchConfig.class})
 public class BatchJpaUnitTestJobConfigurationTest {

@@ -223,7 +223,7 @@ Partitioner는 각 Worker Step들에게 어떤 Step Executions 변수를 가지�
 
 
 ```java
-import com.jojoldu.batch.entity.product.ProductRepository;
+import ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.partition.support.Partitioner;
@@ -294,7 +294,7 @@ partition4 (minId:9, maxId:10)
 **ProductIdRangePartitionerTest**
 
 ```java
-import com.jojoldu.batch.entity.product.ProductRepository;
+import ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -435,10 +435,10 @@ public JpaPagingItemReader<Product> reader(
 이렇게 해서 모든 코드들을 조합하게 되면 다음과 같은 스프링 배치 코드가 됩니다.
 
 ```java
-import com.jojoldu.batch.entity.product.Product;
-import com.jojoldu.batch.entity.product.ProductRepository;
-import com.jojoldu.batch.entity.product.backup.ProductBackup;
-import com.jojoldu.batch.entity.product.backup.ProductBackupRepository;
+import Product;
+import ProductRepository;
+import ProductBackup;
+import ProductBackupRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -600,11 +600,11 @@ public class PartitionLocalConfiguration {
 > 좀 더 상세한 설명은 [10. Spring Batch 가이드 - Spring Batch 테스트 코드](https://jojoldu.tistory.com/455)을 참고합니다.
 
 ```java
-import com.jojoldu.batch.TestBatchConfig;
-import com.jojoldu.batch.entity.product.Product;
-import com.jojoldu.batch.entity.product.ProductRepository;
-import com.jojoldu.batch.entity.product.backup.ProductBackup;
-import com.jojoldu.batch.entity.product.backup.ProductBackupRepository;
+import TestBatchConfig;
+import Product;
+import ProductRepository;
+import ProductBackup;
+import ProductBackupRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
