@@ -84,7 +84,7 @@ public class Exercise {
 
     /**
      * subscriber 를 한번 감싼 BaseSubscriber
-     * <p>
+     *   
      * buffer(N) 호출시 N개만큼 모아서 List로 전달
      * • buffer(3) 호출 후 request(2)를 하는 경우, 3개가 담긴 List 2개가 Subscriber에게 전달, 즉 6개의 item을 전달
      */
@@ -116,7 +116,7 @@ public class Exercise {
 
     /**
      * take(n, limitRequest)
-     * <p>
+     *   
      * subscriber 외부에서 연산자를 통해서 최대 개수를 제한
      * • limitRequest가 true인 경우, 정확히 n개만큼
      * 요청 후 complete 이벤트를 전달
@@ -144,7 +144,7 @@ public class Exercise {
 
     /**
      * just
-     * <p>
+     *   
      * Mono.just 혹은 Flux.just 를 통해서 주어진 객체를 subscriber에게 전달
      */
     public void just() {
@@ -161,7 +161,7 @@ public class Exercise {
 
     /**
      * error
-     * <p>
+     * 
      * Mono.error 혹은 Flux.error 를 통해서 subscriber에게 onError 이벤트만 전달
      */
     public void error() {
@@ -181,7 +181,7 @@ public class Exercise {
 
     /**
      * empty
-     * <p>
+     *   
      * Mono.empty 혹은 Flux.empty 를 통해서 subscriber에게 onComplete 이벤트만 전달
      */
     public void empty() {
@@ -202,7 +202,7 @@ public class Exercise {
 
     /**
      * mono from
-     * <p>
+     *   
      * • fromCallable: Callable 함수형 인터페이스를 실행하고 반환값을 onNext로 전달
      * • fromFuture: Future를 받아서 done 상태가되면 반환값을 onNext로 전달
      * • fromSupplier: Supplier 함수형 인터페이스를 실행하고 반환값을 onNext로 전달
@@ -233,7 +233,7 @@ public class Exercise {
 
     /**
      * flux from
-     * <p>
+     *   
      * • fromIterable: Iterable를 받아서 각각의 item을 onNext로 전달
      * • fromStream: Stream를 받아서 각각의 item을 onNext로 전달
      * • fromArray: Array를 받아서 각각의 item을 onNext로 전달
@@ -264,7 +264,7 @@ public class Exercise {
 
     /**
      * generate
-     * <p>
+     *   
      * • 초기값을 0으로 세팅
      * • generator에서 현재 state를 next로 전달
      * • 만약 state가 9라면 complete 이벤트를 전달
@@ -291,13 +291,13 @@ public class Exercise {
 
     /**
      * create
-     * <p>
+     *   
      * • 비동기적으로 Flux를 생성
      * • FluxSink를 노출
      * • 명시적으로 next, error, complete 호출 가능
      * • SynchronousSink와 다르게 여러 번 next 가능
      * • 여러 thread에서 동시에 호출 가능
-     * <p>
+     *   
      * • 2개의 쓰레드에서 sink.next를 수행
      * • CompletableFuture의 allOf를 활용하여 두개의 작업이 끝난 후 complete 이벤트 전달
      */
@@ -326,7 +326,7 @@ public class Exercise {
 
     /**
      * handle
-     * <p>
+     *   
      * • 독립적으로 sequence를 생성할 수는 없고 존재하는 source에 연결
      * • handler
      * • 첫 번째 인자로 source의 item이 제공
