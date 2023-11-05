@@ -1,4 +1,4 @@
-package me.kzv.reactive;
+package me.kzv.reactive.toby;
 
 import java.util.concurrent.Flow;
 
