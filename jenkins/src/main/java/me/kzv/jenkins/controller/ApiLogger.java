@@ -26,9 +26,10 @@ public class ApiLogger {
     private final ObjectMapper objectMapper;
 
     @After("@annotation(org.springframework.web.bind.annotation.GetMapping)")
-    public void logGet(JoinPoint joinPoint) throws JsonProcessingException {
-        var parameters = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(request.getParameterMap());
-        log.info("[GET] {}, {}", request.getRequestURI(), parameters);
+    public void logGet() throws JsonProcessingException {
+        var params = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(request.getParameterMap()); // json 예쁘게 정렬됨
+//        var params = objectMapper.writer().writeValueAsString(request.getParameterMap());
+        log.info("[GET] {}, {}", request.getRequestURI(), params);
     }
 
     @After("@annotation(org.springframework.web.bind.annotation.PostMapping)")
@@ -51,6 +52,7 @@ public class ApiLogger {
         );
 
         var args = result.getArgs();
+        System.out.println(Arrays.toString(args));
 
         String body = objectMapper.writeValueAsString(args);
         log.info("[POST] {}, {}", request.getRequestURI(), body);
