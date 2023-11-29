@@ -19,4 +19,17 @@ public class TodoService {
         Todo savedTodo = todoRepository.save(todo);
         return savedTodo.getId();
     }
+
+    public TodoDto get(Long id) {
+        Todo todo = todoRepository.findById(id).orElseThrow();
+        return modelMapper.map(todo, TodoDto.class);
+    }
+
+    @Transactional
+    public void modify(TodoDto dto) {
+        Todo todo = todoRepository.findById(dto.getId()).orElseThrow();
+        todo.changeTitle(dto.getTitle());
+        todo.changeDueDate(dto.getDueDate());
+        todo.changeComplete(dto.isComplete());
+    }
 }
