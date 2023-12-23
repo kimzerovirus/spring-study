@@ -1,4 +1,4 @@
-package me.kzv.reactspring.common;
+package me.kzv.reactspring.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,8 +1,8 @@
 package me.kzv.reactspring.todo;
 
 import lombok.RequiredArgsConstructor;
-import me.kzv.reactspring.common.PageRequest;
-import me.kzv.reactspring.common.PageResponse;
+import me.kzv.reactspring.common.dto.PageRequest;
+import me.kzv.reactspring.common.dto.PageResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -50,5 +50,10 @@ public class TodoService {
         todo.changeTitle(dto.getTitle());
         todo.changeDueDate(dto.getDueDate());
         todo.changeComplete(dto.isComplete());
+    }
+
+    @Transactional
+    public void remove(Long tno) {
+        todoRepository.deleteById(tno);
     }
 }
