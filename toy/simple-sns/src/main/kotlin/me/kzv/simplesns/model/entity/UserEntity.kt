@@ -2,7 +2,7 @@ package me.kzv.simplesns.model.entity
 
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
-import me.kzv.simplesns.model.enum.UserRole
+import me.kzv.simplesns.model.enums.UserRole
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Where
 import org.springframework.security.crypto.password.PasswordEncoder

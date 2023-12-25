@@ -27,6 +27,14 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+
+//    implementation ("com.vladmihalcea:hibernate-types-52:2.17.3")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+    runtimeOnly ("io.jsonwebtoken:jjwt-impl:0.11.5")
+    implementation ("io.jsonwebtoken:jjwt-api:0.11.5")
+
+    implementation ("org.springframework.kafka:spring-kafka")
+    testImplementation ("org.springframework.kafka:spring-kafka-test")
 }
 
 tasks.withType<KotlinCompile> {

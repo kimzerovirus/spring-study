@@ -1,7 +1,7 @@
 package me.kzv.simplesns.model
 
 import me.kzv.simplesns.model.entity.UserEntity
-import me.kzv.simplesns.model.enum.UserRole
+import me.kzv.simplesns.model.enums.UserRole
 import java.time.LocalDateTime
 
 class User(
@@ -9,7 +9,7 @@ class User(
     val userName: String,
     val password: String,
     val userRole: UserRole,
-    val registerAt: LocalDateTime?,
+    val registeredAt: LocalDateTime?,
     val updatedAt: LocalDateTime?,
     val deletedAt: LocalDateTime?,
 ){
@@ -19,7 +19,7 @@ class User(
             userName = entity.userName,
             password = entity.password,
             userRole = entity.role,
-            registerAt = entity.registerAt,
+            registeredAt = entity.registeredAt,
             updatedAt = entity.updatedAt,
             deletedAt = entity.deletedAt,
         )

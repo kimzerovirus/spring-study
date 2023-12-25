@@ -1,7 +1,7 @@
 package me.kzv.simplesns.controller.response
 
 import me.kzv.simplesns.model.User
-import me.kzv.simplesns.model.enum.UserRole
+import me.kzv.simplesns.model.enums.UserRole
 
 class UserJoinResponse(
     val userName: String,

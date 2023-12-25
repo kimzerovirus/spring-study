@@ -1,0 +1,28 @@
+.main {
+  width: 1000px;
+  height: 600px;
+}
+
+.box {
+  border: 1px solid #000;
+  box-sizing: border-box;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.five-columns {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.w-60 {
+  width: 60%;
+}
+.w-40 {
+  width: 40%;
+}

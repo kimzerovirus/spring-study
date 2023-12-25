@@ -13,7 +13,7 @@ abstract class BaseEntity(
 
     @CreatedDate
     @Column(updatable = false)
-    var registerAt: LocalDateTime? = null,
+    var registeredAt: LocalDateTime? = null,
 
     @LastModifiedDate
     var updatedAt: LocalDateTime? = null,

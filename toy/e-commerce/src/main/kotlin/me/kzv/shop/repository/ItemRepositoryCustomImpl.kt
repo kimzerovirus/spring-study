@@ -6,7 +6,8 @@ import me.kzv.shop.entity.constant.ItemSellStatus
 
 class ItemRepositoryCustomImpl(
     private val queryFactory: JPAQueryFactory
-) {
+)
+//{
 //    private fun searchSellStatusEq(searchSellStatus: ItemSellStatus): BooleanExpression? =
 //        if (searchSellStatus == null) {
 //            null
