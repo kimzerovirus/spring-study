@@ -22,7 +22,7 @@ public class TestController {
      * unless = "#id == ''" : id가 "" 일때 캐시를 저장하지 않음
      * condition = "#id.length > 2" : id의 lengrh 가 3 이상일 때만 캐시 저장
      */
-    @Cacheable(value = "TestVo", key = "#id", cacheManager = "cacheManager", unless = "#id == ''", condition = "#id.length > 2")
+//    @Cacheable(value = "TestVo", key = "#id", cacheManager = "cacheManager", unless = "#id == ''", condition = "#id.length > 2")
     @GetMapping("/get-test")
     public TestVo getData(@RequestParam String id ){
 
