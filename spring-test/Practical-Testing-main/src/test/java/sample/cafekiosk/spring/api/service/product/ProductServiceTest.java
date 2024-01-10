@@ -13,7 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import sample.cafekiosk.spring.IntegrationTestSupport;
+import sample.cafekiosk.supports.IntegrationTestSupport;
 import sample.cafekiosk.spring.api.controller.product.response.ProductResponse;
 import sample.cafekiosk.spring.api.service.product.request.ProductCreateServiceRequest;
 import sample.cafekiosk.spring.domain.product.Product;

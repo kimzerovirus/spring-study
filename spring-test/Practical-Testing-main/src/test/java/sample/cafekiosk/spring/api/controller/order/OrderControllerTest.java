@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
-import sample.cafekiosk.spring.ControllerTestSupport;
+import sample.cafekiosk.supports.ControllerTestSupport;
 import sample.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
 
 class OrderControllerTest extends ControllerTestSupport {

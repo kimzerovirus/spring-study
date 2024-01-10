@@ -1,4 +1,4 @@
-package sample.cafekiosk.spring;
+package sample.cafekiosk.supports;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
