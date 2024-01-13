@@ -1,7 +1,0 @@
-me.kzv.config.autoconfig.TomcatWebServerConfig
-me.kzv.config.autoconfig.JettyWebServerConfig
-me.kzv.config.autoconfig.DispatcherServletConfig
-me.kzv.config.autoconfig.PropertyPlaceholderConfig
-# me.kzv.config.autoconfig.ServerPropertiesConfig
-me.kzv.config.autoconfig.PropertyPostProcessorConfig
-me.kzv.config.autoconfig.DataSourceConfig
