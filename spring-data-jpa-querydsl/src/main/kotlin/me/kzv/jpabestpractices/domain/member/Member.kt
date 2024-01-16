@@ -13,6 +13,9 @@ class Member(
     )
     @ManyToOne(fetch = FetchType.LAZY)
     val team: Team,
+
+    @Enumerated(EnumType.STRING)
+    var status: MemberStatus = MemberStatus.ACTIVE
 ) : AuditableEntity() {
 
 }
