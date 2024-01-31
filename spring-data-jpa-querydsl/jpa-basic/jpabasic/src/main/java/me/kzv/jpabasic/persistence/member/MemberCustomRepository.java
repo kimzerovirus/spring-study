@@ -6,4 +6,6 @@ import org.springframework.data.domain.Page;
 
 public interface MemberCustomRepository {
     Page<MemberWithTeamDto> searchMemberList(MemberSearchDto memberSearchDto);
+
+    Page<MemberWithTeamDto> searchMemberListWithJdbcTemplate(MemberSearchDto memberSearchDto);
 }
