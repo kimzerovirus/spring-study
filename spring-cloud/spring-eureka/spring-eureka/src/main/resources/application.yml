@@ -1,0 +1,11 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: discovery-service
+
+eureka:
+  client:
+    register-with-eureka: false # eureka 서버에 등록할 것인지 유무
+    fetch-registry: false # 이 클라이언트가 다른 서비스의 endpoints에 대한 정보를 다운로드하기 위해 Eureka 서버에 연결을 시도할 지 여부로, 유레카 서버에 등록되는 서비스들의 정보를 갱신하기 위한 용도
