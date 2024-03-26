@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true # 이거 설정하면 받기로 한 값 이 외의 값이 들어오면 무시가 아니라 에러 발생
