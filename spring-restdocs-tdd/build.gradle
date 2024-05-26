@@ -1,0 +1,85 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+}
+
+group = 'me.kzv'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+
+    asciidoctorExtensions // asciidoctorExtensions을 Configuration에 지정해준다.
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('snippetsDir', file("build/generated-snippets"))
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'org.modelmapper:modelmapper:3.2.0'
+
+    implementation 'com.google.guava:guava:33.1.0-jre'
+
+    // restdocs
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+}
+
+tasks.named('test') {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+tasks.named('asciidoctor') {
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+asciidoctor {
+    configurations 'asciidoctorExtensions' // asciidoctor에서 asciidoctorExtensions을 configurations로 사용하도록 설정한다.
+    // baseDirFollowsSourceFile() // .adoc 파일에서는 다른 .adoc 파일을 include하여 사용할 수 있는데 그럴 경우 경로를 동일하게 baseDir로 설정해준다
+
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+asciidoctor.doFirst {
+    delete file("src/main/resources/static/docs")
+}
+
+asciidoctor.doLast {
+    copy {
+        from file("build/docs/asciidoc")
+        into file("src/main/resources/static/docs")
+    }
+}
+
+//tasks.register('copyDocument', Copy) {
+//    dependsOn asciidoctor
+//    from file("build/docs/asciidoc") // build/docs/asciidoc 디렉토리에 생성된 html 문서를
+//    into file("src/main/resources/static/docs") // src/main/resources/static/docs 디렉토리에 복사해온다.
+//}
+
+build {
+    dependsOn tasks.asciidoctor
+}
