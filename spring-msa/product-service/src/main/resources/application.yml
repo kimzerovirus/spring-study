@@ -1,4 +1,7 @@
 spring.application.name: product-service
+
+# actuator 설정
+# actuator는 서비스의 런타임 정보와 서비스의 운영 상태 정보를 제공한다.
 management:
   endpoints:
     web:
