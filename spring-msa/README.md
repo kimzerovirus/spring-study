@@ -5,6 +5,13 @@
 - cache: redis
 - log pipeline: elasticsearch, logstash, spring-cloud-sleuth, zipkin
 
+**multi module 설정시 이슈**
+```
+Task 'wrapper' not found in project
+```
+위와 같은 에러가 발생하는 이유는 root project gradle에서 subproject를 통해 공통으로 설정을 관리하고 있는데 개별 모듈별로 빌드를 시도해서 발생한 에러이다.
+gradle task 패널에서 개별로 등록된 모듈들을 삭제하고 root 모듈 하나만 남기면 된다.
+
 # MSA
 
 ## 마이크로서비스 개발시 고려 사항
