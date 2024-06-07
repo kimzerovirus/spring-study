@@ -14,14 +14,9 @@ public class ProductRepository {
     private static final Map<String, Product> db = new HashMap<>();
 
     static {
-        List<String> productNames = List.of("", "", "");
+        List<String> productNames = List.of("수박", "바지", "책");
         productNames.forEach(name -> {
-            var product = Product.builder()
-                    .name(name)
-                    .description(name + "입니다.")
-//                    .categoryId()
-                    .build();
-
+            var product = Product.create(name,name + "입니다.", null);
             db.put(product.getUuid(), product);
         });
 

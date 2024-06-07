@@ -1,11 +1,11 @@
 package me.kzv.productservice.service;
 
-import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import me.kzv.productservice.domain.Product;
 import me.kzv.productservice.domain.ProductRepository;
 import me.kzv.productservice.dto.ProductCreateDto;
 import me.kzv.productservice.dto.ProductUpdateDto;
+import me.kzv.productservice.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
