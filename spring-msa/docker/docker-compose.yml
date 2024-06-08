@@ -31,8 +31,8 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
-    volumes:
-      - "./data/kafka:/bitnami/kafka"
+#    volumes:
+#      - "./kafka:/bitnami/kafka"
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
