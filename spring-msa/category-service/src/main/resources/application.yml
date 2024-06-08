@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: category-service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,beans,httptrace,busrefresh

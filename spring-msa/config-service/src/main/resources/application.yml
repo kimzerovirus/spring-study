@@ -4,9 +4,14 @@ server:
 spring:
   application.name: config-service
 
+  kafka:
+    bootstrap-servers: localhost:9092
+
   profiles:
     active:
-      - vault
+      - git
+#      - native
+#      - vault
 
   cloud:
     config:
@@ -14,9 +19,12 @@ spring:
 #        native:
 #          search-locations: classpath:/config
         git:
-          uri: https://github.com/kimzerovirus/spring-study.git
+          uri: https://github.com/kimzerovirus/spring-study.git # .git은 생략해도 되는듯
           searchPaths: spring-msa/config-service/src/main/resources/config
           default-label: main
+          # private repo 일 경우 아래 설정 추가
+#          username:
+#          password:
 #        vault:
 #          host: localhost
 #          port: 8200
@@ -28,3 +36,9 @@ spring:
 #          token:
 #          skipSslValidation: true
 #          profile-separator: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,beans,httptrace,busrefresh
