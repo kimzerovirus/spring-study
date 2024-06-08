@@ -1,1 +1,29 @@
-spring.application.name: config-service
+server:
+  port: 8888
+
+spring:
+  application.name: config-service
+
+  profiles:
+    active:
+      - vault
+
+  cloud:
+    config:
+      server:
+        vault:
+          host: localhost
+          port: 8200
+          scheme: http
+          backend: spring-msa
+          defaultKey:
+          kvVersion: 2
+          authentication: TOKEN
+          token:
+          skipSslValidation: true
+          profile-separator: /
+#        native:
+#          search-locations: classpath:/config
+#        git:
+#          uri:
+#          searchPaths:

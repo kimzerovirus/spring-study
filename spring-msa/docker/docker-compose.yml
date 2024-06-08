@@ -1,0 +1,10 @@
+services:
+  vault:
+    image: vault:13.13.0
+    volumes:
+      - ./vault:.vault
+    ports:
+      - 8200:8200
+    cap_add:
+      - IPC_LOCK
+    command: vault server -config=/vault/config/config.hcl
