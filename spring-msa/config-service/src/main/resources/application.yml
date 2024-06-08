@@ -11,19 +11,20 @@ spring:
   cloud:
     config:
       server:
-        vault:
-          host: localhost
-          port: 8200
-          scheme: http
-          backend: spring-msa
-          defaultKey:
-          kvVersion: 2
-          authentication: TOKEN
-          token:
-          skipSslValidation: true
-          profile-separator: /
 #        native:
 #          search-locations: classpath:/config
-#        git:
-#          uri:
-#          searchPaths:
+        git:
+          uri: https://github.com/kimzerovirus/spring-study.git
+          searchPaths: spring-msa/config-service/src/main/resources/config
+          default-label: main
+#        vault:
+#          host: localhost
+#          port: 8200
+#          scheme: http
+#          backend: spring-msa
+#          defaultKey:
+#          kvVersion: 2
+#          authentication: TOKEN
+#          token:
+#          skipSslValidation: true
+#          profile-separator: /
