@@ -9,6 +9,28 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring-msa
+    username: root
+    password: 1234
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+      jakarta:
+        persistence:
+          validation:
+            mode: none
+    show-sql: false
+    open-in-view: false
+
+
 # actuator 설정
 # actuator는 서비스의 런타임 정보와 서비스의 운영 상태 정보를 제공한다.
 management:

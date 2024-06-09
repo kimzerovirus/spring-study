@@ -58,7 +58,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{uuid}")
-    public ApiResponseDto<String> deleteProduct(@PathVariable String uuid, Locale locale) {
+    public ApiResponseDto<Void> deleteProduct(@PathVariable String uuid, Locale locale) {
         productService.delete(uuid);
         String message = String.format(messageSource.getMessage("product.delete.message", null, locale), uuid);
         log.info("delete " + uuid);
