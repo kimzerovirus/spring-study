@@ -1,4 +1,4 @@
-package me.kzv.springkafka.config;
+package me.kzv.springkafka.kafka;
 
 import me.kzv.springkafka.dto.MessageDto;
 import org.apache.kafka.common.serialization.StringSerializer;

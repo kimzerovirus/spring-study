@@ -1,4 +1,4 @@
-package me.kzv.springkafka.config;
+package me.kzv.springkafka.kafka;
 
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
