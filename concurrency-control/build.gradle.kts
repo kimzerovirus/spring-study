@@ -26,6 +26,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     runtimeOnly("com.h2database:h2")
+    implementation("it.ozimov:embedded-redis:0.7.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
