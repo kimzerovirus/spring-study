@@ -1,0 +1,18 @@
+minio:
+  url: http://localhost:9000
+  access:
+    name: name
+    secret: key
+  bucket:
+    name: bucket_name
+
+spring:
+  servlet:
+    multipart:
+      maxFileSize: 100MB
+      maxRequestSize: 100MB
+
+server:
+  tomcat:
+    max-http-form-post-size: 100MB
+
