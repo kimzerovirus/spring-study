@@ -1,12 +1,14 @@
 DROP DATABASE IF EXISTS `tenant_manager`;
 CREATE DATABASE `tenant_manager`;
 
+DROP DATABASE IF EXISTS `tenant_mysql`;
+CREATE DATABASE `tenant_mysql`;
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
 DROP USER IF EXISTS 'tenant_manager'@'localhost';
 CREATE USER 'tenant_manager'@'localhost' IDENTIFIED BY '1234';
 GRANT ALL PRIVILEGES ON `tenant_manager`.* TO 'tenant_manager'@'%';
-
-DROP DATABASE IF EXISTS `tenant_mysql`;
-CREATE DATABASE `tenant_mysql`;
 
 DROP USER IF EXISTS 'tenant_user'@'localhost';
 CREATE USER 'tenant_user'@'localhost' IDENTIFIED BY '1234';

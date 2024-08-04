@@ -25,6 +25,14 @@ mysql
 ```shell
 mysql -u ${user_name} -p
 ```
+```mysql
+show databases;
+
+-- 유저 
+use mysql;
+select user, host from user;
+```
+
 psql
 ```shell
 psql -U ${user_name} -d ${database_name} # 명령어 대소문자 구분함.. -U -d
