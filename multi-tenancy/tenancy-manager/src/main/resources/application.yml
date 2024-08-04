@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: tenancy-manager
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tenant-manager
+    username: tenant_manager
+    password: 1234
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+      jakarta:
+        persistence:
+          validation:
+            mode: none
+    show-sql: false
+    open-in-view: false

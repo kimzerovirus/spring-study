@@ -1,0 +1,36 @@
+services:
+  mysql:
+    image: mysql:8.0.33
+    container_name: ${MYSQL_CONTAINER_NAME}
+    restart: always
+    ports:
+      - "3306:3306"
+#    env_file:
+#      - mysql.env
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    #      MYSQL_USER:
+    #      MYSQL_PASSWORD:
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      # 데이터 베이스 초기화(init.sql)
+      - ./sql/mysql-init.sql:/docker-entrypoint-initdb.d/init.sql
+  postgres:
+    build:
+      context: .
+      dockerfile: postgres.dockerfile
+    image: tenancy-example-postgres
+    container_name: tenancy-example-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#      PGDATA: ${PGDATA}
+#    volumes:
+#      - dbtuto:/data/postgres-tuto
+    ports:
+      - "5432:5432"
+    restart: always
