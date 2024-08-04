@@ -1,11 +1,11 @@
-package me.kzv.multitenancy
+package me.kzv.tenancymanager
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class MultiTenancyApplication
+class TenancyManagerApplication
 
 fun main(args: Array<String>) {
-    runApplication<MultiTenancyApplication>(*args)
+    runApplication<TenancyManagerApplication>(*args)
 }
