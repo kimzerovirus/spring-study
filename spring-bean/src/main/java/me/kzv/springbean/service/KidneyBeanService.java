@@ -8,4 +8,9 @@ public class KidneyBeanService implements BeanService, SomethingService {
     public String getKoreanName() {
         return "강낭콩";
     }
+
+    @Override
+    public BeanServiceType getBeanType() {
+        return BeanServiceType.KIDNEY_BEAN;
+    }
 }

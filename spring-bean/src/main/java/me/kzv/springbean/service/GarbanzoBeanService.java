@@ -8,4 +8,9 @@ public class GarbanzoBeanService implements BeanService, SomethingService {
     public String getKoreanName() {
         return "병아리콩";
     }
+
+    @Override
+    public BeanServiceType getBeanType() {
+        return BeanServiceType.GARBANZO_BEAN;
+    }
 }
