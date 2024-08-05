@@ -1,0 +1,3 @@
+- ServiceProvider.class : Map으로 BeanService 구현체들 주입 받아서 BeanService 구현체 이름으로 찾기
+- ServiceProvider2.class : ApplicationContext에서 BeanService 구현체 클래스로 Spring Bean 찾아서 서비스 타입을 키로 Map에 저장하기
+- BeanFacade2.class : Set으로 BeanService 주입 받고 BeanService 구현체에 서비스 타입 가져오는 메서드를 추가하여 서비스 타입을 키로 Map에 저장하기 
