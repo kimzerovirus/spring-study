@@ -16,8 +16,12 @@ public class BeanFacade2 {
         beanServices.forEach(beanService -> beanServiceMap.put(beanService.getBeanType(), beanService));
     }
 
+    public BeanService getBeanService(BeanServiceType type) {
+        return beanServiceMap.get(type);
+    }
+
     public String beanName(BeanServiceType type) {
-        BeanService beanService = beanServiceMap.get(type);
+        BeanService beanService = getBeanService(type);
         return beanService.getKoreanName();
     }
 }
