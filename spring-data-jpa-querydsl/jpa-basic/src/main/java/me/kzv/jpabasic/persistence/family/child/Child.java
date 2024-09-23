@@ -8,6 +8,7 @@ import me.kzv.jpabasic.persistence.BaseEntity;
 import me.kzv.jpabasic.persistence.family.grandchild.GrandChild;
 import me.kzv.jpabasic.persistence.family.parent.Parent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,6 +24,6 @@ public class Child extends BaseEntity {
     private Parent parent;
 
     @OneToMany(mappedBy = "child", cascade = CascadeType.ALL)
-    private List<GrandChild> grandChildren;
+    private List<GrandChild> grandChildren = new ArrayList<>();
 }
 

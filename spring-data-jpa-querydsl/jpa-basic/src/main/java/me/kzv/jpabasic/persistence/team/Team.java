@@ -30,5 +30,5 @@ public class Team {
     // mappedBy가 필요한 이유는 양방향 매핑에서 실제 fk가 되는 필드가 연관관계의 주인(실제 fk 필드)이 되고
     // 그 반대편 엔티티에게 그러한 정보를 알려주기 위해 설정하여 한쪽에서만 관리할 수 있도록 하는 것이다.
     @OneToMany(mappedBy = "team", targetEntity = Member.class) // targetEntity 는 제네릭이 없어도 타입 정보를 알 수 있게 해준다. <- 사실상 생략하고 제네릭 쓰자
-    private List memberList = new ArrayList<>();
+    private List<Member> memberList = new ArrayList<>();
 }
