@@ -8,6 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * 테이블 상속 전략
+ */
 @Transactional
 @SpringBootTest
 class TablePerClassRepositoryTest {

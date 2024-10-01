@@ -1,6 +1,8 @@
+springdoc.swagger-ui.path: /swagger-ui.html
+
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:testdb # memory mode
 #    url: jdbc:h2:~/testdb
     driver-class-name: org.h2.Driver
     username: sa
@@ -12,11 +14,25 @@ spring:
   jpa:
 #    open-in-view: true
 #    generate-ddl: true
+    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        format_sql: true
+        format_sql: true # show sql true 일 때 formatting
         show_sql: true
+        use_sql_comment: true # 쿼리에 추가적인 주석을 표시할지 설정하는 옵션
+        highlight_sql: true
 #        hbm2ddl:
 #          auto: <- ?? ddl-auto? ??? ???? properties ? ?? ???? ?? ???? ?? ????? ???
+
+# ? 파라미터 바인딩
+logging:
+  level.org.hibernate:
+    SQL: DEBUG
+    orm.jdbc.bind: TRACE
+
+# logging.level.org.hibernate.type=TRACE,
+# logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+# 이 옵션들은 부트 3에서 안되는듯?
+
