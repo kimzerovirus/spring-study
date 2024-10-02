@@ -2,10 +2,10 @@ package me.kzv.jpabasic.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.kzv.jpabasic.controller.dto.MemberCreateReqDto;
-import me.kzv.jpabasic.persistence.member.Member;
-import me.kzv.jpabasic.persistence.member.MemberReadOnly;
-import me.kzv.jpabasic.persistence.member.MemberReadOnlyRepository;
-import me.kzv.jpabasic.persistence.member.MemberRepository;
+import me.kzv.jpabasic.domain.member.Member;
+import me.kzv.jpabasic.domain.member.MemberReadOnly;
+import me.kzv.jpabasic.domain.member.MemberReadOnlyRepository;
+import me.kzv.jpabasic.domain.member.MemberRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

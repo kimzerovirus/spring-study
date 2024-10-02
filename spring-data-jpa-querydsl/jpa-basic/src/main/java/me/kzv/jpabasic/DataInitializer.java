@@ -1,8 +1,8 @@
 package me.kzv.jpabasic;
 
 import lombok.RequiredArgsConstructor;
-import me.kzv.jpabasic.persistence.team.Team;
-import me.kzv.jpabasic.persistence.team.TeamRepository;
+import me.kzv.jpabasic.domain.team.Team;
+import me.kzv.jpabasic.domain.team.TeamRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
