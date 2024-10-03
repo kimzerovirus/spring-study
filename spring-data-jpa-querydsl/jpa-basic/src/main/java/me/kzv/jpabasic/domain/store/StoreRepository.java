@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface StoreRepository extends JpaRepository<Store, Long>, StoreQuerydslRepositoryCustom {
-    @Query("SELECT s FROM Store s JOIN FETCH s.employees")
+public interface StoreRepository extends JpaRepository<Store, Long>, StoreRepositoryCustom {
+    @Query("SELECT s FROM Store s JOIN FETCH s.products JOIN FETCH s.employees")
     List<Store> findAllByFetchJoin();
 }

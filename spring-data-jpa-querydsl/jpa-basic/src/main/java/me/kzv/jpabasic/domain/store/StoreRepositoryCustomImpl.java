@@ -8,7 +8,7 @@ import java.util.List;
 import static me.kzv.jpabasic.domain.store.QStore.store;
 
 @RequiredArgsConstructor
-public class StoreQueryDslRepositoryImpl implements StoreQuerydslRepositoryCustom {
+public class StoreRepositoryCustomImpl implements StoreRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     @Override
