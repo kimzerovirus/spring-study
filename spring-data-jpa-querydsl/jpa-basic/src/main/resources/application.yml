@@ -24,6 +24,8 @@ spring:
         show_sql: true
         use_sql_comment: true # 쿼리에 추가적인 주석을 표시할지 설정하는 옵션
         highlight_sql: true
+#        default_batch_fetch_size: 1000 # batch size
+#        batch_fetch_style: legacy # default / 추가적으로 옵션이 padded, dynamic 있음 dynamic 은 최적화를 안함
 #        hbm2ddl:
 #          auto: <- ?? ddl-auto? ??? ???? properties ? ?? ???? ?? ???? ?? ????? ???
 
