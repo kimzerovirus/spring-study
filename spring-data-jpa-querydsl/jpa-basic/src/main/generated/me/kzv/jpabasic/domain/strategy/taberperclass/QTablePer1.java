@@ -1,4 +1,4 @@
-package me.kzv.jpabasic.domain.strategy;
+package me.kzv.jpabasic.domain.strategy.taberperclass;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -15,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QTablePer1 extends EntityPathBase<TablePer1> {
 
-    private static final long serialVersionUID = -807767373L;
+    private static final long serialVersionUID = -59334718L;
 
     public static final QTablePer1 tablePer1 = new QTablePer1("tablePer1");
 

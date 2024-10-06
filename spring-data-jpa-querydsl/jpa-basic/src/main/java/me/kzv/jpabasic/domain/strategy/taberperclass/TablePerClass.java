@@ -1,4 +1,4 @@
-package me.kzv.jpabasic.domain.strategy;
+package me.kzv.jpabasic.domain.strategy.taberperclass;
 
 import jakarta.persistence.*;
 import lombok.Getter;

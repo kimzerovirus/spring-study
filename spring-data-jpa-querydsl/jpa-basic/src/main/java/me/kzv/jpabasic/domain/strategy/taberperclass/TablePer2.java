@@ -1,4 +1,4 @@
-package me.kzv.jpabasic.domain.strategy;
+package me.kzv.jpabasic.domain.strategy.taberperclass;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -11,8 +11,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @Getter
-@Table(name = "TABLE_PER_CLASS_1")
+@Table(name = "TABLE_PER_CLASS_2")
 @Entity
-public class TablePer1 extends TablePerClass {
-    private String title;
+public class TablePer2 extends TablePerClass {
+    private String description;
 }

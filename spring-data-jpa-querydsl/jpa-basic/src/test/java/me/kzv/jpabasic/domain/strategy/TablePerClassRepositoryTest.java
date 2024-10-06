@@ -1,13 +1,16 @@
 package me.kzv.jpabasic.domain.strategy;
 
 import jakarta.transaction.Transactional;
+import me.kzv.jpabasic.domain.strategy.taberperclass.TablePer1;
+import me.kzv.jpabasic.domain.strategy.taberperclass.TablePer2;
+import me.kzv.jpabasic.domain.strategy.taberperclass.TablePerClassRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * 테이블 상속 전략
+ * 테이블 상속 전략 - TABLE PER CLASS
  */
 @Transactional
 @SpringBootTest
