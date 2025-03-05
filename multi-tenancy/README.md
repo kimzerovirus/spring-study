@@ -9,7 +9,9 @@ Multi tenant - Same Application, Separate Database<br/>
 
 <br/>
 
-https://m.blog.naver.com/ki630808/221778753901
+###### 참고
+- https://m.blog.naver.com/ki630808/221778753901
+- https://velog.io/@jhkim105/Multi-Tenancy-in-Spring-Data-JPA
 
 ## Multi-Tenancy
 - tenancy-manager 모듈은 접속 할 DB의 정보를 관리하는 모듈이다.

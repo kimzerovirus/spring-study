@@ -1,4 +1,4 @@
-package me.kzv
+package me.kzv.tenancyapplication
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

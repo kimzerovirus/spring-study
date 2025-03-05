@@ -1,2 +1,5 @@
 rootProject.name = "multi-tenancy"
-include("tenancy-manager", "tenancy-application")
+
+include("tenancy-manager")
+include("tenancy-application")
+include("common")

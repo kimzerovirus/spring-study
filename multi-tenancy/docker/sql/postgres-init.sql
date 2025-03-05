@@ -11,4 +11,4 @@ DROP USER IF EXISTS tenant_user;
 CREATE USER tenant_user PASSWORD '1234';
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA tenant_postgres TO tenant_user;
-ALTER ROLE tenant_user SET SEARCH_PATH = tenant_postgres
+ALTER ROLE tenant_user SET SEARCH_PATH = tenant_postgres;

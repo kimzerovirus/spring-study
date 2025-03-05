@@ -11,6 +11,11 @@ plugins {
 allprojects {
     apply {
         plugin("java")
+        plugin("org.springframework.boot")
+        plugin("io.spring.dependency-management")
+        plugin("kotlin")
+        plugin("kotlin-spring")
+        plugin("kotlin-jpa")
     }
 
     group = "me.kzv"
@@ -25,21 +30,8 @@ allprojects {
     repositories {
         mavenCentral()
     }
-}
-
-subprojects {
-    apply {
-        plugin("java")
-        plugin("org.springframework.boot")
-        plugin("io.spring.dependency-management")
-        plugin("kotlin")
-        plugin("kotlin-spring")
-        plugin("kotlin-jpa")
-    }
 
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-        implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -57,34 +49,4 @@ subprojects {
         useJUnitPlatform()
     }
 }
-
-project(":tenancy-manager") {
-    dependencies {
-        runtimeOnly("com.mysql:mysql-connector-j")
-    }
-
-    tasks.withType<BootJar> {
-        archiveFileName.set("tenancy-manager.jar")
-    }
-
-    tasks.register<Zip>("zip") {
-        dependsOn("bootJar")
-    }
-}
-
-project(":tenancy-application") {
-    dependencies {
-        runtimeOnly("com.mysql:mysql-connector-j")
-        runtimeOnly("org.postgresql:postgresql")
-    }
-
-    tasks.withType<BootJar> {
-        archiveFileName.set("tenancy-application.jar")
-    }
-
-    tasks.register<Zip>("zip") {
-        dependsOn("bootJar")
-    }
-}
-
 
