@@ -1,9 +1,11 @@
-package me.kzv.tenancymanager.entity
+package me.kzv.tenancymanager.database.persistence
 
 import jakarta.persistence.Entity
+import me.kzv.common.jpa.BaseEntity
+import me.kzv.tenancymanager.database.DatabaseType
 
 @Entity
-class Database (
+class DatabaseEntity (
     var name: String,
     var type: DatabaseType,
     var host: String,

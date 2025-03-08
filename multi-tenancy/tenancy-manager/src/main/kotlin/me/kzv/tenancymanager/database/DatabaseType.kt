@@ -1,4 +1,4 @@
-package me.kzv.tenancymanager.entity
+package me.kzv.tenancymanager.database
 
 enum class DatabaseType(
     val str: String

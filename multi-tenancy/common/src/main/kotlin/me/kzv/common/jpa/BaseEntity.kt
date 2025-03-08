@@ -1,4 +1,4 @@
-package me.kzv.tenancymanager.entity
+package me.kzv.common.jpa
 
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -29,9 +29,5 @@ abstract class BaseEntity(
 
     override fun hashCode(): Int {
         return id?.hashCode() ?: 0
-    }
-
-    companion object {
-        private const val serialVersionUID = -3316020565578078069L
     }
 }
