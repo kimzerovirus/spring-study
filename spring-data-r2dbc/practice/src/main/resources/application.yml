@@ -1,1 +1,9 @@
-spring.application.name=practice
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  r2dbc:
+    url: r2dbc:h2:file://~/testdb # jdbc:h2:~/testdb
+    username: sa
+    password:

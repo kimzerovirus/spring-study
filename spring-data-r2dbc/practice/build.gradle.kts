@@ -25,13 +25,15 @@ dependencies {
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-	runtimeOnly("com.h2database:h2")
-	runtimeOnly("io.r2dbc:r2dbc-h2")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	implementation("com.h2database:h2") // runtimeOnly -> implementation ::: h2 console server를 별도로 띄울 수 있게 코드 레벨에서 설정 하기 위해서
+	implementation("io.r2dbc:r2dbc-h2")
 }
 
 kotlin {
