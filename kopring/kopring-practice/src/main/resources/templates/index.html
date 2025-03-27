@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <style>
+        #event-list {
+            width: 360px;
+        }
+        .flex-box {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="flex-box">
+        <form action="/sample" method="post">
+            <input type="text" value="asdf" name="token" />
+            <button type="submit">버튼</button>
+        </form>
+        <form>
+            <input type="text" id="send-data">
+            <button type='button' onclick="eventSubmit()">이벤트 전송</button>
+        </form>
+    </div>
+
+    <ul id="event-list">
+    </ul>
+
+    <script defer>
+        const eventSource = new EventSource('/notifications/subscribe/1', {
+            withCredentials: true,
+        });
+        const ul = document.getElementById('event-list');
+
+        // 서버에서 이벤트 명을 커스텀해서 줄 수 있음
+        eventSource.addEventListener('custom-event-name', (event) => {
+            console.log('수신', event.data);
+            const li = document.createElement('li');
+            li.innerText = JSON.stringify(event.data);
+            ul.appendChild(li);
+        });
+
+        eventSource.addEventListener('open', (event) => {
+            console.log('open sse connection', new Date());
+        });
+
+        eventSource.onerror = (error) => {
+            console.error('SSE Error:', error);
+            console.log('close sse connection At : ', new Date());
+        };
+
+        const eventSubmit = () => {
+            console.log('전송')
+            const input = document.getElementById('send-data');
+
+            fetch('/notifications/send-data/1', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                    data: input.value,
+                }),
+            });
+
+            input.value = '';
+        }
+    </script>
+</body>
+</html>
