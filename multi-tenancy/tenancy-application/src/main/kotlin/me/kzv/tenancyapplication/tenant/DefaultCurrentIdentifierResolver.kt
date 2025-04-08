@@ -1,8 +1,10 @@
 package me.kzv.tenancyapplication.tenant
 
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver
+import org.springframework.stereotype.Component
 
-class DefaultCurrentIdentifierResolver (): CurrentTenantIdentifierResolver<String> {
+@Component
+class DefaultCurrentIdentifierResolver : CurrentTenantIdentifierResolver<String> {
     override fun resolveCurrentTenantIdentifier(): String {
         return TenantContext.getTenantName()
     }

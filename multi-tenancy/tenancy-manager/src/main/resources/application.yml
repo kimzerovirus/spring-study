@@ -21,3 +21,6 @@ spring:
             mode: none
     show-sql: false
     open-in-view: false
+
+multi-tenancy:
+  ddl-path: /ddl/multi-tenancy

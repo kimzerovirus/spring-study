@@ -1,4 +1,4 @@
-package me.kzv.tenancymanager.user.persistence
+package me.kzv.tenancymanager.user.entity
 
 import jakarta.persistence.Entity
 import jakarta.persistence.Table

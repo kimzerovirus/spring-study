@@ -1,5 +1,7 @@
 package me.kzv.tenancyapplication.tenant
 
+import me.kzv.common.exception.TenantNotFoundException
+
 object TenantContext {
     private val contextHolder = InheritableThreadLocal<String>()
 
@@ -7,7 +9,9 @@ object TenantContext {
         contextHolder.set(tenantName)
     }
 
-    fun getTenantName() = contextHolder.get() ?: "default_tenant"
+    fun getTenantName() : String {
+      return contextHolder.get() ?: throw TenantNotFoundException()
+    }
 
     fun clear() {
         contextHolder.remove()
