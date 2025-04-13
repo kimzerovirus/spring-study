@@ -4,27 +4,25 @@ import jakarta.validation.Valid
 import me.kzv.logpipe.shorten.dto.ShortenUrlCreateRequestDto
 import me.kzv.logpipe.shorten.dto.ShortenUrlCreateResponseDto
 import me.kzv.logpipe.shorten.dto.ShortenUrlInformationDto
+import org.slf4j.LoggerFactory
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.net.URI
-import java.net.URISyntaxException
 
 
 @RestController
 class ShortenUrlApi (
     private val shortenUrlService: ShortenUrlService,
 ){
-   @PostMapping("/shortenUrl")
+   private val logger = LoggerFactory.getLogger(ShortenUrlApi::class.java)
+
+   @PostMapping("/shorten-url")
     fun createShortenUrl(
        @RequestBody shortenUrlCreateRequestDto: @Valid ShortenUrlCreateRequestDto
     ): ResponseEntity<ShortenUrlCreateResponseDto> {
+        logger.trace("createShortenUrl: {}", shortenUrlCreateRequestDto)
         return ResponseEntity.ok(shortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto))
     }
 
@@ -38,7 +36,7 @@ class ShortenUrlApi (
         return ResponseEntity<Any>(httpHeaders, HttpStatus.MOVED_PERMANENTLY)
     }
 
-    @GetMapping("/shortenUrl/{shortenUrlKey}")
+    @GetMapping("/shorten-url/{shortenUrlKey}")
     fun getShortenUrlInformation(
         @PathVariable shortenUrlKey: String
     ): ResponseEntity<ShortenUrlInformationDto> {

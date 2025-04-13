@@ -1,4 +1,3 @@
 package me.kzv.logpipe.shorten.exception
 
-class NotFoundShortenUrlException : RuntimeException() {
-}
+class NotFoundShortenUrlException(val shortenUrlKey: String) : RuntimeException()

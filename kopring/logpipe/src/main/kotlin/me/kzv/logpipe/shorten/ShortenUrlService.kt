@@ -5,6 +5,7 @@ import me.kzv.logpipe.shorten.dto.ShortenUrlCreateResponseDto
 import me.kzv.logpipe.shorten.dto.ShortenUrlInformationDto
 import me.kzv.logpipe.shorten.exception.LackOfShortenUrlKeyException
 import me.kzv.logpipe.shorten.exception.NotFoundShortenUrlException
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -12,23 +13,26 @@ import org.springframework.transaction.annotation.Transactional
 class ShortenUrlService (
     private val shortenUrlRepository: ShortenUrlRepository,
 ){
+    private val logger = LoggerFactory.getLogger(ShortenUrlService::class.java)
+
     @Transactional
     fun generateShortenUrl(shortenUrlCreateRequestDto: ShortenUrlCreateRequestDto): ShortenUrlCreateResponseDto {
         val shortenUrl = ShortenUrl.create(shortenUrlCreateRequestDto.originalUrl, getUniqueShortenUrlKey())
         shortenUrlRepository.save(shortenUrl)
+        logger.info("ShortenUrl: {}", shortenUrl)
         return ShortenUrlCreateResponseDto.from(shortenUrl)
     }
 
     @Transactional
     fun getOriginalUrlByShortenUrlKey(shortenUrlKey: String): String {
-        val shortenUrl = shortenUrlRepository.findByShortenUrlKey(shortenUrlKey) ?: throw NotFoundShortenUrlException()
+        val shortenUrl = shortenUrlRepository.findByShortenUrlKey(shortenUrlKey) ?: throw NotFoundShortenUrlException(shortenUrlKey)
         shortenUrl.increaseRedirectCount()
         return shortenUrl.originalUrl
     }
 
     @Transactional(readOnly = true)
     fun getShortenUrlInformationByShortenUrlKey(shortenUrlKey: String): ShortenUrlInformationDto {
-        val shortenUrl: ShortenUrl = shortenUrlRepository.findByShortenUrlKey(shortenUrlKey) ?: throw NotFoundShortenUrlException()
+        val shortenUrl: ShortenUrl = shortenUrlRepository.findByShortenUrlKey(shortenUrlKey) ?: throw NotFoundShortenUrlException(shortenUrlKey)
         return ShortenUrlInformationDto.from(shortenUrl)
     }
 

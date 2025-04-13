@@ -16,3 +16,6 @@ spring:
     console:
       enabled: true
       path: /h2-console
+
+# jpa query? ??? ??? ?????.
+logging.level.org.hibernate.SQL: debug

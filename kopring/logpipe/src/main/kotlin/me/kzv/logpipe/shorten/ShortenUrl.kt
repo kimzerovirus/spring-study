@@ -21,6 +21,10 @@ class ShortenUrl private constructor(
         this.redirectCount += 1
     }
 
+    override fun toString(): String {
+        return "id=$id, originalUrl=$originalUrl, shortenUrlKey=$shortenUrlKey"
+    }
+
     companion object {
         private const val MAX_URL_LENGTH = 2000
 
@@ -28,4 +32,6 @@ class ShortenUrl private constructor(
             return ShortenUrl(originalUrl = originalUrl, shortenUrlKey = shortenUrlKey)
         }
     }
+
+
 }
