@@ -1,0 +1,4 @@
+path.data: /usr/share/logstash/data
+xpack.monitoring.elasticsearch.hosts:
+- http://tc-es:9200
+xpack.monitoring.enabled: false
