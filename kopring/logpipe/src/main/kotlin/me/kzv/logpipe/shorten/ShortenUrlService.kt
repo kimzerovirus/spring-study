@@ -19,7 +19,6 @@ class ShortenUrlService (
     fun generateShortenUrl(shortenUrlCreateRequestDto: ShortenUrlCreateRequestDto): ShortenUrlCreateResponseDto {
         val shortenUrl = ShortenUrl.create(shortenUrlCreateRequestDto.originalUrl, getUniqueShortenUrlKey())
         shortenUrlRepository.save(shortenUrl)
-        logger.info("ShortenUrl: {}", shortenUrl)
         return ShortenUrlCreateResponseDto.from(shortenUrl)
     }
 
@@ -41,7 +40,9 @@ class ShortenUrlService (
 
         repeat(MAX_RETRY_COUNT) {
             val key = KeyGenerator.generate()
-            shortenUrlRepository.findByShortenUrlKey(key) ?: return key
+            shortenUrlRepository.findByShortenUrlKey(key)?.let {
+                logger.warn("단축 URL 생성 실패")
+            } ?: return key
         }
 
         throw LackOfShortenUrlKeyException()

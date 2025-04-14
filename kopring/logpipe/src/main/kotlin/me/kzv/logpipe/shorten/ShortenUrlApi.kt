@@ -20,7 +20,7 @@ class ShortenUrlApi (
 
    @PostMapping("/shorten-url")
     fun createShortenUrl(
-       @RequestBody shortenUrlCreateRequestDto: @Valid ShortenUrlCreateRequestDto
+       @Valid @RequestBody shortenUrlCreateRequestDto: ShortenUrlCreateRequestDto
     ): ResponseEntity<ShortenUrlCreateResponseDto> {
         logger.trace("createShortenUrl: {}", shortenUrlCreateRequestDto)
         return ResponseEntity.ok(shortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto))
