@@ -7,6 +7,12 @@
     - 개발자의 직접적인 개입이 필요할 정도일 때 사용하는게 옳을 것 같다.
 6. FATAL - 시스템적으로 심각한 에러가 발생하여 어플리케이션 작동이 불가능할 때
 
+```shell
+docker compose -p log-pipeline up -d
+```
+
+[logstash config example](https://github.com/elastic/logstash/tree/main/config)
+
 
 **TODO**
 - AOP로 로그 찍기

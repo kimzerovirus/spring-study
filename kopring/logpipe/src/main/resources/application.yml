@@ -18,7 +18,8 @@ spring:
       path: /h2-console
 
 logging:
-  level:
-    org.hibernate.SQL: debug # jpa query? ??? ??? ?????.
-    me.kzv.logpipe.filter: trace
+  config: classpath:logback/logback.xml
+#  level:
+#    org.hibernate.SQL: debug # jpa query? ??? ??? ?????.
+#    me.kzv.logpipe.filter: trace
 
