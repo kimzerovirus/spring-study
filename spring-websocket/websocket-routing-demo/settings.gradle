@@ -1,4 +1,4 @@
 rootProject.name = 'websocket-routing-demo'
 
-include 'service:queue-service'
+include 'service:schedule-service'
 include 'service:router-service'
