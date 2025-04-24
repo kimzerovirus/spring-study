@@ -12,3 +12,10 @@ Stomp는 기본적으로 In-Memory Message Broker를 사용한다.
 이로인해 생기는 문제를 해결하기 위해 RabbitMQ, Kafka, Active MQ와 같은 외부 브로커를 사용함으로서 문제를 해결 가능하다.
 
 https://www.daddyprogrammer.org/post/4691/spring-websocket-chatting-server-stomp-server/
+
+## Sock JS Fallback
+websocket 프로토콜을 지원하지 않는 경우 polling 방식을 이용해 연결을 유지시키는 라이브러리
+
+<br/>
+stomp -> pub/sub <br/>
+sock JS -> websocket, polling 등 프로토콜 지원
