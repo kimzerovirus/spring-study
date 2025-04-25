@@ -22,8 +22,9 @@ extra["springAiVersion"] = "1.0.0-M7"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.springframework.ai:spring-ai-starter-model-azure-openai")
-    implementation("org.springframework.ai:spring-ai-starter-model-ollama")
+//    implementation("org.springframework.ai:spring-ai-starter-model-azure-openai")
+//    implementation("org.springframework.ai:spring-ai-starter-model-ollama")
+
     implementation("org.springframework.ai:spring-ai-starter-model-openai")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
