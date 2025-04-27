@@ -1,4 +1,4 @@
-package core.assertions;
+package core.assertions.junint;
 
 import me.kzv.core.assertions.SUT;
 import me.kzv.core.assertions.Job;
