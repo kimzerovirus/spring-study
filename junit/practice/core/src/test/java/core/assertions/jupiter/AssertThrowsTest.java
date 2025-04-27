@@ -1,4 +1,4 @@
-package core.assertions.junint;
+package core.assertions.jupiter;
 
 import me.kzv.core.assertions.NoJobException;
 import me.kzv.core.assertions.SUT;

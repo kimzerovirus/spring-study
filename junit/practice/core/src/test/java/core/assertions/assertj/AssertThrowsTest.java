@@ -2,7 +2,6 @@ package core.assertions.assertj;
 
 import me.kzv.core.assertions.NoJobException;
 import me.kzv.core.assertions.SUT;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
