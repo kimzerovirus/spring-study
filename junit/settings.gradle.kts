@@ -5,5 +5,6 @@ include(
     ":practice:architecture",
     ":practice:mocks",
     ":practice:incontainer",
-    ":practice:stubs"
+    ":practice:stubs",
+    ":practice:kotest-core"
 )

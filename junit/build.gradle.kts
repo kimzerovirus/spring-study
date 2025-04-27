@@ -44,10 +44,6 @@ allprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-        // kotest - junit platform 의존성을 가지고 있긴 하다.
-        testImplementation("io.kotest:kotest-runner-junit5")
-        testImplementation("io.kotest:kotest-assertions-core")
     }
 
     kotlin {
