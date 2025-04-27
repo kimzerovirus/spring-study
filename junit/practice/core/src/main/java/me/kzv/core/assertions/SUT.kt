@@ -4,8 +4,14 @@ class SUT(
     val systemName: String,
     var isVerified: Boolean = false
 ) {
+    constructor(systemName: String) : this(systemName, false)
+
     private val jobs: MutableList<Job> = ArrayList()
     private var currentJob: Job? = null
+
+    fun getCurrentJob(): Job? {
+        return currentJob
+    }
 
     fun verify() {
         this.isVerified = true
