@@ -1,4 +1,3 @@
-
 package me.kzv.architecture.runners;
 
 import org.junit.Test;
@@ -27,7 +26,7 @@ public class CustomTestRunner extends Runner {
     public void run(RunNotifier notifier) {
         System.out.println("Running tests with " + this.getClass().getSimpleName() + ": " + testedClass);
         try {
-            Object testObject = testedClass.newInstance();
+            Object testObject = testedClass.getDeclaredConstructors()[0].newInstance();
             for (Method method : testedClass.getMethods()) {
                 if (method.isAnnotationPresent(Test.class)) {
                     notifier.fireTestStarted(Description
