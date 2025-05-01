@@ -10,6 +10,10 @@ import static org.junit.Assert.assertEquals;
 @RunWith(CustomTestRunner.class)
 public class CalculatorTest {
 
+    // JUnit4 / JUni5 패키지 비교
+    // org.junit.Test / org.junit.jupiter.api.Test
+    // org.junit.Assert / org.junit.jupiter.api.Assertions
+
     @Test
     public void testAdd() {
         Calculator calculator = new Calculator();
