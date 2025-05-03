@@ -6,5 +6,6 @@ include(
     ":practice:mocks",
     ":practice:incontainer",
     ":practice:stubs",
+    ":practice:unit-quality",
     ":practice:kotest-core"
 )
