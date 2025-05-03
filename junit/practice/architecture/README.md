@@ -13,3 +13,19 @@ JUnit5는 `JUnit Vintage`를 통해 기존 레거시 프로젝트 즉, 이전 JU
 <br/>
 @RunWith는 JUnit 4에서 사용하는 어노테이션. JUnit 5는 기본적으로 이를 인식하지 못하며, junit-vintage-engine이 이를 브릿지 역할로 실행할 수 있도록 해줌.
 하지만 junit-vintage-engine만으로는 부족하고, JUnit 4 자체도 의존성으로 필요함.
+
+<br/>
+
+**jacoco 라이브러리로 테스트 커버리지 리포트 생성하기**<br/>
+jacoco plugin으로 추가
+jacocoTestReport 태스크를 사용하여 html, xml, csv 등 다양한 형식으로 리포트를 구성할 수 있다.
+```groovy
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = file("${buildDir}/jacocoHtml")
+    }
+}
+```
