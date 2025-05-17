@@ -1,4 +1,4 @@
-package me.kzv.stubs;
+package me.kzv.stubs.singleton;
 
 public class Singleton {
     private Singleton() {}
