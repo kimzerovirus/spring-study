@@ -25,6 +25,7 @@ public class TestWebClient {
                 .addHttpListener(8081, "0.0.0.0")
                 .setHandler(exchange -> {
                     String path = exchange.getRequestPath();
+                    System.out.println(">>>>> [REQ] path: " + path);
 
                     switch (path) {
                         case "/testGetContentOk":
@@ -55,6 +56,7 @@ public class TestWebClient {
     @Test
     public void testGetContentOk() throws MalformedURLException {
         String workingContent = client.getContent(new URL("http://localhost:8081/testGetContentOk"));
+        System.out.println(">>>>> [RES] content: " + workingContent);
         assertEquals("It works", workingContent);
     }
 
