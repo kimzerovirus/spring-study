@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<label for="setup">진행률</label>
+<progress id="setup" max="100" value="0">0%</progress>
+
+<button id="fetch-btn">fetch</button>
+
+<script defer>
+    const progressBar = document.getElementById("setup");
+
+    document.getElementById("fetch-btn").addEventListener('click', async () => {
+        // fetch('/api/progress')
+        //     .then(response => {
+        //         const reader = response.body.getReader();
+        //         const decoder = new TextDecoder();
+        //
+        //         return reader.read().then(function process({ done, value }) {
+        //             if (done) return;
+        //             console.log(decoder.decode(value));
+        //             progressBar.value = decoder.decode(value);
+        //             return reader.read().then(process);
+        //         });
+        //     });
+
+        const response = await fetch('/api/progress');
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+            console.log('Received', decoder.decode(value));
+            progressBar.value = decoder.decode(value);
+        }
+
+        console.log('Response fully received');
+    })
+
+    // fetch api를 이용한 스트리밍 요청
+    // https://web.dev/articles/fetch-upload-streaming?hl=ko
+</script>
+</body>
+</html>

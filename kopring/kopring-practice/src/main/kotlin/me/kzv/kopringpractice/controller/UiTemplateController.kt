@@ -8,7 +8,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 
 @Controller
-class SampleController {
+class UiTemplateController {
     val logger = LoggerFactory.getLogger(this.javaClass)
 
     @GetMapping("/sample/re")
@@ -35,5 +35,10 @@ class SampleController {
         logger.info("rediredted with: $token")
         model.addAttribute("token", token)
         return "sample"
+    }
+
+    @GetMapping("/progress")
+    fun progress(): String {
+        return "progress"
     }
 }
