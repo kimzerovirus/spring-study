@@ -1,6 +1,5 @@
-package me.kzv.tdd.controller;
+package me.kzv.tdd.application.todo;
 
-import me.kzv.tdd.service.TodoService;
 import me.kzv.tdd.supports.test.BaseControllerTest;
 
 public class TodoControllerTest extends BaseControllerTest {

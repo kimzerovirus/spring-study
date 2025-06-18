@@ -1,6 +1,6 @@
 package me.kzv.tdd.supports.fixture;
 
-import me.kzv.tdd.entity.Todo;
+import me.kzv.tdd.application.todo.Todo;
 
 import java.time.LocalDate;
 
