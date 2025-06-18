@@ -1,15 +1,9 @@
 **학습 목표**
 - spring batch, scheduling test (https://www.baeldung.com/spring-testing-scheduled-annotation https://cheese10yun.github.io/spring-batch-test-2/ https://jojoldu.tistory.com/455)
 - mail 서비스와 같은 외부 서비스 테스팅 (mock?)
-- spring security
-
-**Tech Stack**
-
-- JPA
-- JUnit
-- Mockito
-- AssertJ
-- Rest Docs
+- spring security, jwt
+- es, redis, kafka 등 서드 파티에 대한 테스트?
+- websocket, stomp
 
 # TDD
 

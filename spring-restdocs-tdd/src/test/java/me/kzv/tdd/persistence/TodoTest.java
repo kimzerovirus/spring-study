@@ -1,5 +1,6 @@
 package me.kzv.tdd.persistence;
 
+import me.kzv.tdd.entity.Todo;
 import me.kzv.tdd.supports.exception.TodoError;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

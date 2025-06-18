@@ -1,4 +1,4 @@
-package me.kzv.tdd.persistence;
+package me.kzv.tdd.entity;
 
 import com.google.common.base.Preconditions;
 import jakarta.persistence.*;
